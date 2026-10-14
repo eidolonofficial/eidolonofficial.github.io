@@ -22,6 +22,7 @@ const problems = [];
 const rules = [
   [/<p class="dateline">[^<]*<\/p>/g, `<p class="dateline">${shown.tag}, ${month(shown.date)}</p>`],
   [/<p class="version">[^<]*<\/p>/g, `<p class="version">${shown.tag}</p>`],
+  [/(?:Version|Release) v?[0-9.]+, a skill for Claude Code/g, `Release ${shown.tag}, a skill for Claude Code`],
   [/releases\/download\/v[0-9.]+\/Hearth-v[0-9.]+\.zip/g, `releases/download/${v.hearth.tag}/${v.hearth.zip}`],
   [/Hearth-v[0-9.]+\\welcome\.ps1/g, `${v.hearth.zip.replace(/\.zip$/, '')}\\welcome.ps1`],
   [/Hearth-v[0-9.]+\/macos\/Welcome\.command/g, `${v.hearth.zip.replace(/\.zip$/, '')}/macos/Welcome.command`],
