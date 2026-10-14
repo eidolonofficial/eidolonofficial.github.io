@@ -35,6 +35,7 @@ const rules = [
   [/Hearth\/blob\/v[0-9.]+\//g, `Hearth/blob/${v.hearth.tag}/`],
   [/eidolon\/blob\/v[0-9.]+\//g, `eidolon/blob/${v.eidolon.tag}/`],
   [/Download Hearth v[0-9.]+/g, `Download Hearth ${v.hearth.tag}`],
+  [/released <a href="release\.html">[^<]*<\/a>/g, `released <a href="release.html">${day(shown.date)}</a>`],
   [/on npm, version [0-9.]+ since [0-9]+ [A-Z][a-z]+ [0-9]{4}/g, `on npm, version ${v.npm.version} since ${day(v.npm.date)}`],
   [/eidolon-hearth<\/a> [0-9.]+, published on [0-9]+ [A-Z][a-z]+ [0-9]{4} from the Hearth v[0-9.]+ tag/g, `eidolon-hearth</a> ${v.npm.version}, published on ${day(v.npm.date)} from the Hearth ${v.hearth.tag} tag`],
 ];
@@ -49,6 +50,11 @@ for (const page of pages) {
   let after = before;
   for (const [re, to] of rules) after = after.replace(re, to);
   if (/<table>[\s\S]*Tag commit/.test(after)) for (const row of rows) if (!after.includes(row)) problems.push(`${page}: the ledger lacks the row ${row.slice(0, 60)}...`);
+  // Every version string on a page is a current tag, the npm version, or a tag listed as history.
+  const known = new Set([v.hearth.tag, v.eidolon.tag, v.setup.tag, 'v' + v.npm.version, v.npm.version, ...(v.history || [])]);
+  for (const m of after.replace(/<svg[\s\S]*?<\/svg>/g, '').matchAll(/(?<![\w.])v?\d+\.\d+\.\d+(?![\w.])/g)) {
+    if (!known.has(m[0]) && !/^2\.1\.\d+$/.test(m[0])) problems.push(`${page}: unknown version ${m[0]} (not current and not in versions.json history)`);
+  }
   if (after !== before) {
     if (CHECK) problems.push(`${page}: release strings differ from versions.json (run node release.mjs)`);
     else writeFileSync(join(ROOT, page), after);
