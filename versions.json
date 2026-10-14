@@ -1,16 +1,16 @@
 {
   "shown": "hearth",
   "hearth": {
-    "tag": "v0.1.1",
-    "commit": "5ef0bf7",
+    "tag": "v0.1.2",
+    "commit": "ce764c0",
     "date": "2026-10-14",
-    "zip": "Hearth-v0.1.1.zip",
-    "sha256": "0e4dd913a4edd571df0a4e35b7706054698c0bbe078464fdce039f51c0da70aa",
+    "zip": "Hearth-v0.1.2.zip",
+    "sha256": "5c746adcfa2484a70ea540c3071772e2a1262a9d9c3595dd18e3d3484728184a",
     "tests": "36 pass, and 320 pass with 6 skipped in the bundled eidolon suite"
   },
   "eidolon": {
-    "tag": "v0.1.2",
-    "commit": "6a416f0",
+    "tag": "v0.1.3",
+    "commit": "40bee9b",
     "date": "2026-10-14",
     "tests": "326 pass, 0 fail"
   },
@@ -22,8 +22,12 @@
   },
   "npm": {
     "name": "eidolon-hearth",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "date": "2026-10-14"
   },
-  "history": ["v0.1.0"]
+  "history": [
+    "v0.1.0",
+    "v0.1.1",
+    "v0.1.2"
+  ]
 }
