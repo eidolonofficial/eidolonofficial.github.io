@@ -27,23 +27,13 @@
   <main id="main" tabindex="-1">
     <div class="wrap">
       <h1>The persona pipeline</h1>
-      <p class="lede">In build mode, your main Claude Code session conducts. It writes the plan, hands each piece of work to a named agent, checks what comes back against the files on disk, and makes the one commit at the end. The pipeline is built from Claude Code's own agents, hooks and settings.</p>
+      <p class="lede">In build mode, your main Claude Code session conducts. It plans, hands each piece of work to a named agent, checks the result against the files on disk, and makes the one commit at the end. All of it runs on Claude Code's own agents, hooks and settings.</p>
 
       <h2>The stages of a build</h2>
-      <ol>
-        <li><strong>Specify.</strong> Write the spec. Gate 1: you approve it before any work starts.</li>
-        <li><strong>Plan.</strong> Pick the risk tier and the budget, and split the work into ordered tasks. Gate 2: you approve the plan on standard or larger work.</li>
-        <li><strong>Build.</strong> The engineering swarm builds one task at a time, test first.</li>
-        <li><strong>Review.</strong> Review swarms run in parallel, chosen by tier.</li>
-        <li><strong>Synthesize.</strong> One ordered list of what to do about every finding. None is dropped.</li>
-        <li><strong>Verify.</strong> A fresh agent gets only the diff, the spec and the rubric, and decides pass or fail itself. A third failure means the plan was wrong: re-plan, do not keep fixing.</li>
-        <li><strong>Gate 3.</strong> You look at the visual or runtime result. A screenshot proves the render happened, not that it is right.</li>
-        <li><strong>Ship,</strong> when the change deploys, after a deploy-readiness interview.</li>
-        <li><strong>Close.</strong> The only commit, a decision-log entry and the memory sync.</li>
-      </ol>
+      <p>A build runs specify, plan, build, review, synthesize, verify, ship (only when the change deploys) and close. You approve the spec before work starts, the plan on standard or larger work, and the visual or runtime result at the end. The verifier is a fresh agent that sees only the diff, the spec and the rubric. A third failed verify means the plan was wrong, so the plan is redone instead of fixed again. Only the close stage commits.</p>
 
       <h2>Agent files</h2>
-      <p>Setup writes one file per persona into <code>.claude/agents/</code>. Each file names when to hand work to that agent, and gives it the fewest tools that do the job. Reviewers get Read, Grep, Glob and Bash. Builders add Edit and Write. No agent gets the Agent tool, and the dispatch gate blocks a worker that tries to dispatch anyway. Each file also sets a model, an effort level and a turn limit. The body carries the persona's mandate, its anchors (the named standards it works to), what it must never do, and the two sections below on reasoning and briefs. A lint script must pass on every file.</p>
+      <p>Setup writes one file per persona into <code>.claude/agents/</code>, saying when to use that agent and giving it the fewest tools that do the job. Reviewers get Read, Grep, Glob and Bash; builders add Edit and Write. No agent gets the Agent tool, and the dispatch gate blocks a worker that tries to dispatch anyway. Each file sets a model, an effort level and a turn limit, and carries the persona's mandate, its anchors (the named standards it works to), what it must never do, and the reasoning and brief sections below. Each must pass a lint script.</p>
 
       <h2>A model tier for every dispatch</h2>
       <div class="table">
@@ -59,19 +49,19 @@
           </tbody>
         </table>
       </div>
-      <p>The session never dispatches a worker at its own tier. A brief may lower a worker's tier but never raise it above its agent file. A leg that fails moves one tier up before the plan is redone. Risk picks the tier; the number of files touched does not. If a dispatch names no tier at all, the dispatch gate asks you.</p>
+      <p>The session never dispatches a worker at its own tier. A brief may lower a worker's tier but never raise it above its agent file, and a failed leg moves one tier up before the plan is redone. Risk picks the tier, not the number of files. A dispatch that names no tier gets a question from the dispatch gate.</p>
 
       <h2>A wave plan before a swarm</h2>
-      <p>Before the first agent that can write is sent out, the conductor writes a plan to <code>.claude/waves/&lt;date&gt;-&lt;slug&gt;.md</code>. It names the result the wave is for, takes a read-only inventory of what is really there, and lists the work items. Each item has a write folder no other item shares, its dependencies, its model and effort, and a done-check. The plan also states the budget as arithmetic and names where you will be asked to decide. If there is no plan newer than the session start, the dispatch gate asks.</p>
+      <p>Before the first agent that can write goes out, the conductor writes <code>.claude/waves/&lt;date&gt;-&lt;slug&gt;.md</code>. The plan names the result the wave is for, records a read-only inventory of what is really there, and lists the work items, each with its own write folder, its dependencies, its model and effort, and a done-check. It states the budget as arithmetic and names where you will be asked to decide. With no plan newer than the session start, the dispatch gate asks.</p>
 
       <h2>The brief</h2>
       <p>Every agent starts from a brief with the same parts: the goal in one sentence, the seated persona, the files it may touch, what it must not touch, the done-check, its budget, its model and effort, and a short prior of three to five hits from memory and the fix log. A brief for an agent that can write must carry the check on a line of its own:</p>
       <pre><code>Done-check: npm test exits 0</code></pre>
-      <p>The words on their own line are what count. In the live test on 2026-10-13, the first dispatch was refused because its done-check sat inside a sentence. The agent returns a summary of one to two thousand tokens with the result first, the evidence, the paths it changed, what it did not do and why, and the cause, falsifier and evidence for its main claim.</p>
+      <p>The line has to stand on its own. In the live test on 2026-10-13, the first dispatch was refused because its done-check sat inside a sentence. The agent returns one to two thousand tokens: the result first, then the evidence, the paths it changed, what it did not do and why, and the cause, falsifier and evidence for its main claim.</p>
 
       <h2>The dispatch log and the worker hooks</h2>
-      <p>Every dispatch that is not blocked is appended to <code>.claude/.dispatch-log.jsonl</code>: the time, the session, the agent type, the model tier and effort, the persona, the write folders and a SHA-256 hash of the prompt. A failure to write the log never stops the dispatch.</p>
-      <p>When a worker starts, the SubagentStart hook hands it its lane, a summary of the brief contract and its own line from the log. When it stops, the SubagentStop hook looks for evidence in its last message: a quoted span, an <code>Evidence:</code> line, or a path that exists. With none, the worker is sent back once with the reason. This shows the report names something real. It does not show the done-check passed; the conductor still checks that.</p>
+      <p>Every dispatch that is not blocked is appended to <code>.claude/.dispatch-log.jsonl</code> with the time, session, agent type, tier, effort, persona, write folders and a SHA-256 hash of the prompt. A log failure never stops the dispatch.</p>
+      <p>When a worker starts, the SubagentStart hook hands it its lane, a summary of the brief contract and its own line from the log. When it stops, the SubagentStop hook looks in its last message for evidence: a quoted span, an <code>Evidence:</code> line or a path that exists. With none, the worker is sent back once with the reason. That shows the report names something real, not that the done-check passed, which the conductor still checks.</p>
 
       <h2>Causal logic as a persona rail</h2>
       <p>Every persona, the conductor included, states each claim as a chain: the cause, the mechanism, the falsifier that would show it wrong, and the evidence it actually collected. A report missing a link is incomplete and says which link. The docs give an example for a QA lead:</p>
@@ -81,21 +71,21 @@
         <dt>Falsifier</dt><dd>A mutant that deletes the cap check leaves the test green.</dd>
         <dt>Evidence</dt><dd>A mutation run on the cap check turns the test red, with the output pasted.</dd>
       </dl>
-      <p>A persona with no named standard behind it is rejected by the lint script before it can be seated. The docs put it as: no anchor, no seat.</p>
+      <p>A persona with no named standard behind it fails the lint and is never seated. The docs call this rule "no anchor, no seat."</p>
 
       <h2>Review swarms</h2>
-      <p>Each swarm is staffed by personas and proves its own check can fail before it is trusted.</p>
-      <ul>
-        <li><strong>Engineering</strong> builds. Each task's test must fail before the change and pass after it. A test that passes against nothing halts the run.</li>
-        <li><strong>Code review</strong> simplifies without changing behavior. The suite must pass the same way before and after. A planted behavior change must make a test fail first.</li>
-        <li><strong>Trust and safety</strong> checks harm, abuse, privacy, accessibility and fairness against GDPR, CCPA and WCAG 2.2 AA. A seeded line that logs personal data must be caught.</li>
-        <li><strong>Security</strong> runs red and blue: red finds, blue hardens, and each finding closes only when its fix is verified.</li>
-        <li><strong>Ship and upload</strong> runs a deploy-readiness interview. A seeded missing environment variable or staged secret must block the ship.</li>
-      </ul>
-      <p>Each review lens returns a score from 0 to 1, a pass or fail, and evidence. The score is the share of its checklist it covered with evidence. It is not a pass mark: one blocker fails the lens whatever the score.</p>
+      <p>Each swarm is staffed by personas, and each must show its own check can fail before its pass is trusted.</p>
+      <dl class="facts">
+        <dt>Engineering</dt><dd>Builds. Each task's test must fail before the change and pass after it; a test that passes against nothing halts the run.</dd>
+        <dt>Code review</dt><dd>Simplifies without changing behavior. The suite passes the same way before and after, and a planted behavior change must make a test fail first.</dd>
+        <dt>Trust and safety</dt><dd>Checks harm, abuse, privacy, accessibility and fairness against GDPR, CCPA and WCAG 2.2 AA. A seeded line that logs personal data must be caught.</dd>
+        <dt>Security</dt><dd>Red finds and blue hardens. Each finding closes only when its fix is verified.</dd>
+        <dt>Ship and upload</dt><dd>Runs a deploy-readiness interview. A seeded missing environment variable or staged secret must block the ship.</dd>
+      </dl>
+      <p>Each review lens returns a score from 0 to 1, a pass or fail, and evidence. The score is the share of its checklist covered with evidence, not a pass mark: one blocker fails the lens whatever the score.</p>
 
       <h2>The engineering principles</h2>
-      <p>These come from Anthropic's published engineering guidance and the Claude Code docs. Each is tied to the mechanism that carries it.</p>
+      <p>These come from Anthropic's published engineering guidance and the Claude Code docs.</p>
       <h3>Workflows before agents</h3>
       <p>Use the simplest pattern that solves the task. One call with retrieval beats a chain, and a chain beats a swarm. A new agent, loop or index has to name the failure it removes.</p>
       <h3>Bounded loops</h3>

@@ -97,14 +97,14 @@
 
       <h2>Live gates</h2>
       <p>G2 to G4 ran in headless Claude Code 2.1.206, in a throwaway project after a real install, with hook debug logging on. G1 and G5 were settled later the same day in sandboxes.</p>
-      <ul>
-        <li><strong>G1, the novice door.</strong> With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte and nothing else was written. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy, so it was archived and the platform notes now say to keep one copy per machine.</li>
-        <li><strong>G2, the guards.</strong> <code>git commit -n</code> was blocked. Deleting a hook through the PowerShell tool was blocked, which shows the shell guard reaches PowerShell. A dispatch with no <code>Done-check:</code> line was refused. <code>git push --force-with-lease</code> passed the hook; Claude Code's own permission layer then denied the push, which is separate from Eidolon.</li>
-        <li><strong>G3, a dry run.</strong> <code>/eidolon --dry-run</code> produced the recon and the ten-stage plan and wrote nothing. It passed on the second attempt.</li>
-        <li><strong>G4, the pipeline.</strong> A wave plan was written, then a builder agent ran on haiku with the lane <code>src/**</code>. Its writes outside the lane were blocked, the dispatch log recorded it, and a worker that tried to dispatch was blocked. Setting the spawn depth to 1 did not remove a worker's Agent tool, so the dispatch guard is the control that stops recursion.</li>
-        <li><strong>G5, the interview.</strong> The brain dump, the reflect-back and the goal text all worked, and the goal reached its end state. The interview guessed the permission choice instead of asking, and the guide now forbids that.</li>
-        <li><strong>The macOS doors</strong> ran on GitHub's macOS runner and under WSL Ubuntu.</li>
-      </ul>
+      <dl class="facts">
+        <dt>G1, the novice door</dt><dd>With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte and nothing else was written. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy, so it was archived and the platform notes now say to keep one copy per machine.</dd>
+        <dt>G2, the guards</dt><dd><code>git commit -n</code> was blocked. Deleting a hook through the PowerShell tool was blocked, which shows the shell guard reaches PowerShell. A dispatch with no <code>Done-check:</code> line was refused. <code>git push --force-with-lease</code> passed the hook; Claude Code's own permission layer then denied the push, which is separate from Eidolon.</dd>
+        <dt>G3, a dry run</dt><dd><code>/eidolon --dry-run</code> produced the recon and the ten-stage plan and wrote nothing. It passed on the second attempt.</dd>
+        <dt>G4, the pipeline</dt><dd>A wave plan was written, then a builder agent ran on haiku with the lane <code>src/**</code>. Its writes outside the lane were blocked, the dispatch log recorded it, and a worker that tried to dispatch was blocked. Setting the spawn depth to 1 did not remove a worker's Agent tool, so the dispatch guard is the control that stops recursion.</dd>
+        <dt>G5, the interview</dt><dd>The brain dump, the reflect-back and the goal text all worked, and the goal reached its end state. The interview guessed the permission choice instead of asking, and the guide now forbids that.</dd>
+        <dt>The macOS doors</dt><dd>Ran on GitHub's macOS runner and under WSL Ubuntu.</dd>
+      </dl>
 
       <h2>Still open</h2>
       <ul>
