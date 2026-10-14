@@ -203,24 +203,17 @@
             <blockquote><p>a guard that claims more than it does is worse than none; this is the honest list</p></blockquote>
             <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
           </figure>
-          <p class="initial">These are the shapes the checks and the deny floor do not cover.</p>
+          <p class="initial">These are the shapes the checks and the deny floor do not cover, as of v0.1.1. Review rounds 5 and 6 closed the earlier list. Scripts named on a command line are now read and judged. So are <code>node -e</code> and <code>python -c</code> bodies. Git aliases are expanded. Subshells are scoped. Encoded PowerShell commands are decoded. Archive escapes, hard links onto records and <code>GIT_DIR</code> prefixes block.</p>
           <ul>
-            <li>A script file a worker runs (<code>node build.js</code>, <code>sh run.sh</code>) does whatever it does. The guards see only its command line.</li>
-            <li>A wildcard or <code>$var</code> path does not trigger the lane check.</li>
-            <li>The hooks never parse code inside <code>node -e</code>, <code>python -c</code> and other interpreters. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
-            <li>The hooks cannot see git aliases defined in <code>.git/config</code>.</li>
-            <li>The hooks judge a subshell command by command, not as a unit.</li>
-            <li>The hooks do not decode PowerShell <code>-EncodedCommand</code> bodies. Such a command asks you instead.</li>
-            <li>The controller can still run <code>git checkout</code>, <code>switch</code> and <code>merge</code>. It can also run <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
-            <li>The hooks do not see a hard link that a script makes, or one behind a wildcard. They do not treat a link of a whole parent folder (<code>cp -al</code> or <code>rsync --link-dest</code>) as a link to the records inside it.</li>
-            <li>The hooks do not block <code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> when a bash prefix or an export sets it. They block the PowerShell forms, but only when git runs in the same command.</li>
-            <li>The hooks do not resolve a PowerShell call target held in a variable (<code>&amp; $cmd</code>).</li>
-            <li>An archive unpacked into an unprotected folder can hold entries that climb out of it.</li>
-            <li>A project inside the temp folder gives its workers no scratch space.</li>
-            <li>The hooks do not judge the controller's own writes outside the project, except writes to settings files.</li>
-            <li>The README lists a worker's agent type as unverified until a live debug run. In the live run of 2026-10-13, the worker's inputs did carry it.</li>
-            <li>The hooks are not an operating system sandbox.</li>
-            <li>A hook script that is absent, or that crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. To make that a block, you need Claude Code 2.1.295 or newer.</li>
+            <li>A script named on the command line is read once, one level deep, and judged by what it says. A path the script builds at run time is not resolved, so such a script asks you instead of blocking. A module the script imports, a script it runs, a file it writes and then runs, and the test files that <code>node --test</code> runs are not read. The scan is lexical. A call spelled in a way the patterns miss passes.</li>
+            <li>A script outside the project folder is not read. A worker with a lane is asked about it. The controller is not.</li>
+            <li>Git config includes are followed one level. An include inside an included file is not read. An <code>includeIf</code> is followed whatever its condition.</li>
+            <li>A shell <code>-c</code>, <code>eval</code> or <code>iex</code> body is parsed one level, and only when it names nothing protected and holds no <code>$</code> or backtick. Otherwise it asks, and only when it names git, a protected path or settings.</li>
+            <li>The controller's whole-tree check reads local refs. <code>git pull</code> is compared with the remote-tracking ref as it stands before the fetch. <code>git am</code>, <code>git stash pop</code> and <code>git reset</code> without <code>--hard</code> are not compared.</li>
+            <li>The hard-link check runs on a literal operand that exists. A wildcard or <code>$var</code> operand is not checked. A link a program makes after it starts is seen only through the scan of its source.</li>
+            <li>A variable set in an earlier tool call is not tracked. <code>GIT_DIR</code> exported in one call and git run in the next is not seen.</li>
+            <li>The hooks are not an operating system sandbox. Pair them with Claude Code's permission rules and its sandbox mode. What a program does after it starts is seen only through the scan of its source.</li>
+            <li>A hook script that is missing, or that crashes with exit code 1, does not block the call on Claude Code before 2.1.295. The installer writes <code>onFailure: block</code> on every hook entry, and 2.1.295 or newer honors it. Version 2.1.206 accepts the key and still fails open.</li>
           </ul>
         </div>
       </section>

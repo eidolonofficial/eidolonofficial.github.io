@@ -7,7 +7,7 @@
 // exists, every img has a non-empty alt, and every page has lang="en", a title, exactly one h1, a skip
 // link to #main, a main#main, exactly one masthead with exactly one site nav, and a footer colophon.
 // External references are limited: stylesheet links only to fonts.googleapis.com (exactly one per page),
-// a preconnect only to fonts.gstatic.com, and links only to github.com, nodejs.org and linkedin.com.
+// a preconnect only to fonts.gstatic.com, and links only to the hosts in LINK_HOSTS (GitHub, nodejs.org, npm, LinkedIn and the standards bodies).
 // It also checks contrast for the color tokens in both schemes of style.css: body text, muted text,
 // labels, links, icons, verdict chips, button text and code at least 4.5 to 1, text on the hero sky at
 // least 4.5 to 1, the focus ring at least 3 to 1, and the gold used for large display type at least 3 to 1.
@@ -21,7 +21,7 @@ const TEXT_EXT = new Set(['.html', '.css', '.mjs', '.svg', '.txt', '.md']);
 const DASH = /[\u2013\u2014]|&(?:ndash|mdash);|&#(?:8211|8212|x2013|x2014);/i;
 const LEGACY = new RegExp(['Fable', 'fox'].join(''), 'i');
 const SCRIPT_TAG = new RegExp('<' + 'script\\b', 'i');
-const LINK_HOSTS = new Set(['github.com', 'nodejs.org', 'linkedin.com', 'owasp.org', 'attack.mitre.org', 'cwe.mitre.org', 'csrc.nist.gov', 'www.w3.org']);
+const LINK_HOSTS = new Set(['github.com', 'nodejs.org', 'linkedin.com', 'www.npmjs.com', 'owasp.org', 'attack.mitre.org', 'cwe.mitre.org', 'csrc.nist.gov', 'www.w3.org']);
 const FONT_CSS_HOST = 'fonts.googleapis.com';
 const FONT_FILE_HOST = 'fonts.gstatic.com';
 const RASTER = new RegExp('\\.(?:' + ['png', 'jpe?g', 'gif', 'webp', 'avif', 'bmp', 'ico', 'tiff?', 'heic'].join('|') + ')\\b', 'i');

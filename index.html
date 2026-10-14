@@ -106,14 +106,23 @@
         <section class="install reveal" aria-labelledby="install-h">
           <div class="install-head">
             <h2 id="install-h">Install from a terminal</h2>
-            <p class="label">Three doors, one command block each</p>
+            <p class="label">Four ways in, one command block each</p>
           </div>
           <div class="seg" role="radiogroup" aria-label="Choose a door">
-            <input class="seg-input" type="radio" name="door" id="seg-win" checked>
+            <input class="seg-input" type="radio" name="door" id="seg-npm" checked>
+            <input class="seg-input" type="radio" name="door" id="seg-win">
             <input class="seg-input" type="radio" name="door" id="seg-mac">
             <input class="seg-input" type="radio" name="door" id="seg-op">
-            <div class="seg-bar"><label for="seg-win">Windows</label><label for="seg-mac">macOS and Linux</label><label for="seg-op">Operator door</label></div>
+            <div class="seg-bar"><label for="seg-npm">npm</label><label for="seg-win">Windows</label><label for="seg-mac">macOS and Linux</label><label for="seg-op">Operator door</label></div>
             <div class="seg-panels">
+              <div class="seg-panel panel-npm">
+                <p class="cmd-title"><strong>npm, the one-line way</strong> (Node 22 or newer, any system)</p>
+                <div class="cmd">
+                  <pre><code>npx eidolon-hearth</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the command</span></button>
+                </div>
+                <p class="cmd-cap">It installs the two skills into your user folder, shows every path first and asks before it replaces anything. Inside a project, <code>npx eidolon-hearth .</code> also wires the project hooks. The package is <a href="https://www.npmjs.com/package/eidolon-hearth">eidolon-hearth</a> on npm, version 0.1.1 since 14 October 2026. It ships the same bundles as the zip, checked against the same lock.</p>
+              </div>
               <div class="seg-panel panel-win">
                 <p class="cmd-title"><strong>Windows, novice door</strong> (PowerShell 5.1, nothing else needed)</p>
                 <div class="cmd">
@@ -146,7 +155,7 @@ node Hearth/scripts/welcome.mjs</code></pre>
               </div>
             </div>
           </div>
-          <p class="install-note">There is no npm package. Hearth ships as a zip and a repository, and the operator door is a Node script inside it.</p>
+          <p class="install-note">Every door asks GitHub once for a newer Hearth release before it writes, and asks you before it acts on one. The npm route and the operator door need Node 22. The zip doors need nothing else.</p>
         </section>
         <ul class="proof" aria-label="Proof">
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg><span><a href="release.html#gates"><b>285</b> tests pass</a> at the eidolon tag</span></li>
@@ -260,6 +269,7 @@ node Hearth/scripts/welcome.mjs</code></pre>
               <div><dt>What it writes</dt><dd>Two folders in your user folder: <code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code>. It prints each file as it lands. It writes nothing else, adds no hooks and installs no other tool.</dd></div>
               <div><dt>If a skill is already there</dt><dd>It asks you to type <code>replace</code> or press Enter to skip. Skip is the default. On replace, Hearth first moves your old folder to <code>.claude/skills/.hearth-backups/&lt;yyyyMMdd-HHmmss&gt;/&lt;name&gt;</code>. Then it copies the new one.</dd></div>
               <div><dt>To undo it</dt><dd>Delete the <code>eidolon</code> and <code>setup</code> folders from <code>.claude/skills</code>. If Hearth saved an older copy, move it back from <code>.hearth-backups</code>.</dd></div>
+              <div><dt>Updates</dt><dd>Before it copies, the door asks GitHub once for the latest Hearth release. Three seconds at most, and nothing is sent but a fixed user agent. If a newer release exists, it tells you both versions and asks. Type <code>yes</code> to open the download page and stop, or press Enter to continue with this copy. No answer from GitHub means no notice. <code>EIDOLON_UPDATE_CHECK=0</code> turns the check off.</dd></div>
             </dl>
             <aside class="note" aria-label="Still open: the Mac door">
               <span class="label">Still open</span>
@@ -283,6 +293,7 @@ node Hearth/scripts/welcome.mjs</code></pre>
                 It also sets three settings keys and replaces any values already there: <code>env.CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to <code>"1"</code>, <code>effortLevel</code> to <code>xhigh</code> and <code>maxEffortLevel</code> to <code>max</code>. The preview says so.
               </dd></div>
               <div><dt>If a skill is already there</dt><dd>You type <code>replace</code> to see a replacement plan. Hearth keeps the old files under <code>.eidolon/backups/&lt;id&gt;/</code> with a <code>receipt.json</code>. It deletes nothing. It refuses a plan that changed after you reviewed it. It never reports a failed install as a success.</dd></div>
+              <div><dt>Updates</dt><dd>It asks GitHub once a day for the latest Hearth release. If a newer one exists, it asks <code>Update now?</code>. On <code>yes</code> it runs the newer version in its place, with the same arguments, through <code>npm exec</code>. Inside a Claude Code session, the Eidolon skill runs the same check when it starts and asks you before it runs <code>npx -y eidolon-hearth@latest --yes</code>. <code>EIDOLON_UPDATE_CHECK=0</code> turns both off.</dd></div>
               <div><dt>After it finishes</dt><dd>It prints the verified file count, the backup receipt path and the next step. Restart Claude Code in the project, and the hooks are active in the next session. They run Node, so keep Node installed.</dd></div>
             </dl>
           </article>
@@ -348,22 +359,15 @@ DISPATCH GUARD: brief names no done-check. Add a line such as "Done-check: &lt;c
           <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
         </figure>
         <ul class="gaps">
-          <li>A script file a worker runs (<code>node build.js</code>, <code>sh run.sh</code>) does whatever it does. The guards see only its command line.</li>
-          <li>A wildcard or <code>$var</code> path does not trigger the lane check.</li>
-          <li>The hooks never parse code inside <code>node -e</code>, <code>python -c</code> and other interpreters. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
-          <li>The hooks cannot see git aliases defined in <code>.git/config</code>.</li>
-          <li>The hooks judge a subshell command by command, not as a unit.</li>
-          <li>The hooks do not decode PowerShell <code>-EncodedCommand</code> bodies. Such a command asks you instead.</li>
-          <li>The controller can still run <code>git checkout</code>, <code>switch</code> and <code>merge</code>. It can also run <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
-          <li>The hooks do not see a hard link that a script makes, or one behind a wildcard. They do not treat a link of a whole parent folder (<code>cp -al</code> or <code>rsync --link-dest</code>) as a link to the records inside it.</li>
-          <li>The hooks do not block <code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> when a bash prefix or an export sets it. They block the PowerShell forms, but only when git runs in the same command.</li>
-          <li>The hooks do not resolve a PowerShell call target held in a variable (<code>&amp; $cmd</code>).</li>
-          <li>An archive unpacked into an unprotected folder can hold entries that climb out of it.</li>
-          <li>A project inside the temp folder gives its workers no scratch space.</li>
-          <li>The hooks do not judge the controller's own writes outside the project, except writes to settings files.</li>
-          <li>The README lists a worker's agent type as unverified until a live debug run. In the live run of 2026-10-13, the worker's inputs did carry it.</li>
-          <li>The hooks are not an operating system sandbox.</li>
-          <li>A hook script that is absent, or that crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. To make that a block, you need Claude Code 2.1.295 or newer.</li>
+          <li>A script named on the command line is read once, one level deep, and judged by what it says. A path the script builds at run time is not resolved, so such a script asks you instead of blocking. A module the script imports, a script it runs, a file it writes and then runs, and the test files that <code>node --test</code> runs are not read. The scan is lexical. A call spelled in a way the patterns miss passes.</li>
+          <li>A script outside the project folder is not read. A worker with a lane is asked about it. The controller is not.</li>
+          <li>Git config includes are followed one level. An include inside an included file is not read. An <code>includeIf</code> is followed whatever its condition.</li>
+          <li>A shell <code>-c</code>, <code>eval</code> or <code>iex</code> body is parsed one level, and only when it names nothing protected and holds no <code>$</code> or backtick. Otherwise it asks, and only when it names git, a protected path or settings.</li>
+          <li>The controller's whole-tree check reads local refs. <code>git pull</code> is compared with the remote-tracking ref as it stands before the fetch. <code>git am</code>, <code>git stash pop</code> and <code>git reset</code> without <code>--hard</code> are not compared.</li>
+          <li>The hard-link check runs on a literal operand that exists. A wildcard or <code>$var</code> operand is not checked. A link a program makes after it starts is seen only through the scan of its source.</li>
+          <li>A variable set in an earlier tool call is not tracked. <code>GIT_DIR</code> exported in one call and git run in the next is not seen.</li>
+          <li>The hooks are not an operating system sandbox. Pair them with Claude Code's permission rules and its sandbox mode. What a program does after it starts is seen only through the scan of its source.</li>
+          <li>A hook script that is missing, or that crashes with exit code 1, does not block the call on Claude Code before 2.1.295. The installer writes <code>onFailure: block</code> on every hook entry, and 2.1.295 or newer honors it. Version 2.1.206 accepts the key and still fails open.</li>
         </ul>
 
         <h3 id="never">What it never does</h3>

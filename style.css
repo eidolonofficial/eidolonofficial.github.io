@@ -222,13 +222,16 @@ em { font-style: italic; }
 .seg-bar { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: var(--r-pill); background: var(--bg); border: 1px solid var(--line); margin-bottom: var(--s-sm); }
 .seg-bar label { cursor: pointer; padding: 8px 16px; border-radius: var(--r-pill); font-weight: 600; font-size: 0.9375rem; color: var(--muted); transition: background-color var(--t-quick), color var(--t-quick); }
 .seg-bar label:hover { color: var(--text); }
+#seg-npm:checked ~ .seg-bar label[for="seg-npm"],
 #seg-win:checked ~ .seg-bar label[for="seg-win"],
 #seg-mac:checked ~ .seg-bar label[for="seg-mac"],
 #seg-op:checked ~ .seg-bar label[for="seg-op"] { background: var(--btn); color: var(--onbtn); }
+#seg-npm:focus-visible ~ .seg-bar label[for="seg-npm"],
 #seg-win:focus-visible ~ .seg-bar label[for="seg-win"],
 #seg-mac:focus-visible ~ .seg-bar label[for="seg-mac"],
 #seg-op:focus-visible ~ .seg-bar label[for="seg-op"] { outline: 2px solid var(--focus); outline-offset: 2px; }
 .seg-panel { display: none; }
+#seg-npm:checked ~ .seg-panels .panel-npm,
 #seg-win:checked ~ .seg-panels .panel-win,
 #seg-mac:checked ~ .seg-panels .panel-mac,
 #seg-op:checked ~ .seg-panels .panel-op { display: block; }
