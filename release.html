@@ -6,129 +6,179 @@
   <title>Eidolon v0.1.0</title>
   <meta name="description" content="What shipped in v0.1.0, the gates, the live tests, what is still open and how the release came about.">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site">
-    <div class="wrap">
-      <p class="brand"><img src="lantern.svg" alt="Eidolon lantern mark" width="26" height="32"><a href="index.html">Eidolon</a></p>
-      <nav aria-label="Site">
-        <ul>
+  <header class="masthead">
+    <p class="dateline">Volume 0.1, October 2026</p>
+    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="safety.html">Safety</a></li>
         <li><a href="pipeline.html">Pipeline</a></li>
         <li><a href="autopilot.html">Autopilot</a></li>
         <li><a href="release.html" aria-current="page">Release</a></li>
-        </ul>
-      </nav>
-    </div>
+      </ul>
+    </nav>
   </header>
   <main id="main" tabindex="-1">
-    <div class="wrap">
-      <h1>Release v0.1.0</h1>
-      <p class="lede">The first tagged release of all three repositories, on 13 October 2026. It supports Claude Code only.</p>
+    <article class="feature">
+      <header class="opener">
+        <p class="kicker-page">The record</p>
+        <h1>Release v0.1.0, the first edition</h1>
+        <p class="dek">What shipped, what was cut, how it was tested, and what is still open.</p>
+        <p class="lead">This is the first tagged release of all three repositories, on 13 October 2026. It supports Claude Code only.</p>
+      </header>
 
-      <h2>The releases</h2>
-      <div class="table">
-        <table>
-          <thead>
-            <tr><th scope="col">Repository</th><th scope="col">Tag commit</th><th scope="col">Tests at the tag</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon v0.1.0</a></td><td><code>0674346</code></td><td>285 pass, 0 fail</td></tr>
-            <tr><td><a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup v0.1.0</a></td><td><code>2733f2e</code></td><td>16 pass, 0 fail</td></tr>
-            <tr><td><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth v0.1.0</a></td><td><code>a85d6a6</code></td><td>28 pass</td></tr>
-          </tbody>
-        </table>
+      <nav class="toc" aria-label="Chapters">
+        <h2>In this piece</h2>
+        <ol>
+          <li><a href="#releases"><span class="n">1</span>The releases</a></li>
+          <li><a href="#shipped"><span class="n">2</span>What shipped</a></li>
+          <li><a href="#fixed"><span class="n">3</span>What was fixed</a></li>
+          <li><a href="#removed"><span class="n">4</span>What was removed</a></li>
+          <li><a href="#gates"><span class="n">5</span>The gates</a></li>
+          <li><a href="#rounds"><span class="n">6</span>Review rounds, by execution</a></li>
+          <li><a href="#live"><span class="n">7</span>Live gates</a></li>
+          <li><a href="#open"><span class="n">8</span>Still open</a></li>
+          <li><a href="#origin"><span class="n">9</span>How this release came about</a></li>
+        </ol>
+      </nav>
+
+      <div class="body">
+        <section class="chapter" id="releases" aria-labelledby="releases-h">
+          <h2 id="releases-h"><span class="kicker">Chapter <span class="num">1</span></span>The releases</h2>
+          <div class="table">
+            <table>
+              <caption>Three repositories, one tag each</caption>
+              <thead>
+                <tr><th scope="col">Repository</th><th scope="col">Tag commit</th><th scope="col">Tests at the tag</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon v0.1.0</a></th><td><code>0674346</code></td><td>285 pass, 0 fail</td></tr>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup v0.1.0</a></th><td><code>2733f2e</code></td><td>16 pass, 0 fail</td></tr>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth v0.1.0</a></th><td><code>a85d6a6</code></td><td>28 pass</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The Hearth release carries <code>Hearth-v0.1.0.zip</code>. Its SHA-256 is:</p>
+          <pre><code>ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
+          <p>Compare it with the hash of the file you downloaded before you open it.</p>
+          <p>CI is green on Ubuntu, macOS and Windows for all three repositories, with a scan of the full history for secrets.</p>
+        </section>
+
+        <section class="chapter" id="shipped" aria-labelledby="shipped-h">
+          <h2 id="shipped-h"><span class="kicker">Chapter <span class="num">2</span></span>What shipped</h2>
+          <ul>
+            <li>Eidolon as a router skill with three modes: setup, build and autopilot.</li>
+            <li>The native <a href="pipeline.html">persona pipeline</a>: agent files generated from the persona roster with tools, model and effort; a write lane per worker; the brief gate; the dispatch log; SubagentStart and SubagentStop hooks; a wave plan before any swarm; and a causal reasoning rail in every persona.</li>
+            <li>The <a href="autopilot.html">autopilot guide</a> for loops, goals and routines, opening with a brain dump and a chips interview.</li>
+            <li>The engineering principles reference.</li>
+            <li>A drift test that checks the hooks README against the code.</li>
+            <li>A hardened installer: preview by default, apply bound to the digest of the previewed plan, a vendor lock, staged writes with rollback, and backups with receipts.</li>
+            <li>Setup, which opens a session with the brain dump and asks only for what is missing.</li>
+            <li>Hearth with <a href="index.html#door-novice">two doors</a>: a novice door with no Node and no hooks, and an operator door that needs Node 22 and wires the project hooks.</li>
+          </ul>
+        </section>
+
+        <section class="chapter" id="fixed" aria-labelledby="fixed-h">
+          <h2 id="fixed-h"><span class="kicker">Chapter <span class="num">3</span></span>What was fixed</h2>
+          <p>The PowerShell tool now reaches the shell guards. The release also fixes these shapes: combined short flags such as <code>-nm</code>, a hooks path set through <code>GIT_CONFIG_*</code>, <code>cd</code> followed by a relative path, redirect and copy overwrites of records, and path spellings that got past the record guards. The drift counter is now wired after each write, and the dispatch matcher is <code>Agent</code>.</p>
+        </section>
+
+        <section class="chapter" id="removed" aria-labelledby="removed-h">
+          <h2 id="removed-h"><span class="kicker">Chapter <span class="num">4</span></span>What was removed</h2>
+          <ul>
+            <li>From Eidolon: the Codex adapter and the text written for two hosts; the vendored ASI-Evolve engine and evolve mode; the security-attestation and review-receipt ceremonies; the September persona-pipeline command line tools; and the advisor, conduct, process-doctrine, security-surface and orient-gate hooks.</li>
+            <li>From Hearth: the three graphical installers (the Windows WPF window, the macOS app and the browser installer), Codex support, the optional tool cards, and <code>AGENTS.md</code>.</li>
+          </ul>
+          <p>For Hearth, Git history keeps what was removed.</p>
+        </section>
+
+        <section class="chapter" id="gates" aria-labelledby="gates-h">
+          <h2 id="gates-h"><span class="kicker">Chapter <span class="num">5</span></span>The gates</h2>
+          <p>As recorded in the release notes for each tag:</p>
+          <ul>
+            <li>Eidolon: the hook and script suites, 285 pass and 0 fail. <code>selfcheck</code> prints 67 PASS lines and PASS. The harness audit, the hooks README check and the persona lint all pass.</li>
+            <li>Setup: 16 pass, 0 fail.</li>
+            <li>Hearth: 28 pass. The generator regression test passes. The bundled Eidolon suite has 281 pass and 4 skipped, because those 4 need the Eidolon repository's own settings file. The bundled Setup suite has 16 pass. The bundle check against the pinned commits passes.</li>
+          </ul>
+        </section>
+
+        <section class="chapter" id="rounds" aria-labelledby="rounds-h">
+          <h2 id="rounds-h"><span class="kicker">Chapter <span class="num">6</span></span>Review rounds, by execution</h2>
+          <div class="table">
+            <table>
+              <caption>Six review rounds and the commits that fixed them</caption>
+              <thead>
+                <tr><th scope="col">Round</th><th scope="col">Found</th><th scope="col">Fixed in</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Hooks, round 1</th><td>10 red, 14 yellow</td><td>d73ea59, test first</td></tr>
+                <tr><th scope="row">Installer, round 1</th><td>2 red, 12 yellow</td><td>d73ea59, test first</td></tr>
+                <tr><th scope="row">Hooks, round 2</th><td>10 new red, 5 yellow</td><td>8c84b60, test first</td></tr>
+                <tr><th scope="row">Hooks, round 3</th><td>5 red, 3 yellow, 3 README claims</td><td>a327952, test first</td></tr>
+                <tr><th scope="row">Installer, round 2</th><td>1 high, 3 medium, 10 low</td><td>a327952, test first</td></tr>
+                <tr><th scope="row">Setup, cold review</th><td>3 red, 7 yellow</td><td>3255e07</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The high finding in the second installer round was that short 8.3 and network-share spellings of the home folder got past the refusal to install into it. Every round replayed the payloads of the round before and 60 ordinary developer commands. Two deliberate mutations were caught by existing tests in every round.</p>
+        </section>
+
+        <section class="chapter" id="live" aria-labelledby="live-h">
+          <h2 id="live-h"><span class="kicker">Chapter <span class="num">7</span></span>Live gates</h2>
+          <p>G2 to G4 ran in headless Claude Code 2.1.206, in a throwaway project after a real install, with hook debug logging on. G1 and G5 were settled later the same day in sandboxes.</p>
+          <dl class="facts">
+            <div><dt>G1, the novice door</dt><dd>With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte and nothing else was written. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy, so it was archived and the platform notes now say to keep one copy per machine.</dd></div>
+            <div><dt>G2, the guards</dt><dd><code>git commit -n</code> was blocked. Deleting a hook through the PowerShell tool was blocked, which shows the shell guard reaches PowerShell. A dispatch with no <code>Done-check:</code> line was refused. <code>git push --force-with-lease</code> passed the hook; Claude Code's own permission layer then denied the push, which is separate from Eidolon.</dd></div>
+            <div><dt>G3, a dry run</dt><dd><code>/eidolon --dry-run</code> produced the recon and the ten-stage plan and wrote nothing. It passed on the second attempt.</dd></div>
+            <div><dt>G4, the pipeline</dt><dd>A wave plan was written, then a builder agent ran on haiku with the lane <code>src/**</code>. Its writes outside the lane were blocked, the dispatch log recorded it, and a worker that tried to dispatch was blocked. Setting the spawn depth to 1 did not remove a worker's Agent tool, so the dispatch guard is the control that stops recursion.</dd></div>
+            <div><dt>G5, the interview</dt><dd>The brain dump, the reflect-back and the goal text all worked, and the goal reached its end state. The interview guessed the permission choice instead of asking, and the guide now forbids that.</dd></div>
+            <div><dt>The macOS doors</dt><dd>Ran on GitHub's macOS runner and under WSL Ubuntu.</dd></div>
+          </dl>
+        </section>
+
+        <section class="chapter" id="open" aria-labelledby="open-h">
+          <h2 id="open-h"><span class="kicker">Chapter <span class="num">8</span></span>Still open</h2>
+          <ul>
+            <li>Claude Code's built-in <code>/goal</code> evaluator in an interactive session. Headless mode does not expand slash commands, so this needs a person.</li>
+            <li>A run of the doors on a user's own Mac.</li>
+            <li>Whether Claude Code itself refuses a worker's spawn at depth 1. The dispatch guard blocks the call first, so this has not been seen.</li>
+            <li>Whether the installer's Node 22 check runs before any syntax an older Node would reject. Running it under Node 20 would settle this.</li>
+          </ul>
+          <p>The hooks remain defense in depth. Their <a href="safety.html#gaps">known gaps</a> are the honest limit of what they cover.</p>
+        </section>
+
+        <section class="chapter" id="origin" aria-labelledby="origin-h">
+          <h2 id="origin-h"><span class="kicker">Chapter <span class="num">9</span></span>How this release came about</h2>
+          <p>An audit on 13 October 2026 found four lines of this harness that had drifted apart. GitHub main, dated 10 September, was the only one with CI, pins and public history. The other three held months of work that had been verified green in a working tree but never committed or pushed:</p>
+          <ul>
+            <li>a triage refactor from 9 July and a skill cleanup from 5 September, in a local clone;</li>
+            <li>a re-mirror of Hearth from 9 July;</li>
+            <li>a "safety program" in Codex worktrees from 13 September, verified through builds 1 to 4 and 7, and stopped at build 5 of 14.</li>
+          </ul>
+          <p>Two separate measures agreed that the hooks were lexical and could be bypassed, while the docs called them hard enforcement.</p>
+          <p>The owner's decisions that day made GitHub main canonical, with one reviewed re-cut on top of it. The three uncommitted lines are kept as archive branches and never merged.</p>
+          <figure class="pullquote">
+            <blockquote><p>Claude Code is the product.</p></blockquote>
+            <figcaption>From <cite>docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md</cite>, the eidolon repository</figcaption>
+          </figure>
+          <p>The intent behind the old persona tools was rebuilt on Claude Code's own agents, hooks and settings. The docs now call the hooks defense in depth, and a drift test holds every documented block and ask to the code. The graphical installers had measured contrast ratios of 4.02, 3.42 and 2.89 to 1 against a 4.5 target; those numbers are kept in the record, and the installers are gone.</p>
+          <p>The full account is the decision record, <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">2026-10-13-archive-branches-and-v010-re-cut.md</a>.</p>
+        </section>
       </div>
-      <p>The Hearth release carries <code>Hearth-v0.1.0.zip</code>. Its SHA-256 is:</p>
-      <pre><code>ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
-      <p>Compare it with the hash of the file you downloaded before you open it.</p>
-      <p>CI is green on Ubuntu, macOS and Windows for all three repositories, with a scan of the full history for secrets.</p>
-
-      <h2>What shipped</h2>
-      <ul>
-        <li>Eidolon as a router skill with three modes: setup, build and autopilot.</li>
-        <li>The native <a href="pipeline.html">persona pipeline</a>: agent files generated from the persona roster with tools, model and effort; a write lane per worker; the brief gate; the dispatch log; SubagentStart and SubagentStop hooks; a wave plan before any swarm; and a causal reasoning rail in every persona.</li>
-        <li>The <a href="autopilot.html">autopilot guide</a> for loops, goals and routines, opening with a brain dump and a chips interview.</li>
-        <li>The engineering principles reference.</li>
-        <li>A drift test that checks the hooks README against the code.</li>
-        <li>A hardened installer: preview by default, apply bound to the digest of the previewed plan, a vendor lock, staged writes with rollback, and backups with receipts.</li>
-        <li>Setup, which opens a session with the brain dump and asks only for what is missing.</li>
-        <li>Hearth with <a href="index.html#door-novice">two doors</a>: a novice door with no Node and no hooks, and an operator door that needs Node 22 and wires the project hooks.</li>
-      </ul>
-
-      <h2>What was fixed</h2>
-      <p>The PowerShell tool now reaches the shell guards. The release also fixes these shapes: combined short flags such as <code>-nm</code>, a hooks path set through <code>GIT_CONFIG_*</code>, <code>cd</code> followed by a relative path, redirect and copy overwrites of records, and path spellings that got past the record guards. The drift counter is now wired after each write, and the dispatch matcher is <code>Agent</code>.</p>
-
-      <h2>What was removed</h2>
-      <ul>
-        <li>From Eidolon: the Codex adapter and the text written for two hosts; the vendored ASI-Evolve engine and evolve mode; the security-attestation and review-receipt ceremonies; the September persona-pipeline command line tools; and the advisor, conduct, process-doctrine, security-surface and orient-gate hooks.</li>
-        <li>From Hearth: the three graphical installers (the Windows WPF window, the macOS app and the browser installer), Codex support, the optional tool cards, and <code>AGENTS.md</code>.</li>
-      </ul>
-      <p>For Hearth, Git history keeps what was removed.</p>
-
-      <h2>The gates</h2>
-      <p>As recorded in the release notes for each tag:</p>
-      <ul>
-        <li>Eidolon: the hook and script suites, 285 pass and 0 fail. <code>selfcheck</code> prints 67 PASS lines and PASS. The harness audit, the hooks README check and the persona lint all pass.</li>
-        <li>Setup: 16 pass, 0 fail.</li>
-        <li>Hearth: 28 pass. The generator regression test passes. The bundled Eidolon suite has 281 pass and 4 skipped, because those 4 need the Eidolon repository's own settings file. The bundled Setup suite has 16 pass. The bundle check against the pinned commits passes.</li>
-      </ul>
-
-      <h2>Review rounds, by execution</h2>
-      <div class="table">
-        <table>
-          <thead>
-            <tr><th scope="col">Round</th><th scope="col">Found</th><th scope="col">Fixed in</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Hooks, round 1</td><td>10 red, 14 yellow</td><td>d73ea59, test first</td></tr>
-            <tr><td>Installer, round 1</td><td>2 red, 12 yellow</td><td>d73ea59, test first</td></tr>
-            <tr><td>Hooks, round 2</td><td>10 new red, 5 yellow</td><td>8c84b60, test first</td></tr>
-            <tr><td>Hooks, round 3</td><td>5 red, 3 yellow, 3 README claims</td><td>a327952, test first</td></tr>
-            <tr><td>Installer, round 2</td><td>1 high, 3 medium, 10 low</td><td>a327952, test first</td></tr>
-            <tr><td>Setup, cold review</td><td>3 red, 7 yellow</td><td>3255e07</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>The high finding in the second installer round was that short 8.3 and network-share spellings of the home folder got past the refusal to install into it. Every round replayed the payloads of the round before and 60 ordinary developer commands. Two deliberate mutations were caught by existing tests in every round.</p>
-
-      <h2>Live gates</h2>
-      <p>G2 to G4 ran in headless Claude Code 2.1.206, in a throwaway project after a real install, with hook debug logging on. G1 and G5 were settled later the same day in sandboxes.</p>
-      <dl class="facts">
-        <dt>G1, the novice door</dt><dd>With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte and nothing else was written. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy, so it was archived and the platform notes now say to keep one copy per machine.</dd>
-        <dt>G2, the guards</dt><dd><code>git commit -n</code> was blocked. Deleting a hook through the PowerShell tool was blocked, which shows the shell guard reaches PowerShell. A dispatch with no <code>Done-check:</code> line was refused. <code>git push --force-with-lease</code> passed the hook; Claude Code's own permission layer then denied the push, which is separate from Eidolon.</dd>
-        <dt>G3, a dry run</dt><dd><code>/eidolon --dry-run</code> produced the recon and the ten-stage plan and wrote nothing. It passed on the second attempt.</dd>
-        <dt>G4, the pipeline</dt><dd>A wave plan was written, then a builder agent ran on haiku with the lane <code>src/**</code>. Its writes outside the lane were blocked, the dispatch log recorded it, and a worker that tried to dispatch was blocked. Setting the spawn depth to 1 did not remove a worker's Agent tool, so the dispatch guard is the control that stops recursion.</dd>
-        <dt>G5, the interview</dt><dd>The brain dump, the reflect-back and the goal text all worked, and the goal reached its end state. The interview guessed the permission choice instead of asking, and the guide now forbids that.</dd>
-        <dt>The macOS doors</dt><dd>Ran on GitHub's macOS runner and under WSL Ubuntu.</dd>
-      </dl>
-
-      <h2>Still open</h2>
-      <ul>
-        <li>Claude Code's built-in <code>/goal</code> evaluator in an interactive session. Headless mode does not expand slash commands, so this needs a person.</li>
-        <li>A run of the doors on a user's own Mac.</li>
-        <li>Whether Claude Code itself refuses a worker's spawn at depth 1. The dispatch guard blocks the call first, so this has not been seen.</li>
-        <li>Whether the installer's Node 22 check runs before any syntax an older Node would reject. Running it under Node 20 would settle this.</li>
-      </ul>
-      <p>The hooks remain defense in depth. Their <a href="safety.html#gaps">known gaps</a> are the honest limit of what they cover.</p>
-
-      <h2>How this release came about</h2>
-      <p>An audit on 13 October 2026 found four lines of this harness that had drifted apart. GitHub main, dated 10 September, was the only one with CI, pins and public history. The other three held months of work that had been verified green in a working tree but never committed or pushed:</p>
-      <ul>
-        <li>a triage refactor from 9 July and a skill cleanup from 5 September, in a local clone;</li>
-        <li>a re-mirror of Hearth from 9 July;</li>
-        <li>a "safety program" in Codex worktrees from 13 September, verified through builds 1 to 4 and 7, and stopped at build 5 of 14.</li>
-      </ul>
-      <p>Two separate measures agreed that the hooks were lexical and could be bypassed, while the docs called them hard enforcement.</p>
-      <p>The owner's decisions that day made GitHub main canonical, with one reviewed re-cut on top of it. The three uncommitted lines are kept as archive branches and never merged. Claude Code became the only product, and the intent behind the old persona tools was rebuilt on Claude Code's own agents, hooks and settings. The docs now call the hooks defense in depth, and a drift test holds every documented block and ask to the code. The graphical installers had measured contrast ratios of 4.02, 3.42 and 2.89 to 1 against a 4.5 target; those numbers are kept in the record, and the installers are gone.</p>
-      <p>The full account is the decision record, <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">2026-10-13-archive-branches-and-v010-re-cut.md</a>.</p>
-    </div>
+    </article>
   </main>
-  <footer class="site">
-    <div class="wrap">
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <h2>Colophon</h2>
+      <p>Every claim on these pages traces to a document in the three repositories.</p>
+      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
       <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
     </div>
   </footer>

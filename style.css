@@ -1,24 +1,46 @@
-/* Eidolon site: one shared stylesheet. Light and dark follow prefers-color-scheme. */
+/* Eidolon site: one shared stylesheet, set as a long-form editorial feature.
+   The day edition is the default; the night edition follows prefers-color-scheme.
+   Fonts come from Google Fonts with system fallbacks, so the pages read well before they load.
+   check.mjs reads the six-digit hex tokens in the two :root blocks below to measure contrast. */
 :root {
-  --bg: #fbf8f3;
-  --surface: #f2ece2;
-  --text: #1d1915;
-  --muted: #574d44;
-  --link: #8a3d12;
-  --focus: #0f6e63;
-  --border: #d6cab9;
+  --bg: #f6f1e7;
+  --surface: #ede5d5;
+  --text: #1c1a16;
+  --muted: #5a5246;
+  --link: #3b5a3d;
+  --label: #3d5466;
+  --gold: #a8771f;
+  --rule: #d6c9b0;
+  --focus: #2b6a6d;
+  --halo: 214, 158, 52;
+  --halo-rest: 0.45;
+  --laid: rgba(70, 50, 20, 0.016);
+  --vignette: rgba(118, 86, 36, 0.11);
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+  --measure: 32.5rem;
+  --note: 14rem;
+  --gap: 3rem;
   color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #121619;
-    --surface: #1c2227;
-    --text: #ece6dc;
-    --muted: #b8afa3;
-    --link: #f2c27b;
-    --focus: #64beb0;
-    --border: #37424c;
+    --bg: #0f0e14;
+    --surface: #1a1822;
+    --text: #ece6d8;
+    --muted: #b7ae9e;
+    --link: #b3cba6;
+    --label: #a9bdcc;
+    --gold: #e2b45e;
+    --rule: #34303f;
+    --focus: #e8c36a;
+    --halo: 240, 184, 92;
+    --halo-rest: 0.6;
+    --laid: rgba(236, 230, 216, 0.012);
+    --vignette: rgba(0, 0, 0, 0.42);
   }
 }
 
@@ -28,25 +50,36 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.62;
+  font-optical-sizing: auto;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  text-rendering: optimizeLegibility;
 }
 
-.wrap {
-  max-width: 46rem;
-  margin: 0 auto;
-  padding: 0 16px;
+/* Paper: a warm vignette and faint laid lines, CSS gradients only, on a fixed layer behind the page. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 120% 90% at 50% 30%, transparent 60%, var(--vignette) 100%),
+    repeating-linear-gradient(0deg, var(--laid) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(90deg, var(--laid) 0 1px, transparent 1px 96px);
 }
 
-a { color: var(--link); text-underline-offset: 0.15em; }
+a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
 a:hover { text-decoration-thickness: 2px; }
 
 :focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
   border-radius: 2px;
 }
 
@@ -55,103 +88,424 @@ a:hover { text-decoration-thickness: 2px; }
   left: 16px;
   top: -4rem;
   z-index: 10;
-  background: var(--surface);
+  background: var(--bg);
   color: var(--text);
+  font-family: var(--sans);
   padding: 0.5rem 0.75rem;
   border: 2px solid var(--focus);
 }
 .skip:focus { top: 0.5rem; }
 
-header.site {
-  border-bottom: 1px solid var(--border);
-  padding: 0.75rem 0;
+/* The masthead: dateline, lantern and name, and the navigation between rules. */
+.masthead {
+  padding: 2rem 16px 0;
+  text-align: center;
 }
-header.site .wrap {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1.5rem;
+.dateline {
+  margin: 0;
+  font: 500 0.75rem/1.4 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: lining-nums;
+  color: var(--label);
 }
 .brand {
-  margin: 0;
-  display: flex;
+  margin: 0.9rem 0 0;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-weight: 700;
-  font-size: 1.125rem;
+  gap: 0.85rem;
+  font: 400 clamp(2.5rem, 8vw, 3.75rem)/1 var(--display);
+  letter-spacing: -0.015em;
 }
 .brand a { color: var(--text); text-decoration: none; }
-.brand img { display: block; }
+.brand a:hover { text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 1px; }
 
-nav ul {
+/* The lantern breathes: a soft halo behind the mark on a seven second cycle. */
+.lamp { position: relative; display: inline-block; line-height: 0; }
+.lamp::before {
+  content: "";
+  position: absolute;
+  inset: -55% -80%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(var(--halo), 0.55), rgba(var(--halo), 0) 100%);
+  opacity: var(--halo-rest);
+  animation: breathe 7s ease-in-out infinite;
+  pointer-events: none;
+}
+.lamp img { position: relative; display: block; width: 2.1rem; height: auto; }
+@keyframes breathe {
+  0%, 100% { opacity: var(--halo-rest); transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lamp::before { animation: none; transform: none; }
+}
+
+.site-nav {
+  max-width: 60rem;
+  margin: 1.5rem auto 0;
+  border-top: 3px double var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.site-nav ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1rem;
+  justify-content: center;
+  gap: 0 1.6rem;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0.45rem 0;
 }
-nav a { display: inline-block; padding: 0.25rem 0; }
-nav a[aria-current="page"] { color: var(--text); font-weight: 700; text-decoration-thickness: 2px; }
+.site-nav a {
+  display: inline-block;
+  padding: 0.4rem 0.1rem;
+  font: 500 0.78rem/1.4 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+}
+.site-nav a:hover { color: var(--link); }
+.site-nav a[aria-current="page"] { box-shadow: 0 1px 0 var(--gold); }
 
-main { display: block; padding: 1.5rem 0 2.5rem; }
+/* The page: an opener, a table of contents and the chapters, on a measured column. */
+main { display: block; }
 main:focus { outline: none; }
 
-h1 { font-size: 2rem; line-height: 1.2; margin: 0.5rem 0 1rem; }
-h2 { font-size: 1.375rem; line-height: 1.3; margin: 2.25rem 0 0.75rem; }
-h3 { font-size: 1.125rem; line-height: 1.35; margin: 1.75rem 0 0.5rem; }
-
-.lede { font-size: 1.1875rem; }
-.note { color: var(--muted); }
-
-code, pre {
-  font-family: ui-monospace, "Cascadia Mono", Consolas, "SF Mono", Menlo, monospace;
-  font-size: 0.9em;
+.feature {
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure));
+  justify-content: center;
+  padding: 3rem 16px 4rem;
 }
-code { overflow-wrap: anywhere; }
-pre {
+.opener, .toc, .body { grid-column: 1; min-width: 0; }
+
+.kicker-page {
+  margin: 0 0 1rem;
+  font: 500 0.75rem/1.4 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+h1 {
+  margin: 0;
+  font: 400 clamp(2.4rem, 7vw, 3.6rem)/1.06 var(--display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.dek {
+  margin: 1.1rem 0 2rem;
+  font: italic 400 1.3rem/1.45 var(--display);
+  color: var(--muted);
+  text-wrap: pretty;
+}
+.lead { font-size: 1.1875rem; }
+.lead::first-letter {
+  float: left;
+  margin: 0.06em 0.09em 0 -0.02em;
+  font: 400 4.35em/0.8 var(--display);
+  color: var(--gold);
+}
+
+p, li, dd { text-wrap: pretty; }
+p { margin: 0 0 1.05rem; }
+
+/* Table of contents: a simple list under the lead, a sticky margin column on the widest screens. */
+.toc {
+  margin: 1.5rem 0 1rem;
+  padding: 1rem 0 0.25rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+}
+.toc h2 {
+  margin: 0 0 0.6rem;
+  font: 600 0.72rem/1.4 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.toc ol { list-style: none; margin: 0 0 0.75rem; padding: 0; }
+.toc li { margin: 0; font-size: 0.9rem; line-height: 1.4; }
+.toc a {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr;
+  align-items: baseline;
+  padding: 0.3rem 0;
+  color: var(--text);
+  text-decoration: none;
+}
+.toc a:hover { color: var(--link); text-decoration: underline; }
+.toc .n {
+  display: inline-block;
+  min-width: 1.6rem;
+  font: italic 400 1rem/1 var(--display);
+  font-variant-numeric: oldstyle-nums;
+  color: var(--gold);
+}
+
+/* Chapters. Each opens with a hairline, a small lozenge and a field-guide label. */
+.chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--rule); }
+.chapter h2 {
+  margin: 0 0 1.25rem;
+  font: 400 clamp(1.75rem, 4.6vw, 2.25rem)/1.15 var(--display);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-bottom: 0.55rem;
+  font: 500 0.75rem/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.kicker::before {
+  content: "";
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border: 1px solid var(--gold);
+  transform: translateY(-0.1rem) rotate(45deg);
+}
+.kicker .num {
+  font: italic 400 1.75rem/1 var(--display);
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant-numeric: oldstyle-nums;
+  color: var(--gold);
+}
+h3 {
+  margin: 2.25rem 0 0.6rem;
+  font: italic 400 1.4rem/1.25 var(--display);
+  text-wrap: balance;
+}
+
+.end-matter { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 3px double var(--rule); }
+.end-matter h2 {
+  margin: 0 0 1rem;
+  font: 600 0.78rem/1.4 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+ul, ol { padding-left: 1.3rem; margin: 0 0 1.1rem; }
+li { margin: 0.35rem 0; }
+li::marker { color: var(--gold); }
+
+/* Pull quotes, quoted exactly, with the source file named in the caption. */
+.pullquote {
+  margin: 2.5rem 0;
+  padding: 1.4rem 0 1.1rem;
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+}
+.pullquote blockquote { margin: 0; }
+.pullquote blockquote p {
+  margin: 0;
+  font: italic 400 clamp(1.45rem, 4.2vw, 1.75rem)/1.3 var(--display);
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.pullquote figcaption {
+  margin-top: 0.9rem;
+  font: 500 0.72rem/1.4 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.pullquote cite {
+  font: normal 400 0.8rem/1.4 var(--mono);
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Margin asides: the honest limits. They fold under their paragraph on narrow screens. */
+.note {
+  margin: 0.25rem 0 1.5rem;
+  padding: 0.1rem 0 0.1rem 1rem;
+  border-left: 1px solid var(--gold);
+  font: 400 0.9rem/1.5 var(--sans);
+  color: var(--muted);
+}
+.note p { margin: 0 0 0.5rem; }
+.note p:last-child { margin-bottom: 0; }
+.note .label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font: 600 0.7rem/1.4 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+
+/* Commands and code: a quiet monospace block with a gold hairline. */
+code, pre { font-family: var(--mono); font-variant-numeric: lining-nums; font-variant-ligatures: none; }
+code { font-size: 0.84em; overflow-wrap: anywhere; }
+p code, li code, dd code, td code {
+  padding: 0.05em 0.28em;
+  border-radius: 3px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  overflow-x: auto;
+}
+pre {
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.35rem 0 0.35rem 1.1rem;
+  border-left: 2px solid var(--gold);
+  font-size: 0.9rem;
+  line-height: 1.65;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+pre code { font-size: 1em; }
 
-.table { overflow-x: auto; margin: 1rem 0; }
-table { border-collapse: collapse; width: 100%; font-size: 0.975rem; }
-th, td {
+/* Editorial tables: open sides, a heavier rule above and below, hairlines between rows. */
+.table { margin: 1.75rem 0 2rem; overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1.5px solid var(--text);
+  border-bottom: 1px solid var(--text);
+  font: 400 0.9rem/1.5 var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+caption {
+  caption-side: top;
+  padding-bottom: 0.6rem;
   text-align: left;
-  vertical-align: top;
-  padding: 0.5rem 0.6rem;
-  border-bottom: 1px solid var(--border);
-}
-th { background: var(--surface); }
-
-dl.facts { margin: 0.5rem 0 1rem; }
-dl.facts dt { font-weight: 700; margin-top: 0.75rem; }
-dl.facts dd { margin: 0.15rem 0 0 0; }
-
-.door {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.25rem 1rem 0.75rem;
-  margin: 1rem 0;
-}
-
-ul, ol { padding-left: 1.4rem; }
-li { margin: 0.3rem 0; }
-
-footer.site {
-  border-top: 1px solid var(--border);
-  padding: 1rem 0 2rem;
+  font: italic 400 1rem/1.4 var(--display);
   color: var(--muted);
-  font-size: 0.95rem;
+}
+th, td { padding: 0.7rem 1rem 0.7rem 0; text-align: left; vertical-align: top; }
+th:last-child, td:last-child { padding-right: 0; }
+thead th {
+  padding-top: 0.6rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--text);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+tbody tr + tr > * { border-top: 1px solid var(--rule); }
+td code { white-space: nowrap; overflow-wrap: normal; }
+tbody th {
+  font: 400 1.05rem/1.35 var(--display);
 }
 
-@media (max-width: 30rem) {
-  body { font-size: 1rem; }
-  h1 { font-size: 1.65rem; }
+/* Fact lists: small-caps labels over plain text, set as a run of hairline rows. */
+dl.facts { margin: 1rem 0 1.5rem; }
+dl.facts > div { padding: 0.75rem 0; border-top: 1px solid var(--rule); }
+dl.facts > div:last-child { border-bottom: 1px solid var(--rule); }
+dl.facts dt {
+  margin: 0 0 0.25rem;
+  font: 600 0.72rem/1.5 var(--sans);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+dl.facts dd { margin: 0; }
+dl.facts dd ul { margin: 0.4rem 0 0.6rem; }
+dl.facts dt code { text-transform: none; letter-spacing: 0; font-size: 0.95rem; color: var(--text); }
+
+/* The colophon. */
+.colophon {
+  padding: 2.5rem 16px 3.5rem;
+  border-top: 3px double var(--rule);
+  font: 400 0.875rem/1.6 var(--sans);
+  color: var(--muted);
+}
+.colophon-inner { max-width: var(--measure); margin: 0 auto; }
+.colophon h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.9rem;
+  font: 600 0.72rem/1.4 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--label);
+}
+.colophon h2::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border: 1px solid var(--gold);
+  transform: rotate(45deg);
+}
+.colophon p { margin: 0 0 0.6rem; }
+
+/* Phones: tighter type, hyphenation, and the wide tables stack into labelled rows.
+   The stacked tables carry explicit ARIA table roles so the change of display keeps their semantics. */
+@media (max-width: 40rem) {
+  body { font-size: 1.0625rem; hyphens: auto; }
+  .lead { font-size: 1.125rem; }
+  .feature { padding-top: 2rem; }
+  .site-nav ul { gap: 0 0.8rem; }
+  .site-nav a { font-size: 0.7rem; letter-spacing: 0.09em; }
+  .dek { font-size: 1.15rem; }
+  .stack table, .stack tbody, .stack tr, .stack th, .stack td { display: block; width: 100%; }
+  .stack caption { display: block; }
+  .stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .stack tbody tr { padding: 0.65rem 0; }
+  .stack tbody tr + tr { border-top: 1px solid var(--rule); }
+  .stack tbody tr + tr > * { border-top: 0; }
+  .stack th, .stack td { padding: 0.1rem 0; }
+  .stack td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    margin-top: 0.45rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--label);
+  }
+}
+
+/* Wider screens: margin asides sit beside their paragraph; pull quotes reach a little wider. */
+@media (min-width: 62rem) {
+  body { font-size: 1.1875rem; }
+  .lead { font-size: 1.25rem; }
+  .feature { grid-template-columns: minmax(0, var(--measure)) var(--note); column-gap: var(--gap); }
+  .toc { grid-column: 1; }
+  .opener, .body { grid-column: 1 / span 2; }
+  .opener > *, .body > *, .chapter > * { max-width: var(--measure); }
+  .opener > .with-note, .body > .chapter, .chapter > .with-note, .chapter > .table { max-width: none; }
+  /* The note hangs in the margin beside the top of its paragraph and does not push the text down. */
+  .with-note { position: relative; }
+  .with-note > :not(.note) { max-width: var(--measure); }
+  .with-note > .note {
+    position: absolute;
+    top: 0.3rem;
+    left: calc(var(--measure) + var(--gap));
+    width: var(--note);
+    margin: 0;
+  }
+  .chapter > .pullquote { max-width: calc(var(--measure) + var(--gap)); }
+}
+
+/* Widest screens: the table of contents becomes a sticky margin column on the left. */
+@media (min-width: 80rem) {
+  .feature { grid-template-columns: 12rem minmax(0, var(--measure)) var(--note); }
+  .opener { grid-column: 2 / span 2; grid-row: 1; }
+  .body { grid-column: 2 / span 2; grid-row: 2; }
+  .toc {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    position: sticky;
+    top: 2rem;
+    margin: 0.4rem 0 0;
+    border-bottom: 0;
+  }
+  .toc li { font-size: 0.85rem; }
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  body::before, .lamp::before, .skip, .toc { display: none; }
 }

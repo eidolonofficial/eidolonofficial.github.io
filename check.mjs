@@ -1,8 +1,12 @@
 // Site check: run with `node check.mjs` from this folder. Prints PASS or the failures, and exits 1 on failure.
-// It checks: no en or em dash (or their HTML entities) in any text file, every local href and src
-// resolves to a file here, every in-page #fragment exists, every img has a non-empty alt, and every
-// page has lang="en", a title, exactly one h1, a skip link to #main, a main#main and the site nav.
-// It also checks text contrast (at least 4.5 to 1) for the color tokens in both schemes of style.css.
+// It checks: no en or em dash (or their HTML entities) and no legacy character name in any text file,
+// no script tag anywhere, every local href and src resolves to a file here, every in-page #fragment
+// exists, every img has a non-empty alt, and every page has lang="en", a title, exactly one h1, a skip
+// link to #main, a main#main, exactly one masthead with exactly one site nav, and a footer colophon.
+// External references are limited: stylesheet links only to fonts.googleapis.com (exactly one per page),
+// a preconnect only to fonts.gstatic.com, and links only to github.com and nodejs.org.
+// It also checks contrast for the color tokens in both schemes of style.css: body text, muted text,
+// labels and links at least 4.5 to 1, the gold used for large display type at least 3 to 1.
 import { readdirSync, readFileSync, existsSync, statSync } from 'node:fs';
 import { join, resolve, dirname, relative, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -12,6 +16,10 @@ const PAGES = ['index.html', 'safety.html', 'pipeline.html', 'autopilot.html', '
 const TEXT_EXT = new Set(['.html', '.css', '.mjs', '.svg', '.txt', '.md']);
 const DASH = /[\u2013\u2014]|&(?:ndash|mdash);|&#(?:8211|8212|x2013|x2014);/i;
 const LEGACY = new RegExp(['Fable', 'fox'].join(''), 'i');
+const SCRIPT_TAG = new RegExp('<' + 'script\\b', 'i');
+const LINK_HOSTS = new Set(['github.com', 'nodejs.org']);
+const FONT_CSS_HOST = 'fonts.googleapis.com';
+const FONT_FILE_HOST = 'fonts.gstatic.com';
 const failures = [];
 const fail = (msg) => failures.push(msg);
 
@@ -27,22 +35,25 @@ function walk(dir, out = []) {
 const files = walk(ROOT);
 const rel = (p) => relative(ROOT, p).split('\\').join('/');
 
-// 1. Dashes and the legacy character name, in every text file.
+// 1. Dashes, the legacy character name and script tags, in every text file.
+//    check.mjs itself names the script tag only in split form, so it does not trip its own check.
 for (const file of files) {
   if (!TEXT_EXT.has(extname(file))) continue;
   readFileSync(file, 'utf8').split(/\r?\n/).forEach((line, i) => {
     if (DASH.test(line)) fail(`${rel(file)}:${i + 1}: en or em dash`);
     if (LEGACY.test(line)) fail(`${rel(file)}:${i + 1}: legacy character name`);
+    if (SCRIPT_TAG.test(line)) fail(`${rel(file)}:${i + 1}: script tag`);
   });
 }
 
-// 2. Pages: structure, links, images.
+// 2. Pages: structure, masthead, colophon, links, images.
 const external = new Set();
 const attr = (tag, name) => {
   const m = tag.match(new RegExp(`\\s${name}\\s*=\\s*("([^"]*)"|'([^']*)')`, 'i'));
   return m ? (m[2] ?? m[3]) : null;
 };
 const idsOf = (html) => new Set([...html.matchAll(/\sid\s*=\s*"([^"]+)"/gi)].map((m) => m[1]));
+const hostOf = (url) => { try { return new URL(url.replace(/&amp;/g, '&')).hostname; } catch { return null; } };
 
 const htmlFiles = files.filter((f) => extname(f) === '.html');
 for (const page of PAGES) if (!existsSync(join(ROOT, page))) fail(`missing page ${page}`);
@@ -59,11 +70,32 @@ for (const file of htmlFiles) {
   if (h1s.length !== 1) fail(`${name}: ${h1s.length} h1 elements, expected 1`);
   if (!/<a[^>]*class="skip"[^>]*href="#main"|<a[^>]*href="#main"[^>]*class="skip"/i.test(html)) fail(`${name}: no skip link to #main`);
   if (!/<main[^>]*\sid="main"/i.test(html)) fail(`${name}: no <main id="main">`);
-  const nav = html.match(/<nav[^>]*aria-label="[^"]+"[^>]*>([\s\S]*?)<\/nav>/i);
-  if (!nav) fail(`${name}: no labelled <nav>`);
+
+  // The masthead: exactly one, holding exactly one nav, labelled Site, linking every page.
+  const mastheads = [...html.matchAll(/<header\b[^>]*class="masthead"[^>]*>([\s\S]*?)<\/header>/gi)];
+  if (mastheads.length !== 1) fail(`${name}: ${mastheads.length} masthead headers, expected 1`);
   else {
-    for (const page of PAGES) if (!nav[1].includes(`href="${page}"`)) fail(`${name}: nav lacks ${page}`);
-    if ((nav[1].match(/aria-current="page"/g) || []).length !== 1) fail(`${name}: nav needs exactly one aria-current="page"`);
+    const navs = [...mastheads[0][1].matchAll(/<nav\b([^>]*)>([\s\S]*?)<\/nav>/gi)];
+    if (navs.length !== 1) fail(`${name}: masthead has ${navs.length} nav elements, expected 1`);
+    else {
+      if (attr(navs[0][0], 'aria-label') !== 'Site') fail(`${name}: masthead nav is not labelled "Site"`);
+      for (const page of PAGES) if (!navs[0][2].includes(`href="${page}"`)) fail(`${name}: masthead nav lacks ${page}`);
+      if ((navs[0][2].match(/aria-current="page"/g) || []).length !== 1) fail(`${name}: masthead nav needs exactly one aria-current="page"`);
+    }
+    if (!/Volume 0\.1, October 2026/.test(mastheads[0][1])) fail(`${name}: masthead lacks the dateline`);
+  }
+  const siteNavs = html.match(/<nav\b[^>]*aria-label="Site"/gi) || [];
+  if (siteNavs.length !== 1) fail(`${name}: ${siteNavs.length} site navs, expected 1`);
+
+  // The colophon: exactly one footer, with the license, the credits link and the sourcing line.
+  const colophons = [...html.matchAll(/<footer\b[^>]*class="colophon"[^>]*>([\s\S]*?)<\/footer>/gi)];
+  if (colophons.length !== 1 || (html.match(/<footer\b/gi) || []).length !== 1) fail(`${name}: needs exactly one footer, the colophon`);
+  else {
+    const c = colophons[0][1];
+    if (!/>Colophon</.test(c)) fail(`${name}: colophon lacks its heading`);
+    if (!/MIT License/.test(c)) fail(`${name}: colophon lacks the MIT License line`);
+    if (!/href="https:\/\/github\.com\/eidolonofficial\/Hearth\/blob\/[^"]+\/CREDITS\.md"/.test(c)) fail(`${name}: colophon lacks the CREDITS.md link`);
+    if (!/Every claim on these pages traces to a document/.test(c)) fail(`${name}: colophon lacks the sourcing line`);
   }
 
   for (const m of html.matchAll(/<img\b[^>]*>/gi)) {
@@ -71,12 +103,28 @@ for (const file of htmlFiles) {
     if (alt === null || !alt.trim()) fail(`${name}: img without a non-empty alt: ${m[0]}`);
   }
 
-  for (const m of html.matchAll(/<(?:a|link|img|script|source)\b[^>]*>/gi)) {
-    for (const key of ['href', 'src']) {
+  let fontSheets = 0;
+  for (const m of html.matchAll(/<(a|link|img|source|iframe|embed|object)\b[^>]*>/gi)) {
+    const tagName = m[1].toLowerCase();
+    for (const key of ['href', 'src', 'data']) {
       const value = attr(m[0], key);
       if (value === null) continue;
-      if (/^https?:\/\//i.test(value)) { external.add(value); continue; }
-      if (/^(mailto|tel|data):/i.test(value)) { fail(`${name}: unexpected ${key} scheme ${value}`); continue; }
+      if (/^https?:\/\//i.test(value)) {
+        external.add(value);
+        const host = hostOf(value);
+        const relAttr = (attr(m[0], 'rel') || '').toLowerCase();
+        if (tagName === 'a') {
+          if (!LINK_HOSTS.has(host)) fail(`${name}: link to a host outside the allowlist: ${value}`);
+        } else if (tagName === 'link' && relAttr === 'stylesheet' && host === FONT_CSS_HOST) {
+          fontSheets += 1;
+        } else if (tagName === 'link' && relAttr === 'preconnect' && host === FONT_FILE_HOST) {
+          // allowed
+        } else {
+          fail(`${name}: external ${tagName} ${key} not allowed: ${value}`);
+        }
+        continue;
+      }
+      if (/^(mailto|tel|data|javascript):/i.test(value)) { fail(`${name}: unexpected ${key} scheme ${value}`); continue; }
       const [pathPart, fragment] = value.split('#');
       const clean = pathPart.split('?')[0];
       if (clean === '') {
@@ -93,10 +141,13 @@ for (const file of htmlFiles) {
       }
     }
   }
+  if (fontSheets !== 1) fail(`${name}: ${fontSheets} Google Fonts stylesheet links, expected 1`);
 }
 
-// 3. Contrast of the text tokens against both backgrounds, light and dark.
+// 3. The stylesheet: nothing pulled in from elsewhere, and contrast in both schemes.
 const css = readFileSync(join(ROOT, 'style.css'), 'utf8');
+if (/@import/i.test(css)) fail('style.css: @import is not allowed');
+if (/url\(\s*["']?(?:https?:)?\/\//i.test(css)) fail('style.css: external url() is not allowed');
 const block = (src) => Object.fromEntries([...src.matchAll(/--([a-z]+):\s*(#[0-9a-f]{6})/gi)].map((m) => [m[1], m[2]]));
 const lightSrc = css.match(/:root\s*\{([^}]*)\}/);
 const darkSrc = css.match(/prefers-color-scheme:\s*dark\)\s*\{\s*:root\s*\{([^}]*)\}/);
@@ -107,18 +158,20 @@ const lum = (hex) => {
 };
 const ratio = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); };
 const contrastLines = [];
+const PAIRS = [['text', 4.5], ['muted', 4.5], ['link', 4.5], ['label', 4.5], ['gold', 3]];
 for (const [label, src] of [['light', lightSrc], ['dark', darkSrc]]) {
   if (!src) { fail(`style.css: no ${label} token block`); continue; }
   const t = block(src[1]);
-  for (const fg of ['text', 'muted', 'link']) {
+  for (const [fg, min] of PAIRS) {
     for (const bg of ['bg', 'surface']) {
       if (!t[fg] || !t[bg]) { fail(`style.css ${label}: missing --${fg} or --${bg}`); continue; }
       const r = ratio(t[fg], t[bg]);
-      contrastLines.push(`${label} ${fg} on ${bg}: ${r.toFixed(2)}`);
-      if (r < 4.5) fail(`style.css ${label}: --${fg} on --${bg} is ${r.toFixed(2)} to 1, below 4.5`);
+      contrastLines.push(`${label} ${fg} on ${bg}: ${r.toFixed(2)} (min ${min})`);
+      if (r < min) fail(`style.css ${label}: --${fg} on --${bg} is ${r.toFixed(2)} to 1, below ${min}`);
     }
   }
-  if (t.focus && t.bg && ratio(t.focus, t.bg) < 3) fail(`style.css ${label}: focus outline below 3 to 1`);
+  if (!t.focus || !t.bg) fail(`style.css ${label}: missing --focus`);
+  else if (ratio(t.focus, t.bg) < 3) fail(`style.css ${label}: focus outline below 3 to 1`);
 }
 
 console.log('External URLs:');

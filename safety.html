@@ -6,131 +6,186 @@
   <title>Eidolon safety</title>
   <meta name="description" content="How Eidolon's hooks, deny rules, write lanes and dispatch gate work, and their known gaps.">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site">
-    <div class="wrap">
-      <p class="brand"><img src="lantern.svg" alt="Eidolon lantern mark" width="26" height="32"><a href="index.html">Eidolon</a></p>
-      <nav aria-label="Site">
-        <ul>
+  <header class="masthead">
+    <p class="dateline">Volume 0.1, October 2026</p>
+    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="safety.html" aria-current="page">Safety</a></li>
         <li><a href="pipeline.html">Pipeline</a></li>
         <li><a href="autopilot.html">Autopilot</a></li>
         <li><a href="release.html">Release</a></li>
-        </ul>
-      </nav>
-    </div>
+      </ul>
+    </nav>
   </header>
   <main id="main" tabindex="-1">
-    <div class="wrap">
-      <h1>How the guards work</h1>
-      <p class="lede">Eidolon's hooks are defense in depth. They are lexical checks on Claude Code tool calls, plus a floor of permission deny rules. They are not an operating system sandbox, and what they cannot see is listed under <a href="#gaps">known gaps</a>.</p>
-      <p>Every check ends in one of three verdicts:</p>
-      <dl class="facts">
-        <dt>Block</dt><dd>The hook exits with code 2 and the call does not run. Claude sees the reason.</dd>
-        <dt>Ask</dt><dd>You approve or decline. Several asks about one call become one question.</dd>
-        <dt>Advise</dt><dd>The call runs and a note rides along as context.</dd>
-      </dl>
-      <p>A block always wins over an ask. Only a project install wires the hooks: the operator door, or the installer run with <code>--project</code>. A skill copied by the novice door or by <code>git clone</code> has no hooks.</p>
+    <article class="feature">
+      <header class="opener">
+        <p class="kicker-page">On safety</p>
+        <h1>How the guards work</h1>
+        <p class="dek">What the hooks block or ask you about, and the written list of what they cannot see.</p>
+        <p class="lead">Eidolon's hooks are defense in depth. They are lexical checks on Claude Code tool calls, plus a floor of permission deny rules. They are not an operating system sandbox, and what they cannot see is listed under <a href="#gaps">known gaps</a>.</p>
+        <p>Every check ends in one of three verdicts:</p>
+        <div class="with-note">
+          <dl class="facts">
+            <div><dt>Block</dt><dd>The hook exits with code 2 and the call does not run. Claude sees the reason.</dd></div>
+            <div><dt>Ask</dt><dd>You approve or decline. Several asks about one call become one question.</dd></div>
+            <div><dt>Advise</dt><dd>The call runs and a note rides along as context.</dd></div>
+          </dl>
+          <p>A block always wins over an ask.</p>
+          <aside class="note" aria-label="Where the hooks are not wired">
+            <span class="label">What this does not do</span>
+            <p>Only a project install wires the hooks: the operator door, or the installer run with <code>--project</code>. A skill copied by the novice door or by <code>git clone</code> has no hooks.</p>
+          </aside>
+        </div>
+      </header>
 
-      <h2>The deny floor</h2>
-      <p>One edit to a settings file could silence every hook, so the floor has two layers. The first is a list of permission deny rules in <code>.claude/settings.json</code>. Claude Code's own permission parser reads them, so they hold even when hooks are turned off. They refuse a force push (<code>--force</code> or <code>-f</code>), a <code>git config</code> of <code>core.hooksPath</code>, <code>filter-branch</code>, <code>filter-repo</code>, and any Write or Edit of <code>.claude/settings.local.json</code>, for Bash and PowerShell alike. A project install adds Write and Edit denials for the installed skill, the policy manifest, the session state and the Eidolon manifest. <code>git push --force-with-lease</code> is left alone.</p>
-      <p>The second layer is the hooks. A permission rule matches a tool and a command or path, never file content. "This write turns on <code>disableAllHooks</code>" is a fact about content, so a hook checks it.</p>
+      <nav class="toc" aria-label="Chapters">
+        <h2>In this piece</h2>
+        <ol>
+          <li><a href="#floor"><span class="n">1</span>The deny floor</a></li>
+          <li><a href="#hooks"><span class="n">2</span>The hooks</a></li>
+          <li><a href="#lanes"><span class="n">3</span>Write lanes</a></li>
+          <li><a href="#dispatch"><span class="n">4</span>The dispatch gate</a></li>
+          <li><a href="#commits"><span class="n">5</span>The commit rules</a></li>
+          <li><a href="#short"><span class="n">6</span>What asks and what blocks</a></li>
+          <li><a href="#gaps"><span class="n">7</span>Known gaps</a></li>
+          <li><a href="#true"><span class="n">8</span>How the docs are kept true</a></li>
+        </ol>
+      </nav>
 
-      <h2>The hooks</h2>
-      <div class="table">
-        <table>
-          <thead>
-            <tr><th scope="col">When</th><th scope="col">Hook</th><th scope="col">What it does</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Before Bash or PowerShell</td><td><code>guard-bash.mjs</code></td><td>Ten checks in a fixed order. A PowerShell call reaches the same checks as a Bash call.</td></tr>
-            <tr><td>Before Write or Edit</td><td><code>guard-write.mjs</code></td><td>Seven checks on the file and the result the write would leave.</td></tr>
-            <tr><td>Before Agent</td><td><code>guard-dispatch.mjs</code></td><td>The dispatch gate, below.</td></tr>
-            <tr><td>After Write or Edit</td><td><code>post-tool-entry.mjs</code></td><td>Counts writes in a row to scaffolding such as hooks, scripts and config. The write guard advises from 6 and blocks at 10.</td></tr>
-            <tr><td>When a worker starts</td><td><code>subagent-start.mjs</code></td><td>Hands the worker its write lane and the brief contract.</td></tr>
-            <tr><td>When a worker stops</td><td><code>subagent-stop.mjs</code></td><td>Sends the worker back once if its report names no evidence.</td></tr>
-          </tbody>
-        </table>
+      <div class="body">
+        <section class="chapter" id="floor" aria-labelledby="floor-h">
+          <h2 id="floor-h"><span class="kicker">Chapter <span class="num">1</span></span>The deny floor</h2>
+          <p>One edit to a settings file could silence every hook, so the floor has two layers. The first is a list of permission deny rules in <code>.claude/settings.json</code>. Claude Code's own permission parser reads them, so they hold even when hooks are turned off. They refuse a force push (<code>--force</code> or <code>-f</code>), a <code>git config</code> of <code>core.hooksPath</code>, <code>filter-branch</code>, <code>filter-repo</code>, and any Write or Edit of <code>.claude/settings.local.json</code>, for Bash and PowerShell alike. A project install adds Write and Edit denials for the installed skill, the policy manifest, the session state and the Eidolon manifest. <code>git push --force-with-lease</code> is left alone.</p>
+          <p>The second layer is the hooks. A permission rule matches a tool and a command or path, never file content. "This write turns on <code>disableAllHooks</code>" is a fact about content, so a hook checks it.</p>
+        </section>
+
+        <section class="chapter" id="hooks" aria-labelledby="hooks-h">
+          <h2 id="hooks-h"><span class="kicker">Chapter <span class="num">2</span></span>The hooks</h2>
+          <div class="table stack">
+            <table role="table">
+              <caption>Six hooks, and the moment each one runs</caption>
+              <thead role="rowgroup">
+                <tr role="row"><th scope="col" role="columnheader">When</th><th scope="col" role="columnheader">Hook</th><th scope="col" role="columnheader">What it does</th></tr>
+              </thead>
+              <tbody role="rowgroup">
+                <tr role="row"><th scope="row" role="rowheader">Before Bash or PowerShell</th><td role="cell" data-label="Hook"><code>guard-bash.mjs</code></td><td role="cell" data-label="What it does">Ten checks in a fixed order. A PowerShell call reaches the same checks as a Bash call.</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Before Write or Edit</th><td role="cell" data-label="Hook"><code>guard-write.mjs</code></td><td role="cell" data-label="What it does">Seven checks on the file and the result the write would leave.</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Before Agent</th><td role="cell" data-label="Hook"><code>guard-dispatch.mjs</code></td><td role="cell" data-label="What it does">The dispatch gate, in chapter 4.</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">After Write or Edit</th><td role="cell" data-label="Hook"><code>post-tool-entry.mjs</code></td><td role="cell" data-label="What it does">Counts writes in a row to scaffolding such as hooks, scripts and config. The write guard advises from 6 and blocks at 10.</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">When a worker starts</th><td role="cell" data-label="Hook"><code>subagent-start.mjs</code></td><td role="cell" data-label="What it does">Hands the worker its write lane and the brief contract.</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">When a worker stops</th><td role="cell" data-label="Hook"><code>subagent-stop.mjs</code></td><td role="cell" data-label="What it does">Sends the worker back once if its report names no evidence.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Every check, in order, with its verdict, is in <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/hooks/README.md">hooks/README.md</a>.</p>
+        </section>
+
+        <section class="chapter" id="lanes" aria-labelledby="lanes-h">
+          <h2 id="lanes-h"><span class="kicker">Chapter <span class="num">3</span></span>Write lanes</h2>
+          <p>A worker that can write anywhere could undo the controller's gates. So each worker gets a lane in <code>.claude/agent-scopes.json</code>, naming the folders it may read and write. A worker's Write, Edit or shell write outside its lane is blocked, as is any worker write outside the project; scratch files in the system temp folder are allowed. A reviewer gets an empty write list. A worker with no entry has no lane, and the controller, your main session, never has one.</p>
+        </section>
+
+        <section class="chapter" id="dispatch" aria-labelledby="dispatch-h">
+          <h2 id="dispatch-h"><span class="kicker">Chapter <span class="num">4</span></span>The dispatch gate</h2>
+          <p>When the controller hands work to an agent, <code>guard-dispatch.mjs</code> checks the hand-off.</p>
+          <ul>
+            <li>It asks you when the task names sensitive work, such as a deploy, a migration, personal data, payments, credentials, deleting or a force push.</li>
+            <li>It blocks a worker that tries to dispatch another worker.</li>
+            <li>For a worker that can write, it asks when the brief has no line starting <code>Done-check:</code> (or <code>Acceptance:</code>) with a real check after it. <code>none</code>, <code>tbd</code> and similar placeholders count as missing.</li>
+            <li>For a worker that can write, it asks when <code>.claude/waves/</code> holds no plan of at least 20 characters newer than the session start.</li>
+            <li>It asks when the dispatch names no model tier.</li>
+            <li>It logs every dispatch it does not block to <code>.claude/.dispatch-log.jsonl</code>.</li>
+          </ul>
+        </section>
+
+        <section class="chapter" id="commits" aria-labelledby="commits-h">
+          <h2 id="commits-h"><span class="kicker">Chapter <span class="num">5</span></span>The commit rules</h2>
+          <ul>
+            <li><code>--no-verify</code>, or <code>-n</code> on a commit, is blocked on commit and push.</li>
+            <li>A force push is blocked. <code>--force-with-lease</code> on its own passes.</li>
+            <li>A mirror push, a <code>core.hooksPath</code> override, <code>filter-branch</code> and <code>filter-repo</code> are blocked.</li>
+            <li>A commit message saying a screen or a run works, with no evidence named, is blocked.</li>
+            <li>A commit that stages an image, video or PDF with no evidence named asks first.</li>
+            <li>Commands that throw away uncommitted work, such as <code>git reset --hard</code> or <code>git clean -f</code> with no path, ask first.</li>
+            <li>The records in <code>docs/fixes/</code>, <code>docs/insights/</code> and <code>docs/decisions/</code> only grow. Appending passes; overwriting or deleting one is blocked.</li>
+          </ul>
+        </section>
+
+        <section class="chapter" id="short" aria-labelledby="short-h">
+          <h2 id="short-h"><span class="kicker">Chapter <span class="num">6</span></span>What asks and what blocks</h2>
+          <p>Besides the dispatch and commit cases above, these ask you:</p>
+          <ul>
+            <li>A change the parser cannot place, such as a wildcard or unexpanded variable that could reach a protected file.</li>
+            <li>Code passed as a string to an interpreter (<code>node -e</code>, <code>python -c</code>, <code>eval</code> and the like) that names git, a protected path, settings or hooks.</li>
+            <li>Unpacking an archive with no destination folder, or into the project root.</li>
+            <li>A command it cannot parse.</li>
+            <li>The controller writing a hook file. A worker doing the same is blocked.</li>
+          </ul>
+          <p>These are blocked:</p>
+          <ul>
+            <li>Deleting or moving <code>.git</code>, a hook, the persona template, the security policy or a record, or a folder that holds one.</li>
+            <li>A shell command that changes a settings file or the installed skill.</li>
+            <li>A settings write that turns hooks off, or drops a hook entry or deny rule the install manages.</li>
+            <li>Writing through a file that has more than one hard link.</li>
+            <li>Spellings that once slipped past: 8.3 short names, alternate data streams, <code>/c/</code> drive paths and symlinks.</li>
+          </ul>
+          <p>These are the short versions. A call that matches neither full list in the README passes.</p>
+        </section>
+
+        <section class="chapter" id="gaps" aria-labelledby="gaps-h">
+          <h2 id="gaps-h"><span class="kicker">Chapter <span class="num">7</span></span>Known gaps</h2>
+          <figure class="pullquote">
+            <blockquote><p>a guard that claims more than it does is worse than none; this is the honest list</p></blockquote>
+            <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
+          </figure>
+          <p>These are the shapes the checks and the deny floor do not cover.</p>
+          <ul>
+            <li>A script file a worker runs (<code>node build.js</code>, <code>sh run.sh</code>) does whatever it does. The guards see only its command line.</li>
+            <li>A wildcard or <code>$var</code> path does not trigger the lane check.</li>
+            <li>Code inside <code>node -e</code>, <code>python -c</code> and other interpreters is never parsed. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
+            <li>Git aliases defined in <code>.git/config</code> are not visible.</li>
+            <li>A subshell is judged command by command, not as a unit.</li>
+            <li>PowerShell <code>-EncodedCommand</code> bodies are not decoded; the command asks.</li>
+            <li>The controller may still run <code>git checkout</code>, <code>switch</code>, <code>merge</code>, <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
+            <li>A hard link made by a script, or behind a wildcard, is not seen. Linking a whole parent folder with <code>cp -al</code> or <code>rsync --link-dest</code> is not judged as linking the records inside it.</li>
+            <li><code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> set in a bash prefix or export is not blocked. The PowerShell forms are, but only when git runs in the same command.</li>
+            <li>A PowerShell call target held in a variable (<code>&amp; $cmd</code>) is not resolved.</li>
+            <li>An archive unpacked into an unprotected folder can hold entries that climb out of it.</li>
+            <li>A project inside the temp folder gives its workers no scratch space.</li>
+            <li>The controller's own writes outside the project are not judged, except to settings files.</li>
+            <li>The README lists a worker's agent type as unverified until a live debug run. In the live run of 2026-10-13, the worker's inputs did carry it.</li>
+            <li>The hooks are not an operating system sandbox.</li>
+            <li>A hook script that is missing, or crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. Turning that into a block needs Claude Code 2.1.295 or newer.</li>
+          </ul>
+        </section>
+
+        <section class="chapter" id="true" aria-labelledby="true-h">
+          <h2 id="true-h"><span class="kicker">Chapter <span class="num">8</span></span>How the docs are kept true</h2>
+          <p><code>hooks/README.md</code> is treated as generated from the code. <code>scripts/hooks-readme-check.mjs</code> compares the two: the wiring, the order of the checks, the hook rows, the project argument, the "What asks" heading and the absence of dashes.</p>
+          <figure class="pullquote">
+            <blockquote><p>When a hook, an evaluator or a wiring entry changes, change this file in the same commit; never silence the check.</p></blockquote>
+            <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
+          </figure>
+          <p>Before v0.1.0, the hooks went through three review rounds and the installer through two, with the findings fixed test first. Each round replayed the previous round's payloads and 60 ordinary developer commands, so a fix that blocked normal work showed up. The <a href="release.html">release page</a> has the counts.</p>
+          <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that would settle it.</p>
+        </section>
       </div>
-      <p>Every check, in order, with its verdict, is in <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/hooks/README.md">hooks/README.md</a>.</p>
-
-      <h2>Write lanes</h2>
-      <p>A worker that can write anywhere could undo the controller's gates. So each worker gets a lane in <code>.claude/agent-scopes.json</code>, naming the folders it may read and write. A worker's Write, Edit or shell write outside its lane is blocked, as is any worker write outside the project; scratch files in the system temp folder are allowed. A reviewer gets an empty write list. A worker with no entry has no lane, and the controller, your main session, never has one.</p>
-
-      <h2>The dispatch gate</h2>
-      <p>When the controller hands work to an agent, <code>guard-dispatch.mjs</code> checks the hand-off.</p>
-      <ul>
-        <li>It asks you when the task names sensitive work, such as a deploy, a migration, personal data, payments, credentials, deleting or a force push.</li>
-        <li>It blocks a worker that tries to dispatch another worker.</li>
-        <li>For a worker that can write, it asks when the brief has no line starting <code>Done-check:</code> (or <code>Acceptance:</code>) with a real check after it. <code>none</code>, <code>tbd</code> and similar placeholders count as missing.</li>
-        <li>For a worker that can write, it asks when <code>.claude/waves/</code> holds no plan of at least 20 characters newer than the session start.</li>
-        <li>It asks when the dispatch names no model tier.</li>
-        <li>It logs every dispatch it does not block to <code>.claude/.dispatch-log.jsonl</code>.</li>
-      </ul>
-
-      <h2>The commit rules</h2>
-      <ul>
-        <li><code>--no-verify</code>, or <code>-n</code> on a commit, is blocked on commit and push.</li>
-        <li>A force push is blocked. <code>--force-with-lease</code> on its own passes.</li>
-        <li>A mirror push, a <code>core.hooksPath</code> override, <code>filter-branch</code> and <code>filter-repo</code> are blocked.</li>
-        <li>A commit message saying a screen or a run works, with no evidence named, is blocked.</li>
-        <li>A commit that stages an image, video or PDF with no evidence named asks first.</li>
-        <li>Commands that throw away uncommitted work, such as <code>git reset --hard</code> or <code>git clean -f</code> with no path, ask first.</li>
-        <li>The records in <code>docs/fixes/</code>, <code>docs/insights/</code> and <code>docs/decisions/</code> only grow. Appending passes; overwriting or deleting one is blocked.</li>
-      </ul>
-
-      <h2>What asks and what blocks, in short</h2>
-      <p>Besides the dispatch and commit cases above, these ask you:</p>
-      <ul>
-        <li>A change the parser cannot place, such as a wildcard or unexpanded variable that could reach a protected file.</li>
-        <li>Code passed as a string to an interpreter (<code>node -e</code>, <code>python -c</code>, <code>eval</code> and the like) that names git, a protected path, settings or hooks.</li>
-        <li>Unpacking an archive with no destination folder, or into the project root.</li>
-        <li>A command it cannot parse.</li>
-        <li>The controller writing a hook file. A worker doing the same is blocked.</li>
-      </ul>
-      <p>These are blocked:</p>
-      <ul>
-        <li>Deleting or moving <code>.git</code>, a hook, the persona template, the security policy or a record, or a folder that holds one.</li>
-        <li>A shell command that changes a settings file or the installed skill.</li>
-        <li>A settings write that turns hooks off, or drops a hook entry or deny rule the install manages.</li>
-        <li>Writing through a file that has more than one hard link.</li>
-        <li>Spellings that once slipped past: 8.3 short names, alternate data streams, <code>/c/</code> drive paths and symlinks.</li>
-      </ul>
-      <p>These are the short versions. A call that matches neither full list in the README passes.</p>
-
-      <h2 id="gaps">Known gaps</h2>
-      <p>The hooks README puts it plainly: a guard that claims more than it does is worse than none. These are the shapes the checks and the deny floor do not cover.</p>
-      <ul>
-        <li>A script file a worker runs (<code>node build.js</code>, <code>sh run.sh</code>) does whatever it does. The guards see only its command line.</li>
-        <li>A wildcard or <code>$var</code> path does not trigger the lane check.</li>
-        <li>Code inside <code>node -e</code>, <code>python -c</code> and other interpreters is never parsed. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
-        <li>Git aliases defined in <code>.git/config</code> are not visible.</li>
-        <li>A subshell is judged command by command, not as a unit.</li>
-        <li>PowerShell <code>-EncodedCommand</code> bodies are not decoded; the command asks.</li>
-        <li>The controller may still run <code>git checkout</code>, <code>switch</code>, <code>merge</code>, <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
-        <li>A hard link made by a script, or behind a wildcard, is not seen. Linking a whole parent folder with <code>cp -al</code> or <code>rsync --link-dest</code> is not judged as linking the records inside it.</li>
-        <li><code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> set in a bash prefix or export is not blocked. The PowerShell forms are, but only when git runs in the same command.</li>
-        <li>A PowerShell call target held in a variable (<code>&amp; $cmd</code>) is not resolved.</li>
-        <li>An archive unpacked into an unprotected folder can hold entries that climb out of it.</li>
-        <li>A project inside the temp folder gives its workers no scratch space.</li>
-        <li>The controller's own writes outside the project are not judged, except to settings files.</li>
-        <li>The README lists a worker's agent type as unverified until a live debug run. In the live run of 2026-10-13, the worker's inputs did carry it.</li>
-        <li>The hooks are not an operating system sandbox.</li>
-        <li>A hook script that is missing, or crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. Turning that into a block needs Claude Code 2.1.295 or newer.</li>
-      </ul>
-
-      <h2>How the docs are kept true</h2>
-      <p><code>hooks/README.md</code> is treated as generated from the code. <code>scripts/hooks-readme-check.mjs</code> compares the two: the wiring, the order of the checks, the hook rows, the project argument, the "What asks" heading and the absence of dashes. A hook change and its README change land in the same commit, and the check is never silenced.</p>
-      <p>Before v0.1.0, the hooks went through three review rounds and the installer through two, with the findings fixed test first. Each round replayed the previous round's payloads and 60 ordinary developer commands, so a fix that blocked normal work showed up. The <a href="release.html">release page</a> has the counts.</p>
-      <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that would settle it.</p>
-    </div>
+    </article>
   </main>
-  <footer class="site">
-    <div class="wrap">
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <h2>Colophon</h2>
+      <p>Every claim on these pages traces to a document in the three repositories.</p>
+      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
       <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
     </div>
   </footer>

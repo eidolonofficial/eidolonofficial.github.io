@@ -6,146 +6,179 @@
   <title>Eidolon</title>
   <meta name="description" content="Eidolon is a skill for Claude Code. It sets up a repository and runs a spec-driven build with human gates.">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site">
-    <div class="wrap">
-      <p class="brand"><img src="lantern.svg" alt="Eidolon lantern mark" width="26" height="32"><a href="index.html">Eidolon</a></p>
-      <nav aria-label="Site">
-        <ul>
+  <header class="masthead">
+    <p class="dateline">Volume 0.1, October 2026</p>
+    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="safety.html">Safety</a></li>
         <li><a href="pipeline.html">Pipeline</a></li>
         <li><a href="autopilot.html">Autopilot</a></li>
         <li><a href="release.html">Release</a></li>
-        </ul>
-      </nav>
-    </div>
+      </ul>
+    </nav>
   </header>
   <main id="main" tabindex="-1">
-    <div class="wrap">
-      <h1>Eidolon</h1>
-      <p class="lede">Eidolon is a skill for Claude Code. It sets up a repository so Claude Code can work well in it. Then it carries a piece of work from a written spec to a committed change, and it stops at set points so you can approve, edit or stop.</p>
-      <p>It runs in Claude Code only. Version 0.1.0 came out on 13 October 2026, together with Setup, a skill that opens a work session, and Hearth, the installer for both. See the <a href="release.html">release page</a>.</p>
+    <article class="feature">
+      <header class="opener">
+        <p class="kicker-page">An introduction</p>
+        <h1>A lantern for the repository</h1>
+        <p class="dek">A field guide to a Claude Code skill that readies a repository, then builds from a written spec with you at the gates.</p>
+        <p class="lead">Eidolon is a skill for Claude Code. It sets up a repository so Claude Code can work well in it. Then it carries a piece of work from a written spec to a committed change, and it stops at set points so you can approve, edit or stop.</p>
+        <p>It runs in Claude Code only. Version 0.1.0 came out on 13 October 2026 with two companions: Setup, a skill that opens a work session, and Hearth, the installer for both. The <a href="release.html">release page</a> has the record.</p>
+      </header>
 
-      <h2>What it does</h2>
-      <p>Eidolon has three modes. It picks one from what you ask and tells you which one it picked.</p>
-      <div class="table">
-        <table>
-          <thead>
-            <tr><th scope="col">Mode</th><th scope="col">When</th><th scope="col">What happens</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Setup</td>
-              <td>You have no work item yet, or you ask it to set up the repository.</td>
-              <td>It reads the repository, works out your languages and tools, and writes what Claude needs: a CLAUDE.md, helper skills and slash commands, sub-agents, safety hooks, MCP setup and memory wiring. It pauses for you after the plan, the structure and the wiring.</td>
-            </tr>
-            <tr>
-              <td>Build</td>
-              <td>You have something to build, change or fix.</td>
-              <td>It writes a spec, plans, builds test first, runs review swarms, has a fresh agent check the result, and commits once at the end. See <a href="pipeline.html">the pipeline</a>.</td>
-            </tr>
-            <tr>
-              <td>Autopilot</td>
-              <td><code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or "keep doing this".</td>
-              <td>It interviews you, writes the run down, and shows you how to stop it before it starts. See <a href="autopilot.html">autopilot</a>.</td>
-            </tr>
-          </tbody>
-        </table>
+      <nav class="toc" aria-label="Chapters">
+        <h2>In this piece</h2>
+        <ol>
+          <li><a href="#modes"><span class="n">1</span>The three modes</a></li>
+          <li><a href="#who"><span class="n">2</span>Who it is for</a></li>
+          <li><a href="#doors"><span class="n">3</span>Two doors in</a></li>
+          <li><a href="#never"><span class="n">4</span>What it never does</a></li>
+          <li><a href="#further"><span class="n">&#167;</span>Further reading</a></li>
+        </ol>
+      </nav>
+
+      <div class="body">
+        <section class="chapter" id="modes" aria-labelledby="modes-h">
+          <h2 id="modes-h"><span class="kicker">Chapter <span class="num">1</span></span>The three modes</h2>
+          <p>Eidolon picks a mode from what you ask, and tells you which one it picked.</p>
+          <div class="table stack">
+            <table role="table">
+              <caption>The modes, and when each one runs</caption>
+              <thead role="rowgroup">
+                <tr role="row"><th scope="col" role="columnheader">Mode</th><th scope="col" role="columnheader">When</th><th scope="col" role="columnheader">What happens</th></tr>
+              </thead>
+              <tbody role="rowgroup">
+                <tr role="row">
+                  <th scope="row" role="rowheader">Setup</th>
+                  <td role="cell" data-label="When">You have no work item yet, or you ask it to set up the repository.</td>
+                  <td role="cell" data-label="What happens">It reads the repository, works out your languages and tools, and writes what Claude needs: a CLAUDE.md, helper skills and slash commands, sub-agents, safety hooks, MCP setup and memory wiring. It pauses for you after the plan, the structure and the wiring.</td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Build</th>
+                  <td role="cell" data-label="When">You have something to build, change or fix.</td>
+                  <td role="cell" data-label="What happens">It writes a spec, plans, builds test first, runs review swarms, has a fresh agent check the result, and commits once at the end. See <a href="pipeline.html">the pipeline</a>.</td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Autopilot</th>
+                  <td role="cell" data-label="When"><code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or "keep doing this".</td>
+                  <td role="cell" data-label="What happens">It interviews you, writes the run down, and shows you how to stop it before it starts. See <a href="autopilot.html">autopilot</a>.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>It works without asking, and pauses only before it installs a skill, seats the primary persona (the house agent it builds for your repository), deploys, runs something that cannot be undone, or dispatches sensitive work. Each pause is one question, with a line saying who is harmed if the answer is wrong. Nothing is written before you approve the plan.</p>
+          <figure class="pullquote">
+            <blockquote><p>Setup installs the room once; build works in it each time</p></blockquote>
+            <figcaption>From <cite>SKILL.md</cite>, the eidolon repository</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="who" aria-labelledby="who-h">
+          <h2 id="who-h"><span class="kicker">Chapter <span class="num">2</span></span>Who it is for</h2>
+          <p>Eidolon is for anyone who wants a repository ready for Claude Code, or wants something built, changed or fixed in one. You do not need to say the word Eidolon. The skill loads when you ask for that kind of work.</p>
+          <p>Hearth, the installer, was designed for a person running their own business who is not confident with computers and would stop at "open PowerShell and paste this command." That person gets a door that needs nothing installed first. Operators who want project hooks get a second door.</p>
+          <figure class="pullquote">
+            <blockquote><p>Hearth is built so that person is never lost and never made to feel small.</p></blockquote>
+            <figcaption>From <cite>HEARTH-SPEC.md</cite>, the Hearth repository</figcaption>
+          </figure>
+          <p>The docs say the interview that opens a session is built for a neurodivergent mind. It asks one question per screen, lets you pick an answer instead of typing one, and lets you skip any question. Every answer goes to a file, so you do not have to hold anything in your head. It also asks how familiar you are with coding and pitches its language to your answer.</p>
+        </section>
+
+        <section class="chapter" id="doors" aria-labelledby="doors-h">
+          <h2 id="doors-h"><span class="kicker">Chapter <span class="num">3</span></span>Two doors in</h2>
+          <p>Hearth comes as <code>Hearth-v0.1.0.zip</code> on its <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">release page</a>. Inside it are two doors. Pick one.</p>
+
+          <h3 id="door-novice">Door 1. The novice door</h3>
+          <div class="with-note">
+            <dl class="facts">
+              <div><dt>Use it if</dt><dd>You want the two skills and nothing else.</dd></div>
+              <div><dt>What it needs</dt><dd>Nothing beyond what your computer already has: no Node, no Git and no other tools.</dd></div>
+              <div><dt>How to start it</dt><dd>On Windows, double-click <code>Start Here.cmd</code>. It runs <code>welcome.ps1</code> in Windows PowerShell 5.1. On a Mac, open <code>macos/Welcome.command</code>, a plain bash script. If macOS blocks it, right-click the file, choose Open, then confirm.</dd></div>
+              <div><dt>What it writes</dt><dd>Two folders in your user folder: <code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code>. It prints each file as it lands. It writes nothing else, adds no hooks and installs no other tool.</dd></div>
+              <div><dt>If a skill is already there</dt><dd>It asks you to type <code>replace</code> or press Enter to skip. Skip is the default. On replace, your old folder moves to <code>.claude/skills/.hearth-backups/&lt;yyyyMMdd-HHmmss&gt;/&lt;name&gt;</code> before the new one is copied.</dd></div>
+              <div><dt>To undo it</dt><dd>Delete the <code>eidolon</code> and <code>setup</code> folders from <code>.claude/skills</code>. If Hearth saved an older copy, move it back from <code>.hearth-backups</code>.</dd></div>
+            </dl>
+            <aside class="note" aria-label="Still open: the Mac door">
+              <span class="label">Still open</span>
+              <p>The Mac door ran on GitHub's macOS runner and under WSL Ubuntu on 2026-10-13. It has not yet run on a user's own Mac.</p>
+            </aside>
+          </div>
+
+          <h3 id="door-operator">Door 2. The operator door</h3>
+          <dl class="facts">
+            <div><dt>Use it if</dt><dd>You want Eidolon's hooks wired into a project.</dd></div>
+            <div><dt>What it needs</dt><dd>Node 22 or newer. It checks first. If Node is missing or too old, it points you to <a href="https://nodejs.org">nodejs.org</a> and stops.</dd></div>
+            <div><dt>How to start it</dt><dd>On Windows, double-click <code>Operator Setup.cmd</code>. On a Mac, open <code>macos/Operator Setup.command</code>. From any terminal, run <code>node scripts/welcome.mjs</code>.</dd></div>
+            <div><dt>Before it writes</dt><dd>It asks for a project folder; blank means user skills only. It checks every bundled file against <code>vendor-lock.json</code> and stops on a mismatch. Under "Proposed locations:" it lists every path it will write, with the text, the settings diff or the replacement changes for each. It writes only after you type <code>yes</code>, and only the plan it showed you.</dd></div>
+            <div><dt>What it writes in the project</dt><dd>
+              <ul>
+                <li><code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code></li>
+                <li><code>.claude/settings.json</code> with the hook entries and the permission deny rules, and <code>.claude/eidolon-manifest.yaml</code></li>
+                <li><code>.eidolon/policy-manifest.json</code></li>
+                <li>one marked section each in <code>CLAUDE.md</code> and <code>.gitignore</code>, between <code>eidolon:begin</code> and <code>eidolon:end</code> lines</li>
+              </ul>
+              It also sets three settings keys, replacing any values already there: <code>env.CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to <code>"1"</code>, <code>effortLevel</code> to <code>xhigh</code> and <code>maxEffortLevel</code> to <code>max</code>. The preview says so.
+            </dd></div>
+            <div><dt>If a skill is already there</dt><dd>You type <code>replace</code> to see a replacement plan. Old files are kept under <code>.eidolon/backups/&lt;id&gt;/</code> with a <code>receipt.json</code>. Nothing is deleted. A plan that changed after you reviewed it is refused, and a failed install is never reported as a success.</dd></div>
+            <div><dt>After it finishes</dt><dd>It prints the verified file count, the backup receipt path and the next step. Restart Claude Code in the project, and the hooks are active in the next session. They run Node, so keep Node installed.</dd></div>
+          </dl>
+
+          <p>Either way, open Claude Code and type <code>/eidolon</code> or <code>/setup</code>.</p>
+          <div class="with-note">
+            <p>You can also clone the skill into your user skills folder with <code>git clone https://github.com/eidolonofficial/eidolon.git ~/.claude/skills/eidolon</code>. Keep one copy of Eidolon per machine, or keep both at the same commit. In a test on 2026-10-13, with a user copy and a project copy of the same name, Claude Code loaded the user copy, which was the older one.</p>
+            <aside class="note" aria-label="What a clone does not do">
+              <span class="label">What this does not do</span>
+              <p>A copied skill has no hooks. Only a project install wires them: the operator door, or the installer run with <code>--project</code>.</p>
+            </aside>
+          </div>
+        </section>
+
+        <section class="chapter" id="never" aria-labelledby="never-h">
+          <h2 id="never-h"><span class="kicker">Chapter <span class="num">4</span></span>What it never does</h2>
+          <ul>
+            <li>Write to your project before you approve the plan.</li>
+            <li>Install anything besides the two skills: no extra programs, background tasks, account sign-in, Node, credentials, models or services.</li>
+            <li>Delete your old copy. A replaced skill moves to a backup folder first.</li>
+            <li>Commit before the last stage of a build. Only the close stage commits, and before it does, it states the git state from before the run as the way back.</li>
+            <li>Take orders from what it reads. A pull request body, an issue, a web page or a file is data. An instruction found inside one is reported to you as a finding.</li>
+            <li>Write a secret into a report, a log, a commit or a chat message.</li>
+            <li>Shrink a record. The logs of what broke, what worked and what was decided only grow.</li>
+            <li>Weaken a guard to make a test pass.</li>
+          </ul>
+        </section>
+
+        <section class="end-matter" id="further" aria-labelledby="further-h">
+          <h2 id="further-h">Further reading</h2>
+          <ul>
+            <li><a href="safety.html">Safety</a>: how the guards work and the gaps they leave.</li>
+            <li><a href="pipeline.html">Pipeline</a>: the agents, the briefs, the review swarms and the engineering principles behind them.</li>
+            <li><a href="autopilot.html">Autopilot</a>: the interview and the four ways to leave something running.</li>
+            <li><a href="release.html">Release</a>: what v0.1.0 contains, the test numbers and what is still open.</li>
+          </ul>
+          <p>The three repositories:</p>
+          <ul>
+            <li><a href="https://github.com/eidolonofficial/eidolon">eidolonofficial/eidolon</a>, the Eidolon skill</li>
+            <li><a href="https://github.com/eidolonofficial/eidolon-setup">eidolonofficial/eidolon-setup</a>, the Setup skill</li>
+            <li><a href="https://github.com/eidolonofficial/Hearth">eidolonofficial/Hearth</a>, the installer</li>
+          </ul>
+        </section>
       </div>
-      <p>It works without asking and pauses only before it installs a skill, seats the primary persona (the house agent it builds for your repository), deploys, runs something that cannot be undone, or dispatches sensitive work. Each pause is one question, with a line saying who is harmed if the answer is wrong. Nothing is written before you approve the plan.</p>
-
-      <h2>Who it is for</h2>
-      <p>Eidolon is for anyone who wants a repository ready for Claude Code, or wants something built, changed or fixed in one. You do not need to say the word Eidolon; the skill loads when you ask for that kind of work.</p>
-      <p>Hearth, the installer, was designed for a person running their own business who is not confident with computers and would stop at "open PowerShell and paste this command." That person gets a door that needs nothing installed first. Operators who want project hooks get a second door.</p>
-      <p>The interview that opens a session is built for a neurodivergent mind, in the docs' own words. It asks one question per screen, lets you pick an answer instead of typing one, and lets you skip any question. Every answer goes to a file, so you do not have to hold anything in your head. It also asks how familiar you are with coding and pitches its language to your answer.</p>
-
-      <h2>Install it: two doors</h2>
-      <p>Hearth comes as <code>Hearth-v0.1.0.zip</code> on its <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">release page</a>. Inside it are two doors. Pick one.</p>
-
-      <section class="door" aria-labelledby="door-novice">
-        <h3 id="door-novice">Door 1: the novice door</h3>
-        <dl class="facts">
-          <dt>Use it if</dt>
-          <dd>You want the two skills and nothing else.</dd>
-          <dt>What it needs</dt>
-          <dd>Nothing beyond what your computer already has: no Node, no Git and no other tools.</dd>
-          <dt>How to start it</dt>
-          <dd>On Windows, double-click <code>Start Here.cmd</code>. It runs <code>welcome.ps1</code> in Windows PowerShell 5.1. On a Mac, open <code>macos/Welcome.command</code>, a plain bash script. If macOS blocks it, right-click the file, choose Open, then confirm.</dd>
-          <dt>What it writes</dt>
-          <dd>Two folders in your user folder: <code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code>. It prints each file as it lands. It writes nothing else, adds no hooks and installs no other tool.</dd>
-          <dt>If a skill is already there</dt>
-          <dd>It asks you to type <code>replace</code> or press Enter to skip. Skip is the default. On replace, your old folder moves to <code>.claude/skills/.hearth-backups/&lt;yyyyMMdd-HHmmss&gt;/&lt;name&gt;</code> before the new one is copied.</dd>
-          <dt>To undo it</dt>
-          <dd>Delete the <code>eidolon</code> and <code>setup</code> folders from <code>.claude/skills</code>. If Hearth saved an older copy, move it back from <code>.hearth-backups</code>.</dd>
-          <dt>Status on a Mac</dt>
-          <dd>The Mac door ran on GitHub's macOS runner and under WSL Ubuntu on 2026-10-13. It has not yet run on a user's own Mac.</dd>
-        </dl>
-      </section>
-
-      <section class="door" aria-labelledby="door-operator">
-        <h3 id="door-operator">Door 2: the operator door</h3>
-        <dl class="facts">
-          <dt>Use it if</dt>
-          <dd>You want Eidolon's hooks wired into a project.</dd>
-          <dt>What it needs</dt>
-          <dd>Node 22 or newer. It checks first. If Node is missing or too old, it points you to <a href="https://nodejs.org">nodejs.org</a> and stops.</dd>
-          <dt>How to start it</dt>
-          <dd>On Windows, double-click <code>Operator Setup.cmd</code>. On a Mac, open <code>macos/Operator Setup.command</code>. From any terminal, run <code>node scripts/welcome.mjs</code>.</dd>
-          <dt>Before it writes</dt>
-          <dd>It asks for a project folder; blank means user skills only. It checks every bundled file against <code>vendor-lock.json</code> and stops on a mismatch. Under "Proposed locations:" it lists every path it will write, with the text, the settings diff or the replacement changes for each. It writes only after you type <code>yes</code>, and only the plan it showed you.</dd>
-          <dt>What it writes in the project</dt>
-          <dd>
-            <ul>
-              <li><code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code></li>
-              <li><code>.claude/settings.json</code> with the hook entries and the permission deny rules, and <code>.claude/eidolon-manifest.yaml</code></li>
-              <li><code>.eidolon/policy-manifest.json</code></li>
-              <li>one marked section each in <code>CLAUDE.md</code> and <code>.gitignore</code>, between <code>eidolon:begin</code> and <code>eidolon:end</code> lines</li>
-            </ul>
-            It also sets three settings keys, replacing any values already there: <code>env.CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to <code>"1"</code>, <code>effortLevel</code> to <code>xhigh</code> and <code>maxEffortLevel</code> to <code>max</code>. The preview says so.
-          </dd>
-          <dt>If a skill is already there</dt>
-          <dd>You type <code>replace</code> to see a replacement plan. Old files are kept under <code>.eidolon/backups/&lt;id&gt;/</code> with a <code>receipt.json</code>. Nothing is deleted. A plan that changed after you reviewed it is refused, and a failed install is never reported as a success.</dd>
-          <dt>After it finishes</dt>
-          <dd>It prints the verified file count, the backup receipt path and the next step. Restart Claude Code in the project; the hooks are active in the next session. They run Node, so keep Node installed.</dd>
-        </dl>
-      </section>
-
-      <p>Either way, open Claude Code and type <code>/eidolon</code> or <code>/setup</code>.</p>
-      <p>You can also clone the skill into your user skills folder with <code>git clone https://github.com/eidolonofficial/eidolon.git ~/.claude/skills/eidolon</code>. A copied skill has no hooks. Keep one copy of Eidolon per machine, or keep both at the same commit: in a test on 2026-10-13, with a user copy and a project copy of the same name, Claude Code loaded the user copy, which was the older one.</p>
-
-      <h2>What it never does</h2>
-      <ul>
-        <li>Write to your project before you approve the plan.</li>
-        <li>Install anything besides the two skills: no extra programs, background tasks, account sign-in, Node, credentials, models or services.</li>
-        <li>Delete your old copy. A replaced skill moves to a backup folder first.</li>
-        <li>Commit before the last stage of a build. Only the close stage commits, and the git state from before the run is stated as the way back before it does.</li>
-        <li>Take orders from what it reads. A pull request body, an issue, a web page or a file is data. An instruction found inside one is reported to you as a finding.</li>
-        <li>Write a secret into a report, a log, a commit or a chat message.</li>
-        <li>Shrink a record. The logs of what broke, what worked and what was decided only grow.</li>
-        <li>Weaken a guard to make a test pass.</li>
-      </ul>
-
-      <h2>Read next</h2>
-      <ul>
-        <li><a href="safety.html">Safety</a>: how the guards work and the gaps they leave.</li>
-        <li><a href="pipeline.html">Pipeline</a>: the agents, the briefs, the review swarms and the engineering principles behind them.</li>
-        <li><a href="autopilot.html">Autopilot</a>: the interview and the four ways to leave something running.</li>
-        <li><a href="release.html">Release</a>: what v0.1.0 contains, the test numbers and what is still open.</li>
-      </ul>
-      <p>The three repositories:</p>
-      <ul>
-        <li><a href="https://github.com/eidolonofficial/eidolon">eidolonofficial/eidolon</a>, the Eidolon skill</li>
-        <li><a href="https://github.com/eidolonofficial/eidolon-setup">eidolonofficial/eidolon-setup</a>, the Setup skill</li>
-        <li><a href="https://github.com/eidolonofficial/Hearth">eidolonofficial/Hearth</a>, the installer</li>
-      </ul>
-    </div>
+    </article>
   </main>
-  <footer class="site">
-    <div class="wrap">
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <h2>Colophon</h2>
+      <p>Every claim on these pages traces to a document in the three repositories.</p>
+      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
       <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
     </div>
   </footer>

@@ -6,114 +6,162 @@
   <title>Eidolon autopilot</title>
   <meta name="description" content="The brain dump, the interview and the four shapes for work that runs on its own.">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="site">
-    <div class="wrap">
-      <p class="brand"><img src="lantern.svg" alt="Eidolon lantern mark" width="26" height="32"><a href="index.html">Eidolon</a></p>
-      <nav aria-label="Site">
-        <ul>
+  <header class="masthead">
+    <p class="dateline">Volume 0.1, October 2026</p>
+    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
+    <nav class="site-nav" aria-label="Site">
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="safety.html">Safety</a></li>
         <li><a href="pipeline.html">Pipeline</a></li>
         <li><a href="autopilot.html" aria-current="page">Autopilot</a></li>
         <li><a href="release.html">Release</a></li>
-        </ul>
-      </nav>
-    </div>
+      </ul>
+    </nav>
   </header>
   <main id="main" tabindex="-1">
-    <div class="wrap">
-      <h1>Autopilot</h1>
-      <p class="lede">Autopilot is for work that should run on its own. You start it with <code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or in plain words such as "keep doing this" or "check it every morning." Eidolon interviews you, picks a shape with you, writes the run down, and shows you how to stop it before anything starts.</p>
+    <article class="feature">
+      <header class="opener">
+        <p class="kicker-page">On autopilot</p>
+        <h1>Autopilot, or leaving a lamp lit</h1>
+        <p class="dek">Loops, goals and routines, and the interview that comes before any of them runs.</p>
+        <p class="lead">Autopilot is for work that should run on its own. You start it with <code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or in plain words such as "keep doing this" or "check it every morning." Eidolon interviews you, picks a shape with you, writes the run down, and shows you how to stop it before anything starts.</p>
+      </header>
 
-      <h2>How the interview is built</h2>
-      <p>The docs say the interview is built for a neurodivergent mind, and that it removes load instead of adding steps. In practice:</p>
-      <ul>
-        <li>One question per screen.</li>
-        <li>You pick an answer from a few chips. Typing is optional.</li>
-        <li>Every question has skip and other.</li>
-        <li>There are no wrong answers, and any answer can be changed later.</li>
-        <li>Nothing is timed, and nothing is framed as a "quick question."</li>
-        <li>Long, messy, jumping-around input is fine. Eidolon sorts it.</li>
-        <li>The recommended answer is listed first and marked, so you have less to decide.</li>
-        <li>Eidolon says back what it heard before it acts.</li>
-        <li>Every answer is written to a file when you give it, so nothing has to be remembered.</li>
-      </ul>
-      <p>If the chip control is not available, Eidolon asks the same question in plain text with lettered options and waits.</p>
+      <nav class="toc" aria-label="Chapters">
+        <h2>In this piece</h2>
+        <ol>
+          <li><a href="#interview"><span class="n">1</span>How the interview is built</a></li>
+          <li><a href="#dump"><span class="n">2</span>The brain dump</a></li>
+          <li><a href="#gaps"><span class="n">3</span>Questions for the gaps</a></li>
+          <li><a href="#shapes"><span class="n">4</span>The four shapes</a></li>
+          <li><a href="#yes"><span class="n">5</span>What gets written, and the yes</a></li>
+          <li><a href="#goal"><span class="n">6</span>What a goal looks like</a></li>
+          <li><a href="#tested"><span class="n">7</span>What has been tested</a></li>
+        </ol>
+      </nav>
 
-      <h2>Step 1: the brain dump</h2>
-      <p>The first screen is an invitation, and it is optional:</p>
-      <blockquote><p>"Tell me about it the way you would tell a coworker. Rant, infodump, jump around. I will sort it."</p></blockquote>
-      <p>The chips are <em>Start talking</em>, <em>Ask me questions instead</em> and <em>Skip</em>. From what you say, Eidolon fills in a short record: the outcome in your own words, who it is for, how you will know it is done, when it runs, when it stops, what it must never do, the budget, what it reads, what annoys you about the current way, and what is still open. A field your dump did not cover stays empty.</p>
-      <p>Then it reflects back, in under 10 lines, starting with "Here is what I heard." You answer with <em>That's it</em>, <em>Fix something</em> or <em>Add more</em>. Fix something asks one question per wrong line. It does not start over.</p>
+      <div class="body">
+        <section class="chapter" id="interview" aria-labelledby="interview-h">
+          <h2 id="interview-h"><span class="kicker">Chapter <span class="num">1</span></span>How the interview is built</h2>
+          <p>The docs say the interview is built for a neurodivergent mind, and that it removes load instead of adding steps. In practice:</p>
+          <ul>
+            <li>One question per screen.</li>
+            <li>You pick an answer from a few chips. Typing is optional.</li>
+            <li>Every question has skip and other.</li>
+            <li>There are no wrong answers, and any answer can be changed later.</li>
+            <li>Nothing is timed, and nothing is framed as a "quick question."</li>
+            <li>Long, messy, jumping-around input is fine. Eidolon sorts it.</li>
+            <li>The recommended answer is listed first and marked, so you have less to decide.</li>
+            <li>Eidolon says back what it heard before it acts.</li>
+            <li>Every answer is written to a file when you give it, so nothing has to be remembered.</li>
+          </ul>
+          <p>If the chip control is not available, Eidolon asks the same question in plain text with lettered options and waits.</p>
+        </section>
 
-      <h2>Step 2: questions for the gaps</h2>
-      <p>Eidolon asks only about the fields that are still empty. A field your dump filled is never asked again. An empty field is always asked and never guessed, including how to handle permission prompts when no one is watching. That last rule was added after the live test on 2026-10-13, where the interview filled in the permission choice instead of asking.</p>
-      <p>The questions it may ask: which shape fits, how you will know it is done, how often it runs, when it stops, what it must never do, and how to handle permission prompts. For that last one the recommended answer is an allowlist of the commands it needs; the other choice is auto mode.</p>
+        <section class="chapter" id="dump" aria-labelledby="dump-h">
+          <h2 id="dump-h"><span class="kicker">Chapter <span class="num">2</span></span>The brain dump</h2>
+          <p>The first screen is an invitation, and it is optional:</p>
+          <figure class="pullquote">
+            <blockquote><p>Tell me about it the way you would tell a coworker. Rant, infodump, jump around. I will sort it.</p></blockquote>
+            <figcaption>From <cite>references/interview.md</cite>, the eidolon repository</figcaption>
+          </figure>
+          <p>The chips are <em>Start talking</em>, <em>Ask me questions instead</em> and <em>Skip</em>. From what you say, Eidolon fills in a short record: the outcome in your own words, who it is for, how you will know it is done, when it runs, when it stops, what it must never do, the budget, what it reads, what annoys you about the current way, and what is still open. A field your dump did not cover stays empty.</p>
+          <p>Then it reflects back, in under 10 lines, starting with "Here is what I heard." You answer with <em>That's it</em>, <em>Fix something</em> or <em>Add more</em>. Fix something asks one question per wrong line. It does not start over.</p>
+        </section>
 
-      <h2>The four shapes</h2>
-      <div class="table">
-        <table>
-          <thead>
-            <tr><th scope="col">Shape</th><th scope="col">Use it when</th><th scope="col">Limits</th><th scope="col">To stop it</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Goal</td>
-              <td>There is a clear finish line. This is the recommended shape when there is one.</td>
-              <td>Runs in your session. After every turn, a small fast model checks whether the condition is met. It reads only what Claude printed, so the check's output has to appear in the conversation. No cadence.</td>
-              <td><code>/goal clear</code></td>
-            </tr>
-            <tr>
-              <td>Loop</td>
-              <td>Something should repeat on an interval, or at its own pace.</td>
-              <td>Runs in your session, and only while it is open and idle. The minimum interval is 1 minute. Firing can shift by a few minutes. It stops on its own after 7 days.</td>
-              <td>Esc, or <code>CronDelete</code></td>
-            </tr>
-            <tr>
-              <td>Routine</td>
-              <td>It should run in the cloud with no one there, on a schedule, an API call or a GitHub event.</td>
-              <td>The minimum interval is 1 hour. It runs on a fresh clone and cannot read your local files. If your inputs are local, Eidolon steers you to one of the other shapes.</td>
-              <td>Change it with <code>/schedule update</code></td>
-            </tr>
-            <tr>
-              <td>Desktop task</td>
-              <td>It needs your local files and should run on a schedule.</td>
-              <td>Runs on your machine, so the machine must be on.</td>
-              <td>Disable it in the scheduled tasks list</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p>For a loop, a routine or a desktop task, one of the cadence chips is "Daily at 9:07." A time off the hour avoids the jitter on the hour.</p>
+        <section class="chapter" id="gaps" aria-labelledby="gaps-h">
+          <h2 id="gaps-h"><span class="kicker">Chapter <span class="num">3</span></span>Questions for the gaps</h2>
+          <p>Eidolon asks only about the fields that are still empty. A field your dump filled is never asked again. An empty field is always asked and never guessed, including how to handle permission prompts when no one is watching. That last rule was added after the live test on 2026-10-13, where the interview filled in the permission choice instead of asking.</p>
+          <p>The questions it may ask: which shape fits, how you will know it is done, how often it runs, when it stops, what it must never do, and how to handle permission prompts. For that last one the recommended answer is an allowlist of the commands it needs; the other choice is auto mode.</p>
+        </section>
 
-      <h2>Step 3: what gets written, and the yes</h2>
-      <p>Eidolon shows you the exact text it will use and the instruction that stops it. Then it waits for your yes. Nothing is created before that.</p>
-      <dl class="facts">
-        <dt><code>.claude/autopilot/&lt;slug&gt;.md</code></dt>
-        <dd>What was created, why, and how to stop it. This file is written before the run starts, so the stop instruction is on disk first.</dd>
-        <dt><code>.claude/session.yaml</code></dt>
-        <dd>Your answers from the interview.</dd>
-      </dl>
-      <p>After creating the goal, loop or routine, Eidolon reads it back from Claude Code and shows it to you.</p>
+        <section class="chapter" id="shapes" aria-labelledby="shapes-h">
+          <h2 id="shapes-h"><span class="kicker">Chapter <span class="num">4</span></span>The four shapes</h2>
+          <div class="table stack">
+            <table role="table">
+              <caption>Four ways to leave something running, and how to stop each one</caption>
+              <thead role="rowgroup">
+                <tr role="row"><th scope="col" role="columnheader">Shape</th><th scope="col" role="columnheader">Use it when</th><th scope="col" role="columnheader">Limits</th><th scope="col" role="columnheader">To stop it</th></tr>
+              </thead>
+              <tbody role="rowgroup">
+                <tr role="row">
+                  <th scope="row" role="rowheader">Goal</th>
+                  <td role="cell" data-label="Use it when">There is a clear finish line. This is the recommended shape when there is one.</td>
+                  <td role="cell" data-label="Limits">Runs in your session. After every turn, a small fast model checks whether the condition is met. It reads only what Claude printed, so the check's output has to appear in the conversation. No cadence.</td>
+                  <td role="cell" data-label="To stop it"><code>/goal clear</code></td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Loop</th>
+                  <td role="cell" data-label="Use it when">Something should repeat on an interval, or at its own pace.</td>
+                  <td role="cell" data-label="Limits">Runs in your session, and only while it is open and idle. The minimum interval is 1 minute. Firing can shift by a few minutes. It stops on its own after 7 days.</td>
+                  <td role="cell" data-label="To stop it">Esc, or <code>CronDelete</code></td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Routine</th>
+                  <td role="cell" data-label="Use it when">It should run in the cloud with no one there, on a schedule, an API call or a GitHub event.</td>
+                  <td role="cell" data-label="Limits">The minimum interval is 1 hour. It runs on a fresh clone and cannot read your local files. If your inputs are local, Eidolon steers you to one of the other shapes.</td>
+                  <td role="cell" data-label="To stop it">Change it with <code>/schedule update</code></td>
+                </tr>
+                <tr role="row">
+                  <th scope="row" role="rowheader">Desktop task</th>
+                  <td role="cell" data-label="Use it when">It needs your local files and should run on a schedule.</td>
+                  <td role="cell" data-label="Limits">Runs on your machine, so the machine must be on.</td>
+                  <td role="cell" data-label="To stop it">Disable it in the scheduled tasks list</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>For a loop, a routine or a desktop task, one of the cadence chips is "Daily at 9:07." A time off the hour avoids the jitter on the hour.</p>
+        </section>
 
-      <h2>What a goal looks like</h2>
-      <p>This is the example from the autopilot guide:</p>
-      <pre><code>/goal All tests in `npm test` pass and `npm run lint` exits 0. After each change,
+        <section class="chapter" id="yes" aria-labelledby="yes-h">
+          <h2 id="yes-h"><span class="kicker">Chapter <span class="num">5</span></span>What gets written, and the yes</h2>
+          <p>Eidolon shows you the exact text it will use and the instruction that stops it. Then it waits for your yes. Nothing is created before that.</p>
+          <dl class="facts">
+            <div><dt><code>.claude/autopilot/&lt;slug&gt;.md</code></dt><dd>What was created, why, and how to stop it. This file is written before the run starts, so the stop instruction is on disk first.</dd></div>
+            <div><dt><code>.claude/session.yaml</code></dt><dd>Your answers from the interview.</dd></div>
+          </dl>
+          <p>After creating the goal, loop or routine, Eidolon reads it back from Claude Code and shows it to you.</p>
+        </section>
+
+        <section class="chapter" id="goal" aria-labelledby="goal-h">
+          <h2 id="goal-h"><span class="kicker">Chapter <span class="num">6</span></span>What a goal looks like</h2>
+          <p>This is the example from the autopilot guide:</p>
+          <pre><code>/goal All tests in `npm test` pass and `npm run lint` exits 0. After each change,
 run both and print the last 5 lines of output. Do not edit files under
 `migrations/`. Stop after 20 turns.</code></pre>
-      <p>It has one end state you can measure, a check whose output shows up in the conversation, a named thing it must not change, and a turn cap. Every prompt Eidolon writes for autopilot follows those rules, and it states the task, paths and tools in full, because the run cannot ask you a question later.</p>
+          <p>It has one end state you can measure, a check whose output shows up in the conversation, a named thing it must not change, and a turn cap. Every prompt Eidolon writes for autopilot follows those rules. It states the task, paths and tools in full, because the run cannot ask you a question later.</p>
+          <figure class="pullquote">
+            <blockquote><p>the emitted text is the whole spec of the run; the run cannot ask a question back</p></blockquote>
+            <figcaption>From <cite>references/autopilot-guide.md</cite>, the eidolon repository</figcaption>
+          </figure>
+        </section>
 
-      <h2>What has been tested</h2>
-      <p>On 2026-10-13 the interview ran headless over three turns. It offered the brain dump, reflected back, and wrote a goal with one end state, the check printed in full, two things it must never do and a six-turn cap. Both files landed. Run with its own cap, that goal reached its end state in one turn and left <code>docs/</code> untouched.</p>
-      <p>Still open: Claude Code's built-in <code>/goal</code> evaluator has not yet been run by hand in an interactive session. Headless mode does not expand slash commands, so that check needs a person.</p>
-    </div>
+        <section class="chapter" id="tested" aria-labelledby="tested-h">
+          <h2 id="tested-h"><span class="kicker">Chapter <span class="num">7</span></span>What has been tested</h2>
+          <div class="with-note">
+            <p>On 2026-10-13 the interview ran headless over three turns. It offered the brain dump, reflected back, and wrote a goal with one end state, the check printed in full, two things it must never do and a six-turn cap. Both files landed. Run with its own cap, that goal reached its end state in one turn and left <code>docs/</code> untouched.</p>
+            <aside class="note" aria-label="Still open: the goal evaluator">
+              <span class="label">Still open</span>
+              <p>Claude Code's built-in <code>/goal</code> evaluator has not yet been run by hand in an interactive session. Headless mode does not expand slash commands, so that check needs a person.</p>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </article>
   </main>
-  <footer class="site">
-    <div class="wrap">
+  <footer class="colophon">
+    <div class="colophon-inner">
+      <h2>Colophon</h2>
+      <p>Every claim on these pages traces to a document in the three repositories.</p>
+      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
       <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
     </div>
   </footer>
