@@ -16,7 +16,7 @@
   <header class="masthead">
     <div class="mast-inner">
       <p class="brand"><a href="index.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg><span>Eidolon</span></a></p>
-      <p class="dateline">Volume 0.1, October 2026</p>
+      <p class="dateline">v0.1.1, October 2026</p>
       <nav class="site-nav" aria-label="Site">
         <ul>
           <li><a href="index.html" aria-current="page">Home</a></li>
@@ -424,7 +424,7 @@ Steps: the builder writes src/hello.txt, then tries docs/outside.txt and docs/ou
         </div>
         <figure class="exhibit reveal">
           <figcaption><span class="label">Exhibit D</span> One dispatch and its outcome, from <code>.claude/.dispatch-log.jsonl</code></figcaption>
-          <pre class="soft"><code>{"kind":"dispatch","ts":"2026-10-13T21:09:45.153Z","session_id":"18cdb5e7-2f7e-4b1f-9497-ac007c73f2f0","agent_type":"builder","model":"haiku","effort":null,"description":"probe","persona":null,"write":["src/**"],"prompt_sha256":"802cef073b87310316dd8fa36a386a4d61d1307ce285f8e8d287d862395ab228"}
+          <pre class="soft"><code>{"kind":"dispatch","ts":"2026-10-13T21:09:45.153Z","session_id":"18cdb5e7-2f7e-4b1f-9497-ac007c73f2f0","agent_type":"builder","model":"haiku","effort":null,"description":"probe","persona":null,"write":["src/**"],"prompt_sha256":"0e4dd913a4edd571df0a4e35b7706054698c0bbe078464fdce039f51c0da70aa"}
 {"kind":"outcome","ts":"2026-10-13T21:15:10.847Z","agent_id":"a820b1b4a82eff273","agent_type":"builder","evidence":true}</code></pre>
         </figure>
         <p>The <a href="pipeline.html">pipeline page</a> has the tiers, the briefs and the review swarms.</p>
@@ -506,7 +506,7 @@ Steps: the builder writes src/hello.txt, then tries docs/outside.txt and docs/ou
           <div class="ledger-top">
             <div class="ledger-title">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.5" r="5.5"/><path d="M9 14.2L8 21l4-2 4 2-1-6.8"/></g></svg>
-              <div><p class="version">v0.1.2</p><p class="date">Eidolon v0.1.2 and Hearth v0.1.1 tagged on 14 October 2026; v0.1.0 on 13 October. Claude Code only.</p></div>
+              <div><p class="version">v0.1.1</p><p class="date">Hearth v0.1.1 and eidolon v0.1.2, tagged on 14 October 2026; v0.1.0 on 13 October. Claude Code only.</p></div>
             </div>
             <ul class="ci" aria-label="CI">
               <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Ubuntu</li>
@@ -570,7 +570,7 @@ node scripts/selfcheck.mjs</code></pre>
       <div>
         <h2>Colophon</h2>
         <p>Every claim on these pages traces to a document in the three repositories.</p>
-        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
+        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. Every version number on these pages comes from one file, versions.json, and the checker refuses a page that disagrees with it. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
         <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
       </div>
     </div>

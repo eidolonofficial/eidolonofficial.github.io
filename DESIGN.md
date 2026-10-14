@@ -235,3 +235,13 @@ Glow is candle light. It sits behind the lantern, in the gate of the hero scene 
 - Hide content until an animation runs.
 - Shorten a pull quote, or move a fact into a caption only.
 - Use the gold token for small text in day.
+
+## Release numbers
+
+Every version-bound string on the pages (the masthead dateline, the ledger pill, the zip name and
+its SHA-256, the tag links, the npm version) comes from `versions.json`. A release is one edit of
+that file, then `node release.mjs`, which rewrites the pages; `node check.mjs` runs
+`node release.mjs --check` and refuses a page that disagrees with the file. The pages make no
+network request of their own, so the numbers are synced at publish time, never at view time. The
+dateline and the pill show the Hearth release, the thing a visitor installs; the ledger lists every
+repository's own tag.

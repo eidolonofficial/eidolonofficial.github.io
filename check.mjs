@@ -14,6 +14,7 @@
 import { readdirSync, readFileSync, existsSync, statSync } from 'node:fs';
 import { join, resolve, dirname, relative, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const PAGES = ['index.html', 'safety.html', 'pipeline.html', 'autopilot.html', 'release.html', 'about.html'];
@@ -106,7 +107,8 @@ for (const file of htmlFiles) {
       for (const page of PAGES) if (!navs[0][2].includes(`href="${page}"`)) fail(`${name}: masthead nav lacks ${page}`);
       if ((navs[0][2].match(/aria-current="page"/g) || []).length !== 1) fail(`${name}: masthead nav needs exactly one aria-current="page"`);
     }
-    if (!/Volume 0\.1, October 2026/.test(mastheads[0][1])) fail(`${name}: masthead lacks the dateline`);
+    // the dateline is the shown release and its month; release.mjs --check holds the exact value
+    if (!/<p class="dateline">v\d+\.\d+\.\d+, [A-Z][a-z]+ \d{4}<\/p>/.test(mastheads[0][1])) fail(`${name}: masthead lacks the dateline (vX.Y.Z, Month YYYY)`);
   }
   const siteNavs = html.match(/<nav\b[^>]*aria-label="Site"/gi) || [];
   if (siteNavs.length !== 1) fail(`${name}: ${siteNavs.length} site navs, expected 1`);
@@ -231,6 +233,12 @@ for (const line of contrastLines) console.log(`  ${line}`);
 console.log(`Fonts named in DESIGN.md: ${designFonts.join(', ')}`);
 console.log(`Scripts: ${scripts.length ? scripts.map(([n, , l]) => `${n} (${l} lines)`).join(', ') + ', identical and inline' : 'none'}`);
 console.log(`Checked ${htmlFiles.length} pages and ${files.length} files.`);
+// 5. Release numbers: every version-bound string comes from versions.json (node release.mjs writes them).
+{
+  const r = spawnSync(process.execPath, [join(ROOT, 'release.mjs'), '--check'], { encoding: 'utf8' });
+  if (r.status !== 0) fail('release strings differ from versions.json: ' + (r.stdout || r.stderr).trim().split('\n').join('; '));
+}
+
 if (failures.length) {
   for (const f of failures) console.log(`FAIL ${f}`);
   process.exit(1);
