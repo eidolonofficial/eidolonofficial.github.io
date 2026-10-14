@@ -5,37 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eidolon autopilot</title>
   <meta name="description" content="The brain dump, the interview and the four shapes for work that runs on its own.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
-    <p class="dateline">Volume 0.1, October 2026</p>
-    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
-    <nav class="site-nav" aria-label="Site">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="safety.html">Safety</a></li>
-        <li><a href="pipeline.html">Pipeline</a></li>
-        <li><a href="autopilot.html" aria-current="page">Autopilot</a></li>
-        <li><a href="release.html">Release</a></li>
-      </ul>
-    </nav>
+    <div class="mast-inner">
+      <p class="brand"><a href="index.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg><span>Eidolon</span></a></p>
+      <p class="dateline">Volume 0.1, October 2026</p>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="pipeline.html">Pipeline</a></li>
+          <li><a href="autopilot.html" aria-current="page">Autopilot</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="about.html">Makers</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main id="main" tabindex="-1">
-    <article class="feature">
-      <header class="opener">
-        <p class="kicker-page">On autopilot</p>
-        <h1>Autopilot, or leaving a lamp lit</h1>
-        <p class="dek">Loops, goals and routines, and the interview that comes before any of them runs.</p>
-        <p class="lead">Autopilot is for work that should run on its own. You start it with <code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or in plain words such as "keep doing this" or "check it every morning." Eidolon interviews you, picks a shape with you, writes the run down, and shows you how to stop it before anything starts.</p>
-      </header>
+    <header class="page-hero">
+      <div class="aurora" aria-hidden="true"><span></span></div>
+      <svg class="strip" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <g class="trees trees-back" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M0 240V164M0 216L32 184V155M24 240V173M24 200L39 185V149M24 211L4 191V135M48 240V171M48 217L10 179V159M48 214L81 180V150M75 240V81M75 179L48 151V131M75 154L42 121V75M102 240V193M102 222L86 205V182M126 240V94M126 181L93 148V103M162 240V192M162 213L142 193V144M162 216L145 199V149M196 240V177M196 191L164 160V117M196 218L225 190V148M196 192L226 162V130M231 240V163M231 217L263 185V144M231 200L253 177V140M231 190L211 169V115M255 240V167M255 212L239 195V158M255 214L229 188V136M278 240V189M278 203L307 174V152M278 215L243 179V122M278 202L253 178V133M314 240V185M314 220L280 186V136M351 240V80M351 183L386 148V115M351 149L365 134V91M351 128L328 105V46M383 240V137M383 192L411 163V118M383 183L351 152V98M406 240V74M406 169L430 145V83M406 190L367 151V125M406 146L367 107V58M444 240V63M444 182L429 168V116M481 240V168M481 203L504 180V130M481 203L464 186V156M481 193L460 171V114M516 240V113M516 143L541 117V95M516 204L495 183V124M516 164L554 126V66M548 240V62M548 184L511 148V95M548 116L534 102V66M572 240V95M572 203L548 179V117M572 171L548 147V98M572 199L610 160V138M606 240V111M606 150L569 113V71M630 240V79M630 192L610 171V125M630 137L648 120V70M651 240V157M651 174L616 139V78M651 195L676 170V144M690 240V195M690 205L674 189V160M690 225L713 202V151M712 240V91M712 146L683 118V81M712 201L683 172V118M712 127L675 90V60M750 240V76M750 175L772 152V115M780 240V95M780 200L796 184V138M780 187L746 153V100M816 240V98M816 169L790 142V119M846 240V181M846 210L881 175V152M846 208L828 190V166M846 225L815 193V146M868 240V68M868 155L884 138V77M868 185L837 153V111M868 173L841 145V114M904 240V109M904 206L918 191V147M931 240V145M931 168L966 134V96M931 179L903 151V127M966 240V108M966 144L995 114V67M966 158L996 127V94M966 196L980 181V137M995 240V60M995 126L973 103V63M1020 240V86M1020 131L983 94V31M1049 240V129M1049 174L1076 148V110M1086 240V161M1086 205L1116 174V126M1113 240V89M1113 155L1148 120V58M1113 158L1132 139V76M1113 198L1134 177V115M1149 240V195M1149 211L1182 179V130M1173 240V79M1173 171L1202 142V112M1173 117L1208 81V42M1207 240V119M1207 201L1245 162V132M1207 192L1167 152V133M1207 152L1240 119V67M1237 240V185M1237 210L1205 178V131M1263 240V111M1263 198L1278 183V136M1294 240V195M1294 206L1319 181V134M1294 211L1275 192V142M1332 240V144M1332 185L1358 160V118M1332 169L1303 140V115M1332 205L1303 176V143M1364 240V98M1364 171L1346 153V103M1364 174L1345 156V104M1392 240V108M1392 163L1415 139V78M1423 240V173M1423 192L1400 169V120"/><circle cx="0" cy="164" r="3.2"/><circle cx="32" cy="155" r="3.2"/><circle cx="24" cy="173" r="3.2"/><circle cx="39" cy="149" r="3.2"/><circle cx="4" cy="135" r="3.2"/><circle cx="48" cy="171" r="3.2"/><circle cx="10" cy="159" r="3.2"/><circle cx="81" cy="150" r="3.2"/><circle cx="75" cy="81" r="3.2"/><circle cx="48" cy="131" r="3.2"/><circle cx="42" cy="75" r="3.2"/><circle cx="102" cy="193" r="3.2"/><circle cx="86" cy="182" r="3.2"/><circle cx="126" cy="94" r="3.2"/><circle cx="93" cy="103" r="3.2"/><circle cx="162" cy="192" r="3.2"/><circle cx="142" cy="144" r="3.2"/><circle cx="145" cy="149" r="3.2"/><circle cx="196" cy="177" r="3.2"/><circle cx="164" cy="117" r="3.2"/><circle cx="225" cy="148" r="3.2"/><circle cx="226" cy="130" r="3.2"/><circle cx="231" cy="163" r="3.2"/><circle cx="263" cy="144" r="3.2"/><circle cx="253" cy="140" r="3.2"/><circle cx="211" cy="115" r="3.2"/><circle cx="255" cy="167" r="3.2"/><circle cx="239" cy="158" r="3.2"/><circle cx="229" cy="136" r="3.2"/><circle cx="278" cy="189" r="3.2"/><circle cx="307" cy="152" r="3.2"/><circle cx="243" cy="122" r="3.2"/><circle cx="253" cy="133" r="3.2"/><circle cx="314" cy="185" r="3.2"/><circle cx="280" cy="136" r="3.2"/><circle cx="351" cy="80" r="3.2"/><circle cx="386" cy="115" r="3.2"/><circle cx="365" cy="91" r="3.2"/><circle cx="328" cy="46" r="3.2"/><circle cx="383" cy="137" r="3.2"/><circle cx="411" cy="118" r="3.2"/><circle cx="351" cy="98" r="3.2"/><circle cx="406" cy="74" r="3.2"/><circle cx="430" cy="83" r="3.2"/><circle cx="367" cy="125" r="3.2"/><circle cx="367" cy="58" r="3.2"/><circle cx="444" cy="63" r="3.2"/><circle cx="429" cy="116" r="3.2"/><circle cx="481" cy="168" r="3.2"/><circle cx="504" cy="130" r="3.2"/><circle cx="464" cy="156" r="3.2"/><circle cx="460" cy="114" r="3.2"/><circle cx="516" cy="113" r="3.2"/><circle cx="541" cy="95" r="3.2"/><circle cx="495" cy="124" r="3.2"/><circle cx="554" cy="66" r="3.2"/><circle cx="548" cy="62" r="3.2"/><circle cx="511" cy="95" r="3.2"/><circle cx="534" cy="66" r="3.2"/><circle cx="572" cy="95" r="3.2"/><circle cx="548" cy="117" r="3.2"/><circle cx="548" cy="98" r="3.2"/><circle cx="610" cy="138" r="3.2"/><circle cx="606" cy="111" r="3.2"/><circle cx="569" cy="71" r="3.2"/><circle cx="630" cy="79" r="3.2"/><circle cx="610" cy="125" r="3.2"/><circle cx="648" cy="70" r="3.2"/><circle cx="651" cy="157" r="3.2"/><circle cx="616" cy="78" r="3.2"/><circle cx="676" cy="144" r="3.2"/><circle cx="690" cy="195" r="3.2"/><circle cx="674" cy="160" r="3.2"/><circle cx="713" cy="151" r="3.2"/><circle cx="712" cy="91" r="3.2"/><circle cx="683" cy="81" r="3.2"/><circle cx="683" cy="118" r="3.2"/><circle cx="675" cy="60" r="3.2"/><circle cx="750" cy="76" r="3.2"/><circle cx="772" cy="115" r="3.2"/><circle cx="780" cy="95" r="3.2"/><circle cx="796" cy="138" r="3.2"/><circle cx="746" cy="100" r="3.2"/><circle cx="816" cy="98" r="3.2"/><circle cx="790" cy="119" r="3.2"/><circle cx="846" cy="181" r="3.2"/><circle cx="881" cy="152" r="3.2"/><circle cx="828" cy="166" r="3.2"/><circle cx="815" cy="146" r="3.2"/><circle cx="868" cy="68" r="3.2"/><circle cx="884" cy="77" r="3.2"/><circle cx="837" cy="111" r="3.2"/><circle cx="841" cy="114" r="3.2"/><circle cx="904" cy="109" r="3.2"/><circle cx="918" cy="147" r="3.2"/><circle cx="931" cy="145" r="3.2"/><circle cx="966" cy="96" r="3.2"/><circle cx="903" cy="127" r="3.2"/><circle cx="966" cy="108" r="3.2"/><circle cx="995" cy="67" r="3.2"/><circle cx="996" cy="94" r="3.2"/><circle cx="980" cy="137" r="3.2"/><circle cx="995" cy="60" r="3.2"/><circle cx="973" cy="63" r="3.2"/><circle cx="1020" cy="86" r="3.2"/><circle cx="983" cy="31" r="3.2"/><circle cx="1049" cy="129" r="3.2"/><circle cx="1076" cy="110" r="3.2"/><circle cx="1086" cy="161" r="3.2"/><circle cx="1116" cy="126" r="3.2"/><circle cx="1113" cy="89" r="3.2"/><circle cx="1148" cy="58" r="3.2"/><circle cx="1132" cy="76" r="3.2"/><circle cx="1134" cy="115" r="3.2"/><circle cx="1149" cy="195" r="3.2"/><circle cx="1182" cy="130" r="3.2"/><circle cx="1173" cy="79" r="3.2"/><circle cx="1202" cy="112" r="3.2"/><circle cx="1208" cy="42" r="3.2"/><circle cx="1207" cy="119" r="3.2"/><circle cx="1245" cy="132" r="3.2"/><circle cx="1167" cy="133" r="3.2"/><circle cx="1240" cy="67" r="3.2"/><circle cx="1237" cy="185" r="3.2"/><circle cx="1205" cy="131" r="3.2"/><circle cx="1263" cy="111" r="3.2"/><circle cx="1278" cy="136" r="3.2"/><circle cx="1294" cy="195" r="3.2"/><circle cx="1319" cy="134" r="3.2"/><circle cx="1275" cy="142" r="3.2"/><circle cx="1332" cy="144" r="3.2"/><circle cx="1358" cy="118" r="3.2"/><circle cx="1303" cy="115" r="3.2"/><circle cx="1303" cy="143" r="3.2"/><circle cx="1364" cy="98" r="3.2"/><circle cx="1346" cy="103" r="3.2"/><circle cx="1345" cy="104" r="3.2"/><circle cx="1392" cy="108" r="3.2"/><circle cx="1415" cy="78" r="3.2"/><circle cx="1423" cy="173" r="3.2"/><circle cx="1400" cy="120" r="3.2"/></g>
+      <g class="trees trees-front" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 240V194M20 215L35 200V137M20 220L34 206V145M74 240V174M74 220L46 192V147M131 240V150M131 187L110 166V129M214 240V131M214 207L176 168V131M214 212L186 183V164M214 204L178 168V146M266 240V149M266 215L249 198V175M266 211L237 182V162M266 203L231 167V113M316 240V174M316 215L354 178V128M316 214L290 188V157M384 240V177M384 221L346 183V131M464 240V131M464 168L501 130V96M464 156L448 140V90M464 159L484 139V108M527 240V184M527 208L497 178V124M527 197L542 182V155M527 204L549 182V129M594 240V155M594 211L613 192V129M649 240V191M649 216L623 190V146M649 208L627 185V166M722 240V165M722 207L705 189V166M797 240V216M797 229L837 189V168M885 240V169M885 214L908 191V167M885 185L911 159V102M885 219L914 190V172M970 240V212M970 229L940 199V162M970 229L953 212V151M1047 240V147M1047 170L1013 136V91M1047 214L1011 178V140M1112 240V134M1112 158L1085 131V80M1112 176L1088 152V120M1175 240V132M1175 176L1205 145V106M1248 240V148M1248 205L1215 172V151M1248 191L1269 170V108M1248 185L1282 150V101M1313 240V122M1313 185L1277 149V101M1313 178L1299 164V119M1313 155L1294 136V91M1372 240V179M1372 194L1333 155V129M1372 192L1355 175V153"/><circle cx="20" cy="194" r="3.2"/><circle cx="35" cy="137" r="3.2"/><circle cx="34" cy="145" r="3.2"/><circle cx="74" cy="174" r="3.2"/><circle cx="46" cy="147" r="3.2"/><circle cx="131" cy="150" r="3.2"/><circle cx="110" cy="129" r="3.2"/><circle cx="214" cy="131" r="3.2"/><circle cx="176" cy="131" r="3.2"/><circle cx="186" cy="164" r="3.2"/><circle cx="178" cy="146" r="3.2"/><circle cx="266" cy="149" r="3.2"/><circle cx="249" cy="175" r="3.2"/><circle cx="237" cy="162" r="3.2"/><circle cx="231" cy="113" r="3.2"/><circle cx="316" cy="174" r="3.2"/><circle cx="354" cy="128" r="3.2"/><circle cx="290" cy="157" r="3.2"/><circle cx="384" cy="177" r="3.2"/><circle cx="346" cy="131" r="3.2"/><circle cx="464" cy="131" r="3.2"/><circle cx="501" cy="96" r="3.2"/><circle cx="448" cy="90" r="3.2"/><circle cx="484" cy="108" r="3.2"/><circle cx="527" cy="184" r="3.2"/><circle cx="497" cy="124" r="3.2"/><circle cx="542" cy="155" r="3.2"/><circle cx="549" cy="129" r="3.2"/><circle cx="594" cy="155" r="3.2"/><circle cx="613" cy="129" r="3.2"/><circle cx="649" cy="191" r="3.2"/><circle cx="623" cy="146" r="3.2"/><circle cx="627" cy="166" r="3.2"/><circle cx="722" cy="165" r="3.2"/><circle cx="705" cy="166" r="3.2"/><circle cx="797" cy="216" r="3.2"/><circle cx="837" cy="168" r="3.2"/><circle cx="885" cy="169" r="3.2"/><circle cx="908" cy="167" r="3.2"/><circle cx="911" cy="102" r="3.2"/><circle cx="914" cy="172" r="3.2"/><circle cx="970" cy="212" r="3.2"/><circle cx="940" cy="162" r="3.2"/><circle cx="953" cy="151" r="3.2"/><circle cx="1047" cy="147" r="3.2"/><circle cx="1013" cy="91" r="3.2"/><circle cx="1011" cy="140" r="3.2"/><circle cx="1112" cy="134" r="3.2"/><circle cx="1085" cy="80" r="3.2"/><circle cx="1088" cy="120" r="3.2"/><circle cx="1175" cy="132" r="3.2"/><circle cx="1205" cy="106" r="3.2"/><circle cx="1248" cy="148" r="3.2"/><circle cx="1215" cy="151" r="3.2"/><circle cx="1269" cy="108" r="3.2"/><circle cx="1282" cy="101" r="3.2"/><circle cx="1313" cy="122" r="3.2"/><circle cx="1277" cy="101" r="3.2"/><circle cx="1299" cy="119" r="3.2"/><circle cx="1294" cy="91" r="3.2"/><circle cx="1372" cy="179" r="3.2"/><circle cx="1333" cy="129" r="3.2"/><circle cx="1355" cy="153" r="3.2"/></g>
+    </svg>
+      <div class="wrap page-hero-grid">
+        <div>
+          <p class="kicker">On autopilot, or the clockwork that keeps its word</p>
+          <h1>Autopilot, or leaving a lamp lit</h1>
+          <p class="dek">Loops, goals and routines, and the interview that comes before any of them runs.</p>
+          <p class="lead">Autopilot is for work that runs on its own. You start it with <code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>. Plain words such as "keep doing this" or "check it every morning" also start it. Eidolon interviews you and picks a shape with you. It writes the run down, and it shows you how to stop it before anything starts.</p>
+        </div>
+        <div class="emblem"><svg class="orrery" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="194" stroke-width="1" stroke-dasharray="1 9"/><circle cx="200" cy="200" r="176" stroke-width=".75" opacity=".7"/><circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="10 8" opacity=".45"/></g><g fill="currentColor"><circle cx="200" cy="24" r="4"/><circle cx="352" cy="288" r="3"/><circle cx="62" cy="310" r="2.5"/></g></svg><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="19"/><circle cx="32" cy="34" r="23" stroke-dasharray="1.5 4.5"/><path d="M32 22v12l8 5"/><circle cx="32" cy="34" r="1.6"/><path d="M32 11V6"/><path d="M27 6h10"/></g></svg></div>
+      </div>
+    </header>
 
-      <nav class="toc" aria-label="Chapters">
-        <h2>In this piece</h2>
+    <div class="wrap chapters">
+      <nav class="toc reveal" aria-label="Chapters">
+        <div class="toc-head"><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg><h2>In this piece</h2></div>
         <ol>
           <li><a href="#interview"><span class="n">1</span>How the interview is built</a></li>
           <li><a href="#dump"><span class="n">2</span>The brain dump</a></li>
@@ -47,43 +61,94 @@
         </ol>
       </nav>
 
-      <div class="body">
-        <section class="chapter" id="interview" aria-labelledby="interview-h">
-          <h2 id="interview-h"><span class="kicker">Chapter <span class="num">1</span></span>How the interview is built</h2>
-          <p>The docs say the interview is built for a neurodivergent mind, and that it removes load instead of adding steps. In practice:</p>
+      <section class="chapter split" id="interview" aria-labelledby="interview-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 56h48"/><path d="M13 56V28l19-15 19 15v28"/><path d="M23 56V41a9 9 0 0 1 18 0v15"/><path d="M42 21v-9h5v13"/></g><path class="v-flame" d="M32 54c-4.5-2.5-5-7 0-12 1 3.5 4 4 4 7.5 0 2.5-1.5 4-4 4.5z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">1</span></span><h2 id="interview-h">How the interview is built</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The docs say that the interview is for a neurodivergent mind, and that it removes load and adds no steps. In practice, it works like this:</p>
           <ul>
             <li>One question per screen.</li>
-            <li>You pick an answer from a few chips. Typing is optional.</li>
+            <li>You pick an answer from a few chips. You do not have to type.</li>
             <li>Every question has skip and other.</li>
-            <li>There are no wrong answers, and any answer can be changed later.</li>
-            <li>Nothing is timed, and nothing is framed as a "quick question."</li>
+            <li>There are no wrong answers. You can change any answer later.</li>
+            <li>No question has a timer. No question calls itself a "quick question."</li>
             <li>Long, messy, jumping-around input is fine. Eidolon sorts it.</li>
-            <li>The recommended answer is listed first and marked, so you have less to decide.</li>
+            <li>The recommended answer comes first, with a mark, so you have less to decide.</li>
             <li>Eidolon says back what it heard before it acts.</li>
-            <li>Every answer is written to a file when you give it, so nothing has to be remembered.</li>
+            <li>Eidolon writes every answer to a file when you give it. You do not have to remember anything.</li>
           </ul>
-          <p>If the chip control is not available, Eidolon asks the same question in plain text with lettered options and waits.</p>
-        </section>
+          <p>If the chip control is not available, Eidolon asks the same question in plain text with lettered options. Then it waits.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="dump" aria-labelledby="dump-h">
-          <h2 id="dump-h"><span class="kicker">Chapter <span class="num">2</span></span>The brain dump</h2>
-          <p>The first screen is an invitation, and it is optional:</p>
+      <section class="chapter split" id="dump" aria-labelledby="dump-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="26" rx="15" ry="19"/><ellipse cx="32" cy="26" rx="11" ry="15"/><path d="M32 45v9"/><path d="M23 56h18"/><path d="M28 9.5l2-3 2 3"/></g><path class="v-glint" d="M26 20l6-6M26.5 27l11-11" fill="none" stroke-width="1.25" stroke-linecap="round"/></svg>
+          <div><span class="kicker">Chapter <span class="num">2</span></span><h2 id="dump-h">The brain dump</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The first screen is an invitation, and it is optional:</p>
           <figure class="pullquote">
             <blockquote><p>Tell me about it the way you would tell a coworker. Rant, infodump, jump around. I will sort it.</p></blockquote>
             <figcaption>From <cite>references/interview.md</cite>, the eidolon repository</figcaption>
           </figure>
-          <p>The chips are <em>Start talking</em>, <em>Ask me questions instead</em> and <em>Skip</em>. From what you say, Eidolon fills in a short record: the outcome in your own words, who it is for, how you will know it is done, when it runs, when it stops, what it must never do, the budget, what it reads, what annoys you about the current way, and what is still open. A field your dump did not cover stays empty.</p>
-          <p>Then it reflects back, in under 10 lines, starting with "Here is what I heard." You answer with <em>That's it</em>, <em>Fix something</em> or <em>Add more</em>. Fix something asks one question per wrong line. It does not start over.</p>
-        </section>
+          <p>The screen offers three chips:</p>
+          <ul class="ui-chips">
+            <li>Start talking</li>
+            <li>Ask me questions instead</li>
+            <li>Skip</li>
+          </ul>
+          <p>From what you say, Eidolon fills in a short record with these fields:</p>
+          <ul>
+            <li>the outcome in your own words</li>
+            <li>who it is for</li>
+            <li>how you will know it is done</li>
+            <li>when it runs, and when it stops</li>
+            <li>what it must never do</li>
+            <li>the budget</li>
+            <li>what it reads</li>
+            <li>what annoys you about the current way</li>
+            <li>what is still open</li>
+          </ul>
+          <p>A field that your dump does not cover stays empty.</p>
+          <p>Then it reflects back in under 10 lines. It starts with the words "Here is what I heard." You answer with one of three chips:</p>
+          <ul class="ui-chips">
+            <li>That's it</li>
+            <li>Fix something</li>
+            <li>Add more</li>
+          </ul>
+          <p>Fix something asks one question per wrong line. It does not start over.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="gaps" aria-labelledby="gaps-h">
-          <h2 id="gaps-h"><span class="kicker">Chapter <span class="num">3</span></span>Questions for the gaps</h2>
-          <p>Eidolon asks only about the fields that are still empty. A field your dump filled is never asked again. An empty field is always asked and never guessed, including how to handle permission prompts when no one is watching. That last rule was added after the live test on 2026-10-13, where the interview filled in the permission choice instead of asking.</p>
-          <p>The questions it may ask: which shape fits, how you will know it is done, how often it runs, when it stops, what it must never do, and how to handle permission prompts. For that last one the recommended answer is an allowlist of the commands it needs; the other choice is auto mode.</p>
-        </section>
+      <section class="chapter split" id="gaps" aria-labelledby="gaps-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="32" r="10"/><circle cx="19" cy="32" r="4"/><path d="M29 32h27"/><path d="M48 32v8M54 32v6M40 32v5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">3</span></span><h2 id="gaps-h">Questions for the gaps</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Eidolon asks only about the fields that are still empty. It never asks again about a field that your dump filled. It always asks about an empty field and never guesses. That rule also covers how to handle permission prompts when no one watches. The rule came after the live test on 2026-10-13. In that test, the interview filled in the permission choice and did not ask.</p>
+          <p>The questions it may ask are these:</p>
+          <ul>
+            <li>which shape fits</li>
+            <li>how you will know it is done</li>
+            <li>how often it runs</li>
+            <li>when it stops</li>
+            <li>what it must never do</li>
+            <li>how to handle permission prompts</li>
+          </ul>
+          <p>For permission prompts, the recommended answer is an allowlist of the commands it needs. The other choice is auto mode.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="shapes" aria-labelledby="shapes-h">
-          <h2 id="shapes-h"><span class="kicker">Chapter <span class="num">4</span></span>The four shapes</h2>
+      <section class="chapter split" id="shapes" aria-labelledby="shapes-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="19"/><circle cx="32" cy="34" r="23" stroke-dasharray="1.5 4.5"/><path d="M32 22v12l8 5"/><circle cx="32" cy="34" r="1.6"/><path d="M32 11V6"/><path d="M27 6h10"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">4</span></span><h2 id="shapes-h">The four shapes</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="table stack">
             <table role="table">
               <caption>Four ways to leave something running, and how to stop each one</caption>
@@ -94,75 +159,109 @@
                 <tr role="row">
                   <th scope="row" role="rowheader">Goal</th>
                   <td role="cell" data-label="Use it when">There is a clear finish line. This is the recommended shape when there is one.</td>
-                  <td role="cell" data-label="Limits">Runs in your session. After every turn, a small fast model checks whether the condition is met. It reads only what Claude printed, so the check's output has to appear in the conversation. No cadence.</td>
+                  <td role="cell" data-label="Limits">It runs in your session. After every turn, a small fast model checks the condition. It reads only what Claude printed. So the output of the check has to appear in the conversation. No cadence.</td>
                   <td role="cell" data-label="To stop it"><code>/goal clear</code></td>
                 </tr>
                 <tr role="row">
                   <th scope="row" role="rowheader">Loop</th>
-                  <td role="cell" data-label="Use it when">Something should repeat on an interval, or at its own pace.</td>
-                  <td role="cell" data-label="Limits">Runs in your session, and only while it is open and idle. The minimum interval is 1 minute. Firing can shift by a few minutes. It stops on its own after 7 days.</td>
+                  <td role="cell" data-label="Use it when">Something repeats on an interval, or at its own pace.</td>
+                  <td role="cell" data-label="Limits">It runs in your session, and only while the session is open and idle. The minimum interval is 1 minute. The fire time can shift by a few minutes. It stops on its own after 7 days.</td>
                   <td role="cell" data-label="To stop it">Esc, or <code>CronDelete</code></td>
                 </tr>
                 <tr role="row">
                   <th scope="row" role="rowheader">Routine</th>
-                  <td role="cell" data-label="Use it when">It should run in the cloud with no one there, on a schedule, an API call or a GitHub event.</td>
+                  <td role="cell" data-label="Use it when">It runs in the cloud with no one there. A schedule, an API call or a GitHub event starts it.</td>
                   <td role="cell" data-label="Limits">The minimum interval is 1 hour. It runs on a fresh clone and cannot read your local files. If your inputs are local, Eidolon steers you to one of the other shapes.</td>
                   <td role="cell" data-label="To stop it">Change it with <code>/schedule update</code></td>
                 </tr>
                 <tr role="row">
                   <th scope="row" role="rowheader">Desktop task</th>
-                  <td role="cell" data-label="Use it when">It needs your local files and should run on a schedule.</td>
-                  <td role="cell" data-label="Limits">Runs on your machine, so the machine must be on.</td>
+                  <td role="cell" data-label="Use it when">It needs your local files and runs on a schedule.</td>
+                  <td role="cell" data-label="Limits">It runs on your machine, so the machine must be on.</td>
                   <td role="cell" data-label="To stop it">Disable it in the scheduled tasks list</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p>For a loop, a routine or a desktop task, one of the cadence chips is "Daily at 9:07." A time off the hour avoids the jitter on the hour.</p>
-        </section>
+          <p>For a loop, a routine or a desktop task, one cadence chip is Daily at 9:07. A time off the hour avoids the jitter on the hour.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="yes" aria-labelledby="yes-h">
-          <h2 id="yes-h"><span class="kicker">Chapter <span class="num">5</span></span>What gets written, and the yes</h2>
-          <p>Eidolon shows you the exact text it will use and the instruction that stops it. Then it waits for your yes. Nothing is created before that.</p>
+      <section class="chapter split" id="yes" aria-labelledby="yes-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">5</span></span><h2 id="yes-h">What gets written, and the yes</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Eidolon shows you the exact text it will use, and the instruction that stops it. Then it waits for your yes. It creates nothing before that.</p>
           <dl class="facts">
-            <div><dt><code>.claude/autopilot/&lt;slug&gt;.md</code></dt><dd>What was created, why, and how to stop it. This file is written before the run starts, so the stop instruction is on disk first.</dd></div>
+            <div><dt><code>.claude/autopilot/&lt;slug&gt;.md</code></dt><dd>What Eidolon created, why, and how to stop it. Eidolon writes this file before the run starts, so the stop instruction is on disk first.</dd></div>
             <div><dt><code>.claude/session.yaml</code></dt><dd>Your answers from the interview.</dd></div>
           </dl>
-          <p>After creating the goal, loop or routine, Eidolon reads it back from Claude Code and shows it to you.</p>
-        </section>
+          <p>After it creates the goal, loop or routine, Eidolon reads it back from Claude Code. Then it shows it to you.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="goal" aria-labelledby="goal-h">
-          <h2 id="goal-h"><span class="kicker">Chapter <span class="num">6</span></span>What a goal looks like</h2>
-          <p>This is the example from the autopilot guide:</p>
+      <section class="chapter split" id="goal" aria-labelledby="goal-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 57V25"/><path d="M55 57V25"/><path d="M9 25c7-11 39-11 46 0"/><path d="M18 57V21M25.5 57V18.5M32 57V17.5M38.5 57V18.5M46 57V21"/><path d="M9 39h46"/><path d="M5 57h54"/></g><circle class="v-glow" cx="32" cy="9" r="3"/></svg>
+          <div><span class="kicker">Chapter <span class="num">6</span></span><h2 id="goal-h">What a goal looks like</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">This is the example from the autopilot guide:</p>
           <pre><code>/goal All tests in `npm test` pass and `npm run lint` exits 0. After each change,
 run both and print the last 5 lines of output. Do not edit files under
 `migrations/`. Stop after 20 turns.</code></pre>
-          <p>It has one end state you can measure, a check whose output shows up in the conversation, a named thing it must not change, and a turn cap. Every prompt Eidolon writes for autopilot follows those rules. It states the task, paths and tools in full, because the run cannot ask you a question later.</p>
+          <p>It has four parts:</p>
+          <ul>
+            <li>one end state you can measure</li>
+            <li>a check whose output shows up in the conversation</li>
+            <li>a named thing it must not change</li>
+            <li>a turn cap</li>
+          </ul>
+          <p>Every prompt that Eidolon writes for autopilot follows those rules. It states the task, paths and tools in full. The run cannot ask you a question later.</p>
           <figure class="pullquote">
             <blockquote><p>the emitted text is the whole spec of the run; the run cannot ask a question back</p></blockquote>
             <figcaption>From <cite>references/autopilot-guide.md</cite>, the eidolon repository</figcaption>
           </figure>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="tested" aria-labelledby="tested-h">
-          <h2 id="tested-h"><span class="kicker">Chapter <span class="num">7</span></span>What has been tested</h2>
+      <section class="chapter split" id="tested" aria-labelledby="tested-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="7" r="2.5"/><path d="M24 17c0-5 3.5-7.5 8-7.5s8 2.5 8 7.5"/><path d="M20 18h24l4 6H16z"/><path d="M18 26h28l-3 26H21z"/><path d="M23 30h18l-2 18H25z" opacity=".55"/><path d="M20 56h24"/></g><path class="v-flame" d="M32 33c3.5 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 1.5-5 5-9z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">7</span></span><h2 id="tested-h">What has been tested</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="with-note">
-            <p>On 2026-10-13 the interview ran headless over three turns. It offered the brain dump, reflected back, and wrote a goal with one end state, the check printed in full, two things it must never do and a six-turn cap. Both files landed. Run with its own cap, that goal reached its end state in one turn and left <code>docs/</code> untouched.</p>
+            <div>
+              <p class="initial">On 2026-10-13 the interview ran headless over three turns. It offered the brain dump and reflected back. Then it wrote a goal with these parts:</p>
+              <ul>
+                <li>one end state</li>
+                <li>the check, printed in full</li>
+                <li>two things it must never do</li>
+                <li>a six-turn cap</li>
+              </ul>
+              <p>Both files landed. With its own cap, that goal reached its end state in one turn. It left <code>docs/</code> untouched.</p>
+            </div>
             <aside class="note" aria-label="Still open: the goal evaluator">
               <span class="label">Still open</span>
-              <p>Claude Code's built-in <code>/goal</code> evaluator has not yet been run by hand in an interactive session. Headless mode does not expand slash commands, so that check needs a person.</p>
+              <p>The built-in <code>/goal</code> evaluator of Claude Code still needs a manual run in an interactive session. Headless mode does not expand slash commands, so that check needs a person.</p>
             </aside>
           </div>
-        </section>
-      </div>
-    </article>
+        </div>
+      </section>
+    </div>
   </main>
   <footer class="colophon">
     <div class="colophon-inner">
-      <h2>Colophon</h2>
-      <p>Every claim on these pages traces to a document in the three repositories.</p>
-      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
-      <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg>
+      <div>
+        <h2>Colophon</h2>
+        <p>Every claim on these pages traces to a document in the three repositories.</p>
+        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+      </div>
     </div>
   </footer>
 </body>

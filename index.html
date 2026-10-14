@@ -5,182 +5,593 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eidolon</title>
   <meta name="description" content="Eidolon is a skill for Claude Code. It sets up a repository and runs a spec-driven build with human gates.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
-    <p class="dateline">Volume 0.1, October 2026</p>
-    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
-    <nav class="site-nav" aria-label="Site">
-      <ul>
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="safety.html">Safety</a></li>
-        <li><a href="pipeline.html">Pipeline</a></li>
-        <li><a href="autopilot.html">Autopilot</a></li>
-        <li><a href="release.html">Release</a></li>
-      </ul>
-    </nav>
+    <div class="mast-inner">
+      <p class="brand"><a href="index.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg><span>Eidolon</span></a></p>
+      <p class="dateline">Volume 0.1, October 2026</p>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="pipeline.html">Pipeline</a></li>
+          <li><a href="autopilot.html">Autopilot</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="about.html">Makers</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main id="main" tabindex="-1">
-    <article class="feature">
-      <header class="opener">
-        <p class="kicker-page">An introduction</p>
-        <h1>A lantern for the repository</h1>
-        <p class="dek">A field guide to a Claude Code skill that readies a repository, then builds from a written spec with you at the gates.</p>
-        <p class="lead">Eidolon is a skill for Claude Code. It sets up a repository so Claude Code can work well in it. Then it carries a piece of work from a written spec to a committed change, and it stops at set points so you can approve, edit or stop.</p>
-        <p>It runs in Claude Code only. Version 0.1.0 came out on 13 October 2026 with two companions: Setup, a skill that opens a work session, and Hearth, the installer for both. The <a href="release.html">release page</a> has the record.</p>
-      </header>
+    <section class="hero" aria-labelledby="hero-h">
+      <div class="aurora" aria-hidden="true"><span></span></div>
+      <div class="hero-stage">
+      <svg class="scene" viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMax slice" aria-hidden="true" focusable="false">
+      <g class="stars" fill="currentColor"><circle cx="344" cy="404" r="1.4"/><circle cx="1335" cy="41" r="1.7"/><circle cx="520" cy="42" r="0.7"/><circle cx="1417" cy="429" r="1.3"/><circle cx="651" cy="250" r="1.4"/><circle cx="1119" cy="348" r="1.1"/><circle cx="683" cy="378" r="1.1"/><circle cx="693" cy="59" r="1.6"/><circle cx="1201" cy="170" r="0.8"/><circle cx="1414" cy="71" r="1.2"/><circle cx="657" cy="65" r="0.7"/><circle cx="895" cy="345" r="0.7"/><circle cx="872" cy="409" r="0.9"/><circle cx="850" cy="168" r="1.0"/><circle cx="738" cy="319" r="1.0"/><circle cx="228" cy="387" r="1.4"/><circle cx="546" cy="438" r="1.2"/><circle cx="257" cy="127" r="1.8"/><circle cx="847" cy="227" r="0.8"/><circle cx="625" cy="95" r="0.6"/><circle cx="996" cy="339" r="0.8"/><circle cx="782" cy="332" r="1.7"/><circle cx="535" cy="191" r="1.4"/><circle cx="1193" cy="232" r="1.2"/><circle cx="1131" cy="422" r="1.0"/><circle cx="1274" cy="107" r="1.0"/><circle cx="1368" cy="320" r="0.9"/><circle cx="75" cy="143" r="1.7"/><circle cx="1094" cy="108" r="1.3"/><circle cx="1089" cy="195" r="1.0"/><circle cx="507" cy="106" r="1.7"/><circle cx="294" cy="305" r="1.5"/><circle cx="634" cy="133" r="1.3"/><circle cx="485" cy="62" r="1.1"/><circle cx="671" cy="335" r="1.7"/><circle cx="1114" cy="117" r="1.5"/><circle cx="842" cy="52" r="1.6"/><circle cx="1185" cy="256" r="1.7"/><circle cx="82" cy="334" r="1.2"/><circle cx="1433" cy="403" r="0.9"/><circle cx="406" cy="376" r="1.7"/><circle cx="1418" cy="420" r="0.6"/><circle cx="1272" cy="120" r="1.9"/><circle cx="347" cy="408" r="1.7"/><circle cx="933" cy="256" r="1.1"/><circle cx="268" cy="31" r="0.6"/></g>
+      <path class="moon" d="M1388 64a44 44 0 1 0 0 88 54 54 0 0 1 0-88z"/>
+      <path class="hills" d="M0 800c180-40 320-70 520-60s300 50 470 30 300-80 450-70v200H0z"/>
+      <g class="trees trees-back" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M20 900V856M20 880L-13 848V791M46 900V827M46 873L67 852V818M77 900V839M77 872L46 840V804M77 880L111 846V827M107 900V862M107 890L69 852V796M107 876L122 860V826M146 900V868M146 877L125 856V798M185 900V814M185 871L156 842V797M185 859L155 829V790M185 876L203 859V839M223 900V846M223 878L241 860V835M223 885L244 864V831M262 900V839M262 867L232 837V801M289 900V866M289 873L268 852V817M289 877L267 854V791M289 881L325 845V826M326 900V847M326 876L353 849V787M362 900V815M362 851L345 834V784M393 900V856M393 873L363 843V783M393 874L410 857V804M431 900V826M431 864L415 848V830M456 900V864M456 873L432 849V789M456 883L490 849V813M483 900V831M483 869L461 846V804M483 864L453 833V788M512 900V840M512 864L544 832V778M512 860L496 844V793M549 900V837M549 860L513 824V800M587 900V812M587 873L623 837V809M587 858L547 819V794M587 854L556 823V764M623 900V865M623 890L583 850V808M623 888L608 874V849M623 881L604 861V831M654 900V862M654 877L635 859V826M654 876L687 843V816M654 877L673 858V839M678 900V831M678 863L712 829V769M678 859L646 827V773M716 900V863M716 871L696 851V802M716 872L739 849V830M754 900V810M754 831L734 811V778M754 853L778 830V790M754 855L783 826V795M800 900V631M800 686L771 658V602M825 900V603M825 671L864 632V612M851 900V662M851 807L823 779V733M851 771L867 755V715M851 711L871 691V630M882 900V594M882 753L912 724V703M882 733L916 699V660M882 778L899 761V700M918 900V671M918 838L958 798V738M918 783L948 753V693M918 803L936 785V766M941 900V675M941 739L978 702V665M941 800L907 766V735M966 900V731M966 827L933 794V744M1170 900V555M1170 779L1151 760V710M1170 796L1145 770V724M1170 797L1196 771V734M1201 900V549M1201 806L1238 769V734M1201 721L1180 700V668M1201 715L1170 683V655M1226 900V537M1226 673L1248 651V631M1226 651L1188 613V570M1259 900V507M1259 741L1296 703V684M1259 672L1286 645V602M1259 592L1281 570V524M1289 900V632M1289 713L1318 684V630M1289 719L1275 705V679M1316 900V592M1316 817L1351 782V753M1316 780L1347 749V690M1349 900V618M1349 704L1310 665V608M1349 686L1373 662V629M1383 900V626M1383 755L1364 736V703M1383 826L1397 812V777M1404 900V511M1404 717L1428 693V667M1429 900V559M1429 745L1409 725V681M1429 741L1446 724V683"/><circle cx="20" cy="856" r="3.2"/><circle cx="-13" cy="791" r="3.2"/><circle cx="46" cy="827" r="3.2"/><circle cx="67" cy="818" r="3.2"/><circle cx="77" cy="839" r="3.2"/><circle cx="46" cy="804" r="3.2"/><circle cx="111" cy="827" r="3.2"/><circle cx="107" cy="862" r="3.2"/><circle cx="69" cy="796" r="3.2"/><circle cx="122" cy="826" r="3.2"/><circle cx="146" cy="868" r="3.2"/><circle cx="125" cy="798" r="3.2"/><circle cx="185" cy="814" r="3.2"/><circle cx="156" cy="797" r="3.2"/><circle cx="155" cy="790" r="3.2"/><circle cx="203" cy="839" r="3.2"/><circle cx="223" cy="846" r="3.2"/><circle cx="241" cy="835" r="3.2"/><circle cx="244" cy="831" r="3.2"/><circle cx="262" cy="839" r="3.2"/><circle cx="232" cy="801" r="3.2"/><circle cx="289" cy="866" r="3.2"/><circle cx="268" cy="817" r="3.2"/><circle cx="267" cy="791" r="3.2"/><circle cx="325" cy="826" r="3.2"/><circle cx="326" cy="847" r="3.2"/><circle cx="353" cy="787" r="3.2"/><circle cx="362" cy="815" r="3.2"/><circle cx="345" cy="784" r="3.2"/><circle cx="393" cy="856" r="3.2"/><circle cx="363" cy="783" r="3.2"/><circle cx="410" cy="804" r="3.2"/><circle cx="431" cy="826" r="3.2"/><circle cx="415" cy="830" r="3.2"/><circle cx="456" cy="864" r="3.2"/><circle cx="432" cy="789" r="3.2"/><circle cx="490" cy="813" r="3.2"/><circle cx="483" cy="831" r="3.2"/><circle cx="461" cy="804" r="3.2"/><circle cx="453" cy="788" r="3.2"/><circle cx="512" cy="840" r="3.2"/><circle cx="544" cy="778" r="3.2"/><circle cx="496" cy="793" r="3.2"/><circle cx="549" cy="837" r="3.2"/><circle cx="513" cy="800" r="3.2"/><circle cx="587" cy="812" r="3.2"/><circle cx="623" cy="809" r="3.2"/><circle cx="547" cy="794" r="3.2"/><circle cx="556" cy="764" r="3.2"/><circle cx="623" cy="865" r="3.2"/><circle cx="583" cy="808" r="3.2"/><circle cx="608" cy="849" r="3.2"/><circle cx="604" cy="831" r="3.2"/><circle cx="654" cy="862" r="3.2"/><circle cx="635" cy="826" r="3.2"/><circle cx="687" cy="816" r="3.2"/><circle cx="673" cy="839" r="3.2"/><circle cx="678" cy="831" r="3.2"/><circle cx="712" cy="769" r="3.2"/><circle cx="646" cy="773" r="3.2"/><circle cx="716" cy="863" r="3.2"/><circle cx="696" cy="802" r="3.2"/><circle cx="739" cy="830" r="3.2"/><circle cx="754" cy="810" r="3.2"/><circle cx="734" cy="778" r="3.2"/><circle cx="778" cy="790" r="3.2"/><circle cx="783" cy="795" r="3.2"/><circle cx="800" cy="631" r="3.2"/><circle cx="771" cy="602" r="3.2"/><circle cx="825" cy="603" r="3.2"/><circle cx="864" cy="612" r="3.2"/><circle cx="851" cy="662" r="3.2"/><circle cx="823" cy="733" r="3.2"/><circle cx="867" cy="715" r="3.2"/><circle cx="871" cy="630" r="3.2"/><circle cx="882" cy="594" r="3.2"/><circle cx="912" cy="703" r="3.2"/><circle cx="916" cy="660" r="3.2"/><circle cx="899" cy="700" r="3.2"/><circle cx="918" cy="671" r="3.2"/><circle cx="958" cy="738" r="3.2"/><circle cx="948" cy="693" r="3.2"/><circle cx="936" cy="766" r="3.2"/><circle cx="941" cy="675" r="3.2"/><circle cx="978" cy="665" r="3.2"/><circle cx="907" cy="735" r="3.2"/><circle cx="966" cy="731" r="3.2"/><circle cx="933" cy="744" r="3.2"/><circle cx="1170" cy="555" r="3.2"/><circle cx="1151" cy="710" r="3.2"/><circle cx="1145" cy="724" r="3.2"/><circle cx="1196" cy="734" r="3.2"/><circle cx="1201" cy="549" r="3.2"/><circle cx="1238" cy="734" r="3.2"/><circle cx="1180" cy="668" r="3.2"/><circle cx="1170" cy="655" r="3.2"/><circle cx="1226" cy="537" r="3.2"/><circle cx="1248" cy="631" r="3.2"/><circle cx="1188" cy="570" r="3.2"/><circle cx="1259" cy="507" r="3.2"/><circle cx="1296" cy="684" r="3.2"/><circle cx="1286" cy="602" r="3.2"/><circle cx="1281" cy="524" r="3.2"/><circle cx="1289" cy="632" r="3.2"/><circle cx="1318" cy="630" r="3.2"/><circle cx="1275" cy="679" r="3.2"/><circle cx="1316" cy="592" r="3.2"/><circle cx="1351" cy="753" r="3.2"/><circle cx="1347" cy="690" r="3.2"/><circle cx="1349" cy="618" r="3.2"/><circle cx="1310" cy="608" r="3.2"/><circle cx="1373" cy="629" r="3.2"/><circle cx="1383" cy="626" r="3.2"/><circle cx="1364" cy="703" r="3.2"/><circle cx="1397" cy="777" r="3.2"/><circle cx="1404" cy="511" r="3.2"/><circle cx="1428" cy="667" r="3.2"/><circle cx="1429" cy="559" r="3.2"/><circle cx="1409" cy="681" r="3.2"/><circle cx="1446" cy="683" r="3.2"/></g>
+      <g class="trees trees-front" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M40 900V868M40 882L73 849V794M40 887L59 868V808M92 900V856M92 870L72 850V821M160 900V867M160 884L125 849V790M230 900V859M230 884L207 861V804M230 876L252 854V830M230 870L214 854V807M308 900V876M308 888L347 849V824M308 891L290 873V825M372 900V833M372 868L356 852V805M433 900V877M433 894L451 876V857M511 900V859M511 888L482 860V828M511 874L481 844V800M511 869L550 830V808M591 900V860M591 883L631 843V813M659 900V853M659 884L697 847V827M780 900V693M780 789L796 773V714M780 834L795 819V778M780 765L804 741V695M815 900V745M815 858L851 822V761M815 809L848 776V758M868 900V711M868 769L842 743V698M868 845L902 811V750M921 900V693M921 744L897 720V683M921 786L955 752V700M1190 900V709M1190 802L1164 776V743M1190 844L1205 829V797M1234 900V560M1234 769L1271 732V712M1234 808L1251 791V756M1280 900V657M1280 824L1244 787V737M1280 828L1316 792V764M1280 797L1248 765V711M1320 900V565M1320 805L1281 766V702M1370 900V561M1370 780L1386 764V709M1370 718L1391 696V645M1370 719L1389 700V676M1407 900V552M1407 755L1389 737V686"/><circle cx="40" cy="868" r="3.2"/><circle cx="73" cy="794" r="3.2"/><circle cx="59" cy="808" r="3.2"/><circle cx="92" cy="856" r="3.2"/><circle cx="72" cy="821" r="3.2"/><circle cx="160" cy="867" r="3.2"/><circle cx="125" cy="790" r="3.2"/><circle cx="230" cy="859" r="3.2"/><circle cx="207" cy="804" r="3.2"/><circle cx="252" cy="830" r="3.2"/><circle cx="214" cy="807" r="3.2"/><circle cx="308" cy="876" r="3.2"/><circle cx="347" cy="824" r="3.2"/><circle cx="290" cy="825" r="3.2"/><circle cx="372" cy="833" r="3.2"/><circle cx="356" cy="805" r="3.2"/><circle cx="433" cy="877" r="3.2"/><circle cx="451" cy="857" r="3.2"/><circle cx="511" cy="859" r="3.2"/><circle cx="482" cy="828" r="3.2"/><circle cx="481" cy="800" r="3.2"/><circle cx="550" cy="808" r="3.2"/><circle cx="591" cy="860" r="3.2"/><circle cx="631" cy="813" r="3.2"/><circle cx="659" cy="853" r="3.2"/><circle cx="697" cy="827" r="3.2"/><circle cx="780" cy="693" r="3.2"/><circle cx="796" cy="714" r="3.2"/><circle cx="795" cy="778" r="3.2"/><circle cx="804" cy="695" r="3.2"/><circle cx="815" cy="745" r="3.2"/><circle cx="851" cy="761" r="3.2"/><circle cx="848" cy="758" r="3.2"/><circle cx="868" cy="711" r="3.2"/><circle cx="842" cy="698" r="3.2"/><circle cx="902" cy="750" r="3.2"/><circle cx="921" cy="693" r="3.2"/><circle cx="897" cy="683" r="3.2"/><circle cx="955" cy="700" r="3.2"/><circle cx="1190" cy="709" r="3.2"/><circle cx="1164" cy="743" r="3.2"/><circle cx="1205" cy="797" r="3.2"/><circle cx="1234" cy="560" r="3.2"/><circle cx="1271" cy="712" r="3.2"/><circle cx="1251" cy="756" r="3.2"/><circle cx="1280" cy="657" r="3.2"/><circle cx="1244" cy="737" r="3.2"/><circle cx="1316" cy="764" r="3.2"/><circle cx="1248" cy="711" r="3.2"/><circle cx="1320" cy="565" r="3.2"/><circle cx="1281" cy="702" r="3.2"/><circle cx="1370" cy="561" r="3.2"/><circle cx="1386" cy="709" r="3.2"/><circle cx="1391" cy="645" r="3.2"/><circle cx="1389" cy="676" r="3.2"/><circle cx="1407" cy="552" r="3.2"/><circle cx="1389" cy="686" r="3.2"/></g>
+      <path class="trail" d="M640 900c60-40 150-50 220-80s110-60 200-70"/>
+      <g class="gate-glow" transform="translate(-78 0)"><ellipse cx="1172" cy="720" rx="70" ry="54"/></g>
+      <g class="gate" transform="translate(-78 0)" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1132 760v-74M1212 760v-74M1132 686c8-34 72-34 80 0"/>
+        <path d="M1148 760v-82M1162 760v-88M1172 760v-89M1182 760v-88M1196 760v-82"/>
+        <path d="M1132 726h80"/><circle cx="1172" cy="650" r="4"/><path d="M1116 760h112"/>
+      </g>
+    </svg>
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="kicker"><span class="pip" aria-hidden="true"></span>Version 0.1.0, a skill for Claude Code</p>
+            <p class="tale">A <em>lantern</em> for the repository</p>
+            <h1 id="hero-h">Spec-driven builds and guard hooks for Claude Code</h1>
+            <div class="pitch">
+              <p class="first">Eidolon is a skill for Claude Code. It sets up your repository, then takes each change from a written spec to one reviewed commit.</p>
+              <p>Setup writes the files Claude needs, from a CLAUDE.md to the safety hooks and the memory wiring. Build runs a plan, test-first code, review swarms and a fresh verifier before the one commit. Its hooks check each shell, file and Agent call, and in a live session they blocked a commit that skipped the hooks.</p>
+              <p>It never writes to your project before you approve the plan, and it never weakens a guard to make a test pass.</p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-primary" href="https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></svg>Download Hearth v0.1.0</a>
+              <a class="btn btn-quiet" href="https://github.com/eidolonofficial/eidolon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="5.5" r="2.2"/><circle cx="6.5" cy="18.5" r="2.2"/><circle cx="17.5" cy="7.5" r="2.2"/><path d="M6.5 7.7v8.6"/><path d="M17.5 9.7c0 4.3-6.6 3.4-10.2 6.8"/></g></svg>View on GitHub</a>
+            </div>
+            <p class="fineprint">The zip is on the <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth release page</a>. Its SHA-256 is in <a href="#ledger">the ledger</a>.</p>
+          </div>
+          <div class="hero-lantern">
+            <div class="halo halo-outer" aria-hidden="true"></div>
+            <div class="halo halo-inner" aria-hidden="true"></div>
+            <svg class="orrery" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="194" stroke-width="1" stroke-dasharray="1 9"/><circle cx="200" cy="200" r="176" stroke-width=".75" opacity=".7"/><circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="10 8" opacity=".45"/></g><g fill="currentColor"><circle cx="200" cy="24" r="4"/><circle cx="352" cy="288" r="3"/><circle cx="62" cy="310" r="2.5"/></g></svg>
+            <svg class="lantern" viewBox="0 0 200 300" role="img" aria-labelledby="lantern-t">
+          <title id="lantern-t">A lit lantern, the Eidolon mark</title>
+          <defs>
+            <radialGradient id="pane-light" cx="50%" cy="62%" r="62%"><stop offset="0" class="pane-core"/><stop offset="1" class="pane-edge"/></radialGradient>
+            <linearGradient id="flame-fill" x1="0" y1="1" x2="0" y2="0"><stop offset="0" class="flame-base"/><stop offset="1" class="flame-tip"/></linearGradient>
+          </defs>
+          <path class="pane" d="M64 104h72l-6 108H70z" fill="url(#pane-light)"/>
+          <g fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="100" cy="15" r="8"/>
+            <path d="M100 23v9"/>
+            <path d="M70 62c0-21 13-29 30-29s30 8 30 29"/>
+            <path d="M78 66l6-10h32l6 10"/>
+            <path d="M60 66h80l14 22H46z"/>
+            <path d="M52 92h96l-8 132H60z"/>
+            <path d="M64 104h72l-6 108H70z"/>
+            <path d="M100 104v108M66 140h68M68 176h64" stroke-width="1.25" opacity=".55"/>
+            <path d="M54 228h92l-12 20H66z"/>
+            <path d="M74 252h52l8 16H66z"/>
+            <path d="M58 278h84"/>
+            <path d="M86 78H70l-6 6M114 78h16l6 6" stroke-width="1.25"/>
+            <circle cx="64" cy="84" r="2" stroke-width="1.25"/>
+            <circle cx="136" cy="84" r="2" stroke-width="1.25"/>
+          </g>
+          <circle class="jewel" cx="100" cy="78" r="4.5" fill="none" stroke-width="2"/>
+          <g class="flame">
+            <path class="flame-outer" d="M100 130c12 20 20 32 20 48 0 14-9 24-20 24s-20-10-20-24c0-16 8-28 20-48z" fill="url(#flame-fill)"/>
+            <path class="flame-inner" d="M100 160c6 10 10 17 10 24 0 7-4.5 11.5-10 11.5s-10-4.5-10-11.5c0-7 4-14 10-24z"/>
+          </g>
+          <path d="M100 202v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="wrap">
+        <section class="install reveal" aria-labelledby="install-h">
+          <div class="install-head">
+            <h2 id="install-h">Install from a terminal</h2>
+            <p class="label">Three doors, one command block each</p>
+          </div>
+          <div class="seg" role="radiogroup" aria-label="Choose a door">
+            <input class="seg-input" type="radio" name="door" id="seg-win" checked>
+            <input class="seg-input" type="radio" name="door" id="seg-mac">
+            <input class="seg-input" type="radio" name="door" id="seg-op">
+            <div class="seg-bar"><label for="seg-win">Windows</label><label for="seg-mac">macOS and Linux</label><label for="seg-op">Operator door</label></div>
+            <div class="seg-panels">
+              <div class="seg-panel panel-win">
+                <p class="cmd-title"><strong>Windows, novice door</strong> (PowerShell 5.1, nothing else needed)</p>
+                <div class="cmd">
+                  <pre><code>iwr -UseBasicParsing https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip -OutFile Hearth.zip
+if ((Get-FileHash Hearth.zip -Algorithm SHA256).Hash -ne 'AB147CF82141EB54CB17389D391E3D58A6C0F4A709B59D6F8AA5AD905B1F187D') { throw 'hash mismatch' }
+Expand-Archive Hearth.zip -DestinationPath . -Force
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.0\welcome.ps1</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
+                </div>
+                <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
+              </div>
+              <div class="seg-panel panel-mac">
+                <p class="cmd-title"><strong>macOS and Linux, novice door</strong> (bash)</p>
+                <div class="cmd">
+                  <pre><code>curl -L -o Hearth.zip https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip
+echo "ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d  Hearth.zip" | shasum -a 256 -c
+unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.0/macos/Welcome.command</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
+                </div>
+                <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
+              </div>
+              <div class="seg-panel panel-op">
+                <p class="cmd-title"><strong>Operator door, project hooks</strong> (Git and Node 22)</p>
+                <div class="cmd">
+                  <pre><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/Hearth.git
+node Hearth/scripts/welcome.mjs</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
+                </div>
+                <p class="cmd-cap">It clones the v0.1.0 tag of Hearth and runs the operator door. The door shows its plan and asks before it replaces anything.</p>
+              </div>
+            </div>
+          </div>
+          <p class="install-note">There is no npm package. Hearth ships as a zip and a repository, and the operator door is a Node script inside it.</p>
+        </section>
+        <ul class="proof" aria-label="Proof">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg><span><a href="release.html#gates"><b>285</b> tests pass</a> at the eidolon tag</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8.5 20.5h7"/><path d="M12 17v3.5"/></g></svg><span><a href="https://github.com/eidolonofficial/eidolon/actions">CI green</a> on Ubuntu, macOS and Windows, with a history secrets scan</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8"/><path d="M8 4a2 2 0 0 0-2 2v1.5h4V6a2 2 0 0 0-2-2z"/><path d="M8 20a2 2 0 0 1-2-2v-1.5h4"/><path d="M11 9.5h5"/><path d="M11 13h5"/></g></svg><span><a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>, released <a href="release.html">13 October 2026</a></span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M5 20L19 4"/></g></svg><span>One small script for the copy buttons, nothing external, no tracking</span></li>
+        </ul>
+      </div>
+    </section>
 
-      <nav class="toc" aria-label="Chapters">
-        <h2>In this piece</h2>
+    <div class="wrap chapters">
+      <section class="prologue" aria-labelledby="prologue-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="7" r="2.5"/><path d="M24 17c0-5 3.5-7.5 8-7.5s8 2.5 8 7.5"/><path d="M20 18h24l4 6H16z"/><path d="M18 26h28l-3 26H21z"/><path d="M23 30h18l-2 18H25z" opacity=".55"/><path d="M20 56h24"/></g><path class="v-flame" d="M32 33c3.5 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 1.5-5 5-9z"/></svg>
+          <div><span class="kicker">Prologue</span><h2 id="prologue-h">Once upon a repository</h2></div>
+        </header>
+        <div class="body">
+          <p class="initial">Eidolon is a skill for Claude Code. It sets up a repository so Claude Code can work well in it. Then it carries a piece of work from a written spec to a committed change. It stops at set points so you can approve, edit or stop.</p>
+          <p>It runs in Claude Code only. Version 0.1.0 came out on 13 October 2026 with two companions. Setup is a skill that opens a work session. Hearth is the installer for both. The <a href="release.html">release page</a> has the record.</p>
+        </div>
+      </section>
+
+      <nav class="toc toc-flat reveal" aria-label="Chapters">
+        <div class="toc-head"><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg><h2>The map of this tale</h2></div>
         <ol>
-          <li><a href="#modes"><span class="n">1</span>The three modes</a></li>
-          <li><a href="#who"><span class="n">2</span>Who it is for</a></li>
-          <li><a href="#doors"><span class="n">3</span>Two doors in</a></li>
-          <li><a href="#never"><span class="n">4</span>What it never does</a></li>
+          <li><a href="#modes"><span class="n">I</span>The three modes</a></li>
+          <li><a href="#who"><span class="n">II</span>Who it is for</a></li>
+          <li><a href="#doors"><span class="n">III</span>Two doors in</a></li>
+          <li><a href="#gates"><span class="n">IV</span>The gates, their cost and their limits</a></li>
+          <li><a href="#never"><span class="n">IV.ii</span>What it never does</a></li>
+          <li><a href="#workshop"><span class="n">V</span>The workshop</a></li>
+          <li><a href="#clockwork"><span class="n">VI</span>The clockwork</a></li>
+          <li><a href="#footprint"><span class="n">VII</span>What it writes, and the way out</a></li>
+          <li><a href="#ledger"><span class="n">VIII</span>The ledger</a></li>
           <li><a href="#further"><span class="n">&#167;</span>Further reading</a></li>
         </ol>
       </nav>
 
-      <div class="body">
-        <section class="chapter" id="modes" aria-labelledby="modes-h">
-          <h2 id="modes-h"><span class="kicker">Chapter <span class="num">1</span></span>The three modes</h2>
-          <p>Eidolon picks a mode from what you ask, and tells you which one it picked.</p>
-          <div class="table stack">
-            <table role="table">
-              <caption>The modes, and when each one runs</caption>
-              <thead role="rowgroup">
-                <tr role="row"><th scope="col" role="columnheader">Mode</th><th scope="col" role="columnheader">When</th><th scope="col" role="columnheader">What happens</th></tr>
-              </thead>
-              <tbody role="rowgroup">
-                <tr role="row">
-                  <th scope="row" role="rowheader">Setup</th>
-                  <td role="cell" data-label="When">You have no work item yet, or you ask it to set up the repository.</td>
-                  <td role="cell" data-label="What happens">It reads the repository, works out your languages and tools, and writes what Claude needs: a CLAUDE.md, helper skills and slash commands, sub-agents, safety hooks, MCP setup and memory wiring. It pauses for you after the plan, the structure and the wiring.</td>
-                </tr>
-                <tr role="row">
-                  <th scope="row" role="rowheader">Build</th>
-                  <td role="cell" data-label="When">You have something to build, change or fix.</td>
-                  <td role="cell" data-label="What happens">It writes a spec, plans, builds test first, runs review swarms, has a fresh agent check the result, and commits once at the end. See <a href="pipeline.html">the pipeline</a>.</td>
-                </tr>
-                <tr role="row">
-                  <th scope="row" role="rowheader">Autopilot</th>
-                  <td role="cell" data-label="When"><code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or "keep doing this".</td>
-                  <td role="cell" data-label="What happens">It interviews you, writes the run down, and shows you how to stop it before it starts. See <a href="autopilot.html">autopilot</a>.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p>It works without asking, and pauses only before it installs a skill, seats the primary persona (the house agent it builds for your repository), deploys, runs something that cannot be undone, or dispatches sensitive work. Each pause is one question, with a line saying who is harmed if the answer is wrong. Nothing is written before you approve the plan.</p>
-          <figure class="pullquote">
-            <blockquote><p>Setup installs the room once; build works in it each time</p></blockquote>
-            <figcaption>From <cite>SKILL.md</cite>, the eidolon repository</figcaption>
-          </figure>
-        </section>
+      <section class="chapter" id="modes" aria-labelledby="modes-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="26" rx="15" ry="19"/><ellipse cx="32" cy="26" rx="11" ry="15"/><path d="M32 45v9"/><path d="M23 56h18"/><path d="M28 9.5l2-3 2 3"/></g><path class="v-glint" d="M26 20l6-6M26.5 27l11-11" fill="none" stroke-width="1.25" stroke-linecap="round"/></svg>
+          <div><span class="kicker">Chapter <span class="num">I</span></span><h2 id="modes-h">The three modes</h2></div>
+        </header>
+        <p class="initial">Eidolon picks a mode from what you ask, and tells you which one it picked.</p>
+        <div class="cards" role="list" aria-label="The modes, and when each one runs">
+          <article class="card reveal" role="listitem">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="10" rx="6" ry="7.5"/><path d="M12 17.5v3.5"/><path d="M8.5 21h7"/><path d="M10 7.5l2.5-2.5"/></g></svg>
+            <h3>Setup</h3>
+            <dl>
+              <dt class="label">When</dt>
+              <dd>You have no work item yet, or you ask it to set up the repository.</dd>
+              <dt class="label">What happens</dt>
+              <dd>It reads the repository and works out your languages and tools. Then it writes the files Claude needs: a CLAUDE.md, helper skills and slash commands, and sub-agents. It also writes the safety hooks, the MCP setup and the memory wiring. It pauses for you after the plan, the structure and the wiring.</dd>
+            </dl>
+          </article>
+          <article class="card reveal" role="listitem">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5l4 4"/><path d="M4 20l9-9"/><path d="M12 6.5l5.5 5.5 2.5-2.5-5.5-5.5z"/></g></svg>
+            <h3>Build</h3>
+            <dl>
+              <dt class="label">When</dt>
+              <dd>You have something to build, change or fix.</dd>
+              <dt class="label">What happens</dt>
+              <dd>It writes a spec and a plan, then builds test first. It runs review swarms, and a fresh agent checks the result. It commits once, at the end. See <a href="pipeline.html">the pipeline</a>.</dd>
+            </dl>
+          </article>
+          <article class="card reveal" role="listitem">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></g></svg>
+            <h3>Autopilot</h3>
+            <dl>
+              <dt class="label">When</dt>
+              <dd><code>/eidolon loop</code>, <code>/eidolon goal</code> or <code>/eidolon routine</code>, or "keep doing this".</dd>
+              <dt class="label">What happens</dt>
+              <dd>It interviews you, writes the run down, and shows you how to stop it before it starts. See <a href="autopilot.html">autopilot</a>.</dd>
+            </dl>
+          </article>
+        </div>
+        <p>Most of the time it works on its own, and it pauses for you at only a few points. It pauses before it installs a skill or seats the primary persona (the house agent it builds for your repository). It also pauses before it deploys, before it runs something you cannot undo, and before it dispatches sensitive work. Each pause is one question. One line with it names who a wrong answer harms. Eidolon writes nothing before you approve the plan.</p>
+        <figure class="pullquote reveal">
+          <blockquote><p>Setup installs the room once; build works in it each time</p></blockquote>
+          <figcaption>From <cite>SKILL.md</cite>, the eidolon repository</figcaption>
+        </figure>
+      </section>
 
-        <section class="chapter" id="who" aria-labelledby="who-h">
-          <h2 id="who-h"><span class="kicker">Chapter <span class="num">2</span></span>Who it is for</h2>
-          <p>Eidolon is for anyone who wants a repository ready for Claude Code, or wants something built, changed or fixed in one. You do not need to say the word Eidolon. The skill loads when you ask for that kind of work.</p>
-          <p>Hearth, the installer, was designed for a person running their own business who is not confident with computers and would stop at "open PowerShell and paste this command." That person gets a door that needs nothing installed first. Operators who want project hooks get a second door.</p>
-          <figure class="pullquote">
-            <blockquote><p>Hearth is built so that person is never lost and never made to feel small.</p></blockquote>
-            <figcaption>From <cite>HEARTH-SPEC.md</cite>, the Hearth repository</figcaption>
-          </figure>
-          <p>The docs say the interview that opens a session is built for a neurodivergent mind. It asks one question per screen, lets you pick an answer instead of typing one, and lets you skip any question. Every answer goes to a file, so you do not have to hold anything in your head. It also asks how familiar you are with coding and pitches its language to your answer.</p>
-        </section>
+      <section class="chapter" id="who" aria-labelledby="who-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 56h48"/><path d="M13 56V28l19-15 19 15v28"/><path d="M23 56V41a9 9 0 0 1 18 0v15"/><path d="M42 21v-9h5v13"/></g><path class="v-flame" d="M32 54c-4.5-2.5-5-7 0-12 1 3.5 4 4 4 7.5 0 2.5-1.5 4-4 4.5z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">II</span></span><h2 id="who-h">Who it is for</h2></div>
+        </header>
+        <p class="initial">Eidolon is for anyone who wants a repository ready for Claude Code. It is also for anyone who wants to build, change or fix something in one. You do not need to say the word Eidolon. The skill loads when you ask for that kind of work.</p>
+        <p>Hearth, the installer, has one person in mind. That person runs their own business and is not confident with computers. A step such as "open PowerShell and paste this command" stops them. That person gets a door that needs nothing installed first. Operators who want project hooks get a second door.</p>
+        <figure class="pullquote reveal">
+          <blockquote><p>Hearth is built so that person is never lost and never made to feel small.</p></blockquote>
+          <figcaption>From <cite>HEARTH-SPEC.md</cite>, the Hearth repository</figcaption>
+        </figure>
+        <p>The docs describe the interview that opens a session as made for a neurodivergent mind. It asks one question per screen. You pick an answer and do not have to type one, and you can skip any question. Every answer goes to a file, so you do not have to hold anything in your head. It also asks how familiar you are with code and pitches its language to your answer.</p>
+      </section>
 
-        <section class="chapter" id="doors" aria-labelledby="doors-h">
-          <h2 id="doors-h"><span class="kicker">Chapter <span class="num">3</span></span>Two doors in</h2>
-          <p>Hearth comes as <code>Hearth-v0.1.0.zip</code> on its <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">release page</a>. Inside it are two doors. Pick one.</p>
-
-          <h3 id="door-novice">Door 1. The novice door</h3>
-          <div class="with-note">
+      <section class="chapter" id="doors" aria-labelledby="doors-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56h44"/><path d="M14 56V27a10 10 0 0 1 20 0v29"/><path d="M30 56V27a10 10 0 0 1 20 0v29" opacity=".6"/><circle cx="29" cy="40" r="1.4"/><circle cx="45" cy="40" r="1.4"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">III</span></span><h2 id="doors-h">Two doors in</h2></div>
+        </header>
+        <p class="initial">Hearth comes as <code>Hearth-v0.1.0.zip</code> on its <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">release page</a>. Inside it are two doors. Pick one.</p>
+        <div class="doors">
+          <article class="door reveal" aria-labelledby="door-novice">
+            <h3 id="door-novice">Door 1. The novice door</h3>
             <dl class="facts">
               <div><dt>Use it if</dt><dd>You want the two skills and nothing else.</dd></div>
               <div><dt>What it needs</dt><dd>Nothing beyond what your computer already has: no Node, no Git and no other tools.</dd></div>
-              <div><dt>How to start it</dt><dd>On Windows, double-click <code>Start Here.cmd</code>. It runs <code>welcome.ps1</code> in Windows PowerShell 5.1. On a Mac, open <code>macos/Welcome.command</code>, a plain bash script. If macOS blocks it, right-click the file, choose Open, then confirm.</dd></div>
+              <div><dt>How to start it</dt><dd>On Windows, double-click <code>Start Here.cmd</code>. It runs <code>welcome.ps1</code> in Windows PowerShell 5.1. On a Mac, open <code>macos/Welcome.command</code>, a plain bash script. If macOS blocks it, right-click the file and choose Open. Then confirm.</dd></div>
               <div><dt>What it writes</dt><dd>Two folders in your user folder: <code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code>. It prints each file as it lands. It writes nothing else, adds no hooks and installs no other tool.</dd></div>
-              <div><dt>If a skill is already there</dt><dd>It asks you to type <code>replace</code> or press Enter to skip. Skip is the default. On replace, your old folder moves to <code>.claude/skills/.hearth-backups/&lt;yyyyMMdd-HHmmss&gt;/&lt;name&gt;</code> before the new one is copied.</dd></div>
+              <div><dt>If a skill is already there</dt><dd>It asks you to type <code>replace</code> or press Enter to skip. Skip is the default. On replace, Hearth first moves your old folder to <code>.claude/skills/.hearth-backups/&lt;yyyyMMdd-HHmmss&gt;/&lt;name&gt;</code>. Then it copies the new one.</dd></div>
               <div><dt>To undo it</dt><dd>Delete the <code>eidolon</code> and <code>setup</code> folders from <code>.claude/skills</code>. If Hearth saved an older copy, move it back from <code>.hearth-backups</code>.</dd></div>
             </dl>
             <aside class="note" aria-label="Still open: the Mac door">
               <span class="label">Still open</span>
               <p>The Mac door ran on GitHub's macOS runner and under WSL Ubuntu on 2026-10-13. It has not yet run on a user's own Mac.</p>
             </aside>
+          </article>
+          <article class="door reveal" aria-labelledby="door-operator">
+            <h3 id="door-operator">Door 2. The operator door</h3>
+            <dl class="facts">
+              <div><dt>Use it if</dt><dd>You want Eidolon's hooks wired into a project.</dd></div>
+              <div><dt>What it needs</dt><dd>Node 22 or newer. It checks first. If Node is absent or older than version 22, it points you to <a href="https://nodejs.org">nodejs.org</a> and stops.</dd></div>
+              <div><dt>How to start it</dt><dd>On Windows, double-click <code>Operator Setup.cmd</code>. On a Mac, open <code>macos/Operator Setup.command</code>. From any terminal, run <code>node scripts/welcome.mjs</code>.</dd></div>
+              <div><dt>Before it writes</dt><dd>It asks for a project folder. A blank answer means user skills only. It checks every bundled file against <code>vendor-lock.json</code> and stops on a mismatch. Under "Proposed locations:" it lists every path it will write, with the text, the settings diff or the replacement changes for each. It writes only after you type <code>yes</code>, and only the plan it showed you.</dd></div>
+              <div><dt>What it writes in the project</dt><dd>
+                <ul>
+                  <li><code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code></li>
+                  <li><code>.claude/settings.json</code> with the hook entries and the permission deny rules, and <code>.claude/eidolon-manifest.yaml</code></li>
+                  <li><code>.eidolon/policy-manifest.json</code></li>
+                  <li>one marked section each in <code>CLAUDE.md</code> and <code>.gitignore</code>, between <code>eidolon:begin</code> and <code>eidolon:end</code> lines</li>
+                </ul>
+                It also sets three settings keys and replaces any values already there: <code>env.CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to <code>"1"</code>, <code>effortLevel</code> to <code>xhigh</code> and <code>maxEffortLevel</code> to <code>max</code>. The preview says so.
+              </dd></div>
+              <div><dt>If a skill is already there</dt><dd>You type <code>replace</code> to see a replacement plan. Hearth keeps the old files under <code>.eidolon/backups/&lt;id&gt;/</code> with a <code>receipt.json</code>. It deletes nothing. It refuses a plan that changed after you reviewed it. It never reports a failed install as a success.</dd></div>
+              <div><dt>After it finishes</dt><dd>It prints the verified file count, the backup receipt path and the next step. Restart Claude Code in the project, and the hooks are active in the next session. They run Node, so keep Node installed.</dd></div>
+            </dl>
+          </article>
+        </div>
+        <p>Either way, open Claude Code and type <code>/eidolon</code> or <code>/setup</code>.</p>
+        <div class="with-note">
+          <p>You can also clone the skill into your user skills folder with <code>git clone https://github.com/eidolonofficial/eidolon.git ~/.claude/skills/eidolon</code>. Keep one copy of Eidolon per machine, or keep both at the same commit. In a test on 2026-10-13, a user copy and a project copy had the same name. Claude Code loaded the user copy, and that copy was the older one.</p>
+          <aside class="note" aria-label="What a clone does not do">
+            <span class="label">What this does not do</span>
+            <p>A copied skill has no hooks. Only a project install wires them: the operator door, or the installer run with <code>--project</code>.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="chapter" id="gates" aria-labelledby="gates-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 57V25"/><path d="M55 57V25"/><path d="M9 25c7-11 39-11 46 0"/><path d="M18 57V21M25.5 57V18.5M32 57V17.5M38.5 57V18.5M46 57V21"/><path d="M9 39h46"/><path d="M5 57h54"/></g><circle class="v-glow" cx="32" cy="9" r="3"/></svg>
+          <div><span class="kicker">Chapter <span class="num">IV</span></span><h2 id="gates-h">The gates</h2></div>
+        </header>
+        <p class="initial">In a project install, a guard checks each Bash or PowerShell call before it runs. Every check ends in one of three verdicts.</p>
+        <figure class="flow reveal" aria-labelledby="flow-cap">
+          <ol>
+            <li class="node"><span class="label">The call</span><code>Bash</code><code>PowerShell</code><span>Claude asks to run a command</span></li>
+            <li class="arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M14 7l5 5-5 5"/></g></svg></li>
+            <li class="node"><span class="label">The guard</span><code>guard-bash.mjs</code><span><a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/hooks/README.md">Ten checks</a> in a fixed order</span></li>
+            <li class="arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M14 7l5 5-5 5"/></g></svg></li>
+            <li class="node"><span class="label">The verdict</span><span class="chips"><span class="chip chip-block">Block</span><span class="chip chip-ask">Ask</span><span class="chip chip-allow">Allow</span></span></li>
+          </ol>
+          <figcaption id="flow-cap">From the call to the verdict, before anything runs</figcaption>
+        </figure>
+        <dl class="verdicts">
+          <div><dt><span class="chip chip-block">Block</span></dt><dd>The hook exits with code 2 and the call does not run. A block always wins over an ask.</dd></div>
+          <div><dt><span class="chip chip-ask">Ask</span></dt><dd>You approve or decline.</dd></div>
+          <div><dt><span class="chip chip-allow">Allow</span></dt><dd>The call runs. An advise verdict lets it run with a note as context.</dd></div>
+        </dl>
+        <figure class="exhibit reveal">
+          <figcaption><span class="label">Exhibit A</span> Three blocks and one ask, word for word as the session sees them</figcaption>
+          <pre class="soft"><code>COMMIT QUALITY GUARD [BLOCKED - fix and retry]: The Git operation skips hooks. Fix the cause rather than bypassing verification.
+HOOK INTEGRITY GUARD [BLOCKED - fix and retry]: moving or deleting a hook (or the hooks directory) disables it. Fix a wrong gate in the open, do not remove it.
+WRITE LANE GUARD [BLOCKED - fix and retry]: worker builder may write only under src/**; docs/outside.txt is outside its lane. Return the change to the controller.
+DISPATCH GUARD: brief names no done-check. Add a line such as "Done-check: &lt;command&gt; exits 0".</code></pre>
+        </figure>
+        <p>Other hooks check each Write, Edit and Agent call in the same way. In the <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">live test on 2026-10-13</a>, they blocked a worker write outside its lane. They also blocked a worker that tried to dispatch another agent.</p>
+
+        <h3 id="why-hooks">Why hooks, and not only permission rules</h3>
+        <p>The deny floor uses Claude Code's own permission rules, so it holds even when the hooks are off. A permission rule matches a tool and a command or a path. It cannot follow where a path really points. It cannot give each worker its own write lane, and it cannot check a brief before a dispatch. The hooks add those checks. Each block also returns a sentence that the model can read and act on.</p>
+
+        <h3 id="cost">What a hook costs</h3>
+        <p>Each hook call adds about half a second on the test machine. These are the medians of 15 runs each, on 2026-10-14, on a loaded Windows laptop:</p>
+        <ul class="figures">
+          <li><code>guard-bash.mjs</code>: 430 ms for <code>npm test</code>, and 566 ms for a commit</li>
+          <li><code>guard-write.mjs</code>: 457 ms</li>
+          <li><code>guard-dispatch.mjs</code>: 443 ms</li>
+          <li>bare <code>node</code> startup: 219 ms of each figure</li>
+        </ul>
+        <p>Your numbers depend on your machine. To time one call in a project install, run this in a bash shell:</p>
+        <pre class="soft"><code>time (echo '{"tool_name":"Bash","tool_input":{"command":"npm test"}}' | node .claude/skills/eidolon/hooks/guard-bash.mjs --project .)</code></pre>
+
+        <h3 id="limits">Known gaps</h3>
+        <p class="honest">The hooks are defense in depth. They are lexical checks and not an OS sandbox. This is the list of what they do not cover, copied from the <a href="safety.html#gaps">Safety page</a>.</p>
+        <figure class="pullquote reveal">
+          <blockquote><p>a guard that claims more than it does is worse than none; this is the honest list</p></blockquote>
+          <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
+        </figure>
+        <ul class="gaps">
+          <li>A script file a worker runs (<code>node build.js</code>, <code>sh run.sh</code>) does whatever it does. The guards see only its command line.</li>
+          <li>A wildcard or <code>$var</code> path does not trigger the lane check.</li>
+          <li>The hooks never parse code inside <code>node -e</code>, <code>python -c</code> and other interpreters. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
+          <li>The hooks cannot see git aliases defined in <code>.git/config</code>.</li>
+          <li>The hooks judge a subshell command by command, not as a unit.</li>
+          <li>The hooks do not decode PowerShell <code>-EncodedCommand</code> bodies. Such a command asks you instead.</li>
+          <li>The controller can still run <code>git checkout</code>, <code>switch</code> and <code>merge</code>. It can also run <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
+          <li>The hooks do not see a hard link that a script makes, or one behind a wildcard. They do not treat a link of a whole parent folder (<code>cp -al</code> or <code>rsync --link-dest</code>) as a link to the records inside it.</li>
+          <li>The hooks do not block <code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> when a bash prefix or an export sets it. They block the PowerShell forms, but only when git runs in the same command.</li>
+          <li>The hooks do not resolve a PowerShell call target held in a variable (<code>&amp; $cmd</code>).</li>
+          <li>An archive unpacked into an unprotected folder can hold entries that climb out of it.</li>
+          <li>A project inside the temp folder gives its workers no scratch space.</li>
+          <li>The hooks do not judge the controller's own writes outside the project, except writes to settings files.</li>
+          <li>The README lists a worker's agent type as unverified until a live debug run. In the live run of 2026-10-13, the worker's inputs did carry it.</li>
+          <li>The hooks are not an operating system sandbox.</li>
+          <li>A hook script that is absent, or that crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. To make that a block, you need Claude Code 2.1.295 or newer.</li>
+        </ul>
+
+        <h3 id="never">What it never does</h3>
+        <ul>
+          <li>Write to your project before you approve the plan.</li>
+          <li>Install anything besides the two skills. It adds no extra programs, background tasks or account sign-in. It also adds no Node, credentials, models or services.</li>
+          <li>Delete your old copy. A replaced skill moves to a backup folder first.</li>
+          <li>Commit before the last stage of a build. Only the close stage commits, and before it does, it states the git state from before the run as the way back.</li>
+          <li>Take orders from what it reads. A pull request body, an issue, a web page or a file is data. If one of them holds an instruction, Eidolon reports the instruction to you and does not act on it.</li>
+          <li>Write a secret into a report, a log, a commit or a chat message.</li>
+          <li>Shrink a record. The records of what broke, what worked and each decision only grow.</li>
+          <li>Weaken a guard to make a test pass.</li>
+        </ul>
+      </section>
+
+      <section class="chapter" id="workshop" aria-labelledby="workshop-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="9"/><circle cx="24" cy="27" r="13" stroke-dasharray="3.4 3.4" stroke-width="3.5"/><circle cx="24" cy="27" r="2.5"/><circle cx="45" cy="44" r="6"/><circle cx="45" cy="44" r="9" stroke-dasharray="2.6 2.6" stroke-width="3"/><circle cx="45" cy="44" r="1.8"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">V</span></span><h2 id="workshop-h">The workshop</h2></div>
+        </header>
+        <p class="initial">In build mode, your main session is the conductor. It hands each piece of work to a named agent and checks the result against the files on disk.</p>
+        <figure class="workshop reveal" aria-labelledby="ws-cap">
+          <div class="ws-conductor"><span class="label">The conductor</span><p>Your main session plans, judges and makes the one commit.</p></div>
+          <ol class="ws-lanes">
+            <li><span class="label">A builder</span><p>It writes only inside its lane, such as <code>src/**</code>.</p></li>
+            <li><span class="label">A reviewer</span><p>It gets an empty write list.</p></li>
+            <li><span class="label">The verifier</span><p>A fresh agent sees only the diff, the spec and the rubric.</p></li>
+          </ol>
+          <div class="ws-docs">
+            <div><span class="label">The wave plan</span><p><code>.claude/waves/&lt;date&gt;-&lt;slug&gt;.md</code></p></div>
+            <div><span class="label">The dispatch log</span><p><code>.claude/.dispatch-log.jsonl</code></p></div>
           </div>
+          <figcaption id="ws-cap">One conductor, workers in lanes, and two files on disk that keep the record</figcaption>
+        </figure>
+        <p>Before the first worker that can write goes out, the conductor writes a wave plan. The dispatch gate logs each dispatch that it does not block. Every agent starts from a brief with a done-check on its own line. These three files come from the <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">live run of 2026-10-13</a>.</p>
+        <div class="exhibits">
+          <figure class="exhibit reveal">
+            <figcaption><span class="label">Exhibit B</span> The builder agent file</figcaption>
+            <pre class="soft"><code>---
+name: builder
+description: Mechanical file edits inside src. Use for small, exactly specified changes.
+tools: Read, Write, Edit, Bash
+model: haiku
+---
 
-          <h3 id="door-operator">Door 2. The operator door</h3>
-          <dl class="facts">
-            <div><dt>Use it if</dt><dd>You want Eidolon's hooks wired into a project.</dd></div>
-            <div><dt>What it needs</dt><dd>Node 22 or newer. It checks first. If Node is missing or too old, it points you to <a href="https://nodejs.org">nodejs.org</a> and stops.</dd></div>
-            <div><dt>How to start it</dt><dd>On Windows, double-click <code>Operator Setup.cmd</code>. On a Mac, open <code>macos/Operator Setup.command</code>. From any terminal, run <code>node scripts/welcome.mjs</code>.</dd></div>
-            <div><dt>Before it writes</dt><dd>It asks for a project folder; blank means user skills only. It checks every bundled file against <code>vendor-lock.json</code> and stops on a mismatch. Under "Proposed locations:" it lists every path it will write, with the text, the settings diff or the replacement changes for each. It writes only after you type <code>yes</code>, and only the plan it showed you.</dd></div>
-            <div><dt>What it writes in the project</dt><dd>
-              <ul>
-                <li><code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code></li>
-                <li><code>.claude/settings.json</code> with the hook entries and the permission deny rules, and <code>.claude/eidolon-manifest.yaml</code></li>
-                <li><code>.eidolon/policy-manifest.json</code></li>
-                <li>one marked section each in <code>CLAUDE.md</code> and <code>.gitignore</code>, between <code>eidolon:begin</code> and <code>eidolon:end</code> lines</li>
-              </ul>
-              It also sets three settings keys, replacing any values already there: <code>env.CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH</code> to <code>"1"</code>, <code>effortLevel</code> to <code>xhigh</code> and <code>maxEffortLevel</code> to <code>max</code>. The preview says so.
-            </dd></div>
-            <div><dt>If a skill is already there</dt><dd>You type <code>replace</code> to see a replacement plan. Old files are kept under <code>.eidolon/backups/&lt;id&gt;/</code> with a <code>receipt.json</code>. Nothing is deleted. A plan that changed after you reviewed it is refused, and a failed install is never reported as a success.</dd></div>
-            <div><dt>After it finishes</dt><dd>It prints the verified file count, the backup receipt path and the next step. Restart Claude Code in the project, and the hooks are active in the next session. They run Node, so keep Node installed.</dd></div>
-          </dl>
+You are the builder. Do exactly what the brief says, one step at a time, using the Write tool for files. If a tool call is refused, do not retry it another way; record the refusal text and continue with the next step. End with a short report: each step, done or refused, and the refusal text verbatim.</code></pre>
+          </figure>
+          <figure class="exhibit reveal">
+            <figcaption><span class="label">Exhibit C</span> The wave plan the gate checked before the dispatch</figcaption>
+            <pre class="soft"><code># Live gate wave
+Goal: prove the builder lane.
+Steps: the builder writes src/hello.txt, then tries docs/outside.txt and docs/outside2.txt. Done-check: all three attempts reported.</code></pre>
+          </figure>
+        </div>
+        <figure class="exhibit reveal">
+          <figcaption><span class="label">Exhibit D</span> One dispatch and its outcome, from <code>.claude/.dispatch-log.jsonl</code></figcaption>
+          <pre class="soft"><code>{"kind":"dispatch","ts":"2026-10-13T21:09:45.153Z","session_id":"18cdb5e7-2f7e-4b1f-9497-ac007c73f2f0","agent_type":"builder","model":"haiku","effort":null,"description":"probe","persona":null,"write":["src/**"],"prompt_sha256":"802cef073b87310316dd8fa36a386a4d61d1307ce285f8e8d287d862395ab228"}
+{"kind":"outcome","ts":"2026-10-13T21:15:10.847Z","agent_id":"a820b1b4a82eff273","agent_type":"builder","evidence":true}</code></pre>
+        </figure>
+        <p>The <a href="pipeline.html">pipeline page</a> has the tiers, the briefs and the review swarms.</p>
+      </section>
 
-          <p>Either way, open Claude Code and type <code>/eidolon</code> or <code>/setup</code>.</p>
-          <div class="with-note">
-            <p>You can also clone the skill into your user skills folder with <code>git clone https://github.com/eidolonofficial/eidolon.git ~/.claude/skills/eidolon</code>. Keep one copy of Eidolon per machine, or keep both at the same commit. In a test on 2026-10-13, with a user copy and a project copy of the same name, Claude Code loaded the user copy, which was the older one.</p>
-            <aside class="note" aria-label="What a clone does not do">
-              <span class="label">What this does not do</span>
-              <p>A copied skill has no hooks. Only a project install wires them: the operator door, or the installer run with <code>--project</code>.</p>
-            </aside>
+      <section class="chapter" id="clockwork" aria-labelledby="clockwork-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="19"/><circle cx="32" cy="34" r="23" stroke-dasharray="1.5 4.5"/><path d="M32 22v12l8 5"/><circle cx="32" cy="34" r="1.6"/><path d="M32 11V6"/><path d="M27 6h10"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">VI</span></span><h2 id="clockwork-h">The clockwork</h2></div>
+        </header>
+        <p class="initial">Autopilot is for work that runs on its own. Before anything runs, Eidolon interviews you, and the first screen offers a brain dump.</p>
+        <figure class="pullquote reveal">
+          <blockquote><p>Tell me about it the way you would tell a coworker. Rant, infodump, jump around. I will sort it.</p></blockquote>
+          <figcaption>From <cite>references/interview.md</cite>, the eidolon repository</figcaption>
+        </figure>
+        <p>Then you pick one of four shapes. Eidolon shows you how to stop the run before it starts. The limits below come from the <a href="autopilot.html#shapes">autopilot page</a>.</p>
+        <div class="cards" role="list" aria-label="The four shapes">
+          <article class="card reveal" role="listitem"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></g></svg><h3>Goal</h3><p>There is a clear finish line. A small fast model checks the condition after every turn.</p><p class="stop"><span class="label">To stop it</span><br><code>/goal clear</code></p></article>
+          <article class="card reveal" role="listitem"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l3 3-3 3"/><path d="M4 12V10a3 3 0 0 1 3-3h13"/><path d="M7 20l-3-3 3-3"/><path d="M20 12v2a3 3 0 0 1-3 3H4"/></g></svg><h3>Loop</h3><p>It repeats in your open session. The minimum interval is 1 minute.</p><p class="stop"><span class="label">To stop it</span><br>Esc, or <code>CronDelete</code></p></article>
+          <article class="card reveal" role="listitem"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .5-8 5.5 5.5 0 0 0-10.6 1.5A3.3 3.3 0 0 0 7 18z"/></g></svg><h3>Routine</h3><p>It runs in the cloud on a schedule, an API call or a GitHub event. The minimum interval is 1 hour.</p><p class="stop"><span class="label">To change it</span><br><code>/schedule update</code></p></article>
+          <article class="card reveal" role="listitem"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M12 7.5v3l2 1.2"/><path d="M8.5 20h7"/></g></svg><h3>Desktop task</h3><p>It runs on your machine with your local files, on a schedule.</p><p class="stop"><span class="label">To stop it</span><br>Disable it in the scheduled tasks list</p></article>
+        </div>
+        <p>The <a href="autopilot.html">autopilot page</a> has the interview and each shape in full.</p>
+      </section>
+
+      <section class="chapter" id="footprint" aria-labelledby="footprint-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56h44"/><path d="M14 56V27a10 10 0 0 1 20 0v29"/><path d="M30 56V27a10 10 0 0 1 20 0v29" opacity=".6"/><circle cx="29" cy="40" r="1.4"/><circle cx="45" cy="40" r="1.4"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">VII</span></span><h2 id="footprint-h">What it writes, and the way out</h2></div>
+        </header>
+        <p class="initial">An install writes only the paths on this list. The operator door shows each path in its preview before you type <code>yes</code>.</p>
+        <div class="footprint">
+          <div>
+            <h3>A project install writes</h3>
+            <ul>
+              <li><code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code></li>
+              <li>the hook entries and the deny rules in <code>.claude/settings.json</code></li>
+              <li><code>.claude/eidolon-manifest.yaml</code></li>
+              <li><code>.eidolon/policy-manifest.json</code></li>
+              <li>one marked block each in <code>CLAUDE.md</code> and <code>.gitignore</code></li>
+              <li>backups with receipts under <code>.eidolon/backups/</code>, when it replaces a skill</li>
+            </ul>
+            <h3>A user install writes</h3>
+            <p>The novice door writes two folders in your user folder, <code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code>. It writes nothing else.</p>
           </div>
-        </section>
+          <div>
+            <h3>What it does not do</h3>
+            <p>The hooks make no network calls. Eidolon sends no telemetry. To check the hooks, search them for a network module. This command prints nothing:</p>
+            <pre class="soft"><code>grep -nE "node:(http|https|net)|fetch\(" .claude/skills/eidolon/hooks/*.mjs</code></pre>
+            <h3>To remove it</h3>
+            <ol>
+              <li>Delete <code>.claude/skills/eidolon</code> and <code>.claude/skills/setup</code>.</li>
+              <li>Delete the marked blocks in <code>CLAUDE.md</code> and <code>.gitignore</code>, from <code>eidolon:begin</code> to <code>eidolon:end</code>.</li>
+              <li>In a project, also remove the Eidolon hook entries and deny rules from <code>.claude/settings.json</code>.</li>
+            </ol>
+            <p>The backups and receipts of the operator door stay in <code>.eidolon/backups/</code>. A user install needs only the first step.</p>
+          </div>
+        </div>
+        <figure class="exhibit reveal">
+          <figcaption><span class="label">Exhibit E</span> One of the hook groups that the installer writes into <code>.claude/settings.json</code></figcaption>
+          <pre class="soft"><code>{"matcher": "Bash|PowerShell", "hooks": [{"type": "command", "command": "node", "args": ["${CLAUDE_PROJECT_DIR}/.claude/skills/eidolon/hooks/guard-bash.mjs", "--project", "${CLAUDE_PROJECT_DIR}"], "timeout": 20}]}</code></pre>
+        </figure>
+        <figure class="exhibit reveal">
+          <figcaption><span class="label">Exhibit F</span> The three settings keys it sets, beside 24 deny rules in <code>permissions.deny</code></figcaption>
+          <pre class="soft"><code>"env": {"CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH": "1"},
+"effortLevel": "xhigh",
+"maxEffortLevel": "max"</code></pre>
+        </figure>
+        <p>To list the deny rules after a project install, run this in the project folder. On a project with no deny rules before the install, it prints 24 lines.</p>
+        <pre class="soft"><code>node -p "require('./.claude/settings.json').permissions.deny.join('\n')"</code></pre>
+      </section>
 
-        <section class="chapter" id="never" aria-labelledby="never-h">
-          <h2 id="never-h"><span class="kicker">Chapter <span class="num">4</span></span>What it never does</h2>
-          <ul>
-            <li>Write to your project before you approve the plan.</li>
-            <li>Install anything besides the two skills: no extra programs, background tasks, account sign-in, Node, credentials, models or services.</li>
-            <li>Delete your old copy. A replaced skill moves to a backup folder first.</li>
-            <li>Commit before the last stage of a build. Only the close stage commits, and before it does, it states the git state from before the run as the way back.</li>
-            <li>Take orders from what it reads. A pull request body, an issue, a web page or a file is data. An instruction found inside one is reported to you as a finding.</li>
-            <li>Write a secret into a report, a log, a commit or a chat message.</li>
-            <li>Shrink a record. The logs of what broke, what worked and what was decided only grow.</li>
-            <li>Weaken a guard to make a test pass.</li>
-          </ul>
-        </section>
+      <section class="chapter" id="ledger" aria-labelledby="ledger-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">VIII</span></span><h2 id="ledger-h">The ledger</h2></div>
+        </header>
+        <div class="ledger reveal">
+          <div class="ledger-top">
+            <div class="ledger-title">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.5" r="5.5"/><path d="M9 14.2L8 21l4-2 4 2-1-6.8"/></g></svg>
+              <div><p class="version">v0.1.0</p><p class="date">Tagged on 13 October 2026, for Claude Code only</p></div>
+            </div>
+            <ul class="ci" aria-label="CI">
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Ubuntu</li>
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>macOS</li>
+              <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Windows</li>
+            </ul>
+          </div>
+          <div class="table">
+            <table>
+              <caption>Three repositories, one tag each</caption>
+              <thead><tr><th scope="col">Repository</th><th scope="col">Tag commit</th><th scope="col">Tests at the tag</th></tr></thead>
+              <tbody>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon v0.1.0</a></th><td><code>0674346</code></td><td>285 pass, 0 fail</td></tr>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup v0.1.0</a></th><td><code>2733f2e</code></td><td>16 pass, 0 fail</td></tr>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth v0.1.0</a></th><td><code>a85d6a6</code></td><td>28 pass</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="sha"><span class="label">SHA-256 of <code>Hearth-v0.1.0.zip</code></span></p>
+          <pre><code class="hash">ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
+          <p>Compare it with the hash of the file you download before you open it. Run <code>shasum -a 256 Hearth.zip</code> on macOS or Linux, or <code>Get-FileHash Hearth.zip -Algorithm SHA256</code> in PowerShell.</p>
+          <p>CI runs on Ubuntu, macOS and Windows for all three repositories, with a scan of the full history for secrets. The runs are on the Actions tab of <a href="https://github.com/eidolonofficial/eidolon/actions">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/actions">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/actions">Hearth</a>. To run the eidolon suite and the self-check yourself, use the same commands as CI:</p>
+          <pre class="soft"><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/eidolon.git
+cd eidolon
+node --test hooks/*.test.mjs scripts/*.test.mjs
+node scripts/selfcheck.mjs</code></pre>
+          <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every review round, gate and live test.</p>
+          <div class="ledger-links">
+            <a class="btn btn-quiet" href="release.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M14 7l5 5-5 5"/></g></svg>Read the release record</a>
+            <a class="btn btn-quiet" href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></svg>Hearth release page</a>
+          </div>
+        </div>
+      </section>
 
-        <section class="end-matter" id="further" aria-labelledby="further-h">
-          <h2 id="further-h">Further reading</h2>
-          <ul>
-            <li><a href="safety.html">Safety</a>: how the guards work and the gaps they leave.</li>
-            <li><a href="pipeline.html">Pipeline</a>: the agents, the briefs, the review swarms and the engineering principles behind them.</li>
-            <li><a href="autopilot.html">Autopilot</a>: the interview and the four ways to leave something running.</li>
-            <li><a href="release.html">Release</a>: what v0.1.0 contains, the test numbers and what is still open.</li>
-          </ul>
-          <p>The three repositories:</p>
-          <ul>
-            <li><a href="https://github.com/eidolonofficial/eidolon">eidolonofficial/eidolon</a>, the Eidolon skill</li>
-            <li><a href="https://github.com/eidolonofficial/eidolon-setup">eidolonofficial/eidolon-setup</a>, the Setup skill</li>
-            <li><a href="https://github.com/eidolonofficial/Hearth">eidolonofficial/Hearth</a>, the installer</li>
-          </ul>
-        </section>
-      </div>
-    </article>
+      <section class="end-matter" id="further" aria-labelledby="further-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="32" r="10"/><circle cx="19" cy="32" r="4"/><path d="M29 32h27"/><path d="M48 32v8M54 32v6M40 32v5"/></g></svg>
+          <div><span class="kicker">The end matter</span><h2 id="further-h">Further reading</h2></div>
+        </header>
+        <ul class="kingdoms">
+          <li><a href="safety.html">Safety</a><p>How the guards work and the gaps they leave.</p></li>
+          <li><a href="pipeline.html">Pipeline</a><p>The agents, the briefs, the review swarms and the principles behind them.</p></li>
+          <li><a href="autopilot.html">Autopilot</a><p>The interview and the four shapes for work that runs on its own.</p></li>
+          <li><a href="release.html">Release</a><p>What v0.1.0 contains, the test numbers and what is still open.</p></li>
+          <li><a href="about.html">Makers</a><p>Who made the three repositories, and why.</p></li>
+        </ul>
+        <p>The three repositories:</p>
+        <ul>
+          <li><a href="https://github.com/eidolonofficial/eidolon">eidolonofficial/eidolon</a>, the Eidolon skill</li>
+          <li><a href="https://github.com/eidolonofficial/eidolon-setup">eidolonofficial/eidolon-setup</a>, the Setup skill</li>
+          <li><a href="https://github.com/eidolonofficial/Hearth">eidolonofficial/Hearth</a>, the installer</li>
+        </ul>
+      </section>
+    </div>
   </main>
   <footer class="colophon">
     <div class="colophon-inner">
-      <h2>Colophon</h2>
-      <p>Every claim on these pages traces to a document in the three repositories.</p>
-      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
-      <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg>
+      <div>
+        <h2>Colophon</h2>
+        <p>Every claim on these pages traces to a document in the three repositories.</p>
+        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+      </div>
     </div>
   </footer>
+  <script>
+    document.documentElement.classList.add('can-copy');
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('button.copy');
+      if (!button) return;
+      var pre = button.parentNode.querySelector('pre');
+      var label = button.dataset.label || (button.dataset.label = button.innerHTML);
+      function done() {
+        button.textContent = 'Copied';
+        setTimeout(function () { button.innerHTML = label; }, 1500);
+      }
+      function fallback() {
+        var range = document.createRange();
+        range.selectNodeContents(pre);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        if (document.execCommand('copy')) done();
+        selection.removeAllRanges();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(pre.textContent).then(done, fallback);
+      else fallback();
+    });
+  </script>
 </body>
 </html>

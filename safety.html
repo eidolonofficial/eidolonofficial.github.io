@@ -5,50 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eidolon safety</title>
   <meta name="description" content="How Eidolon's hooks, deny rules, write lanes and dispatch gate work, and their known gaps.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
-    <p class="dateline">Volume 0.1, October 2026</p>
-    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
-    <nav class="site-nav" aria-label="Site">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="safety.html" aria-current="page">Safety</a></li>
-        <li><a href="pipeline.html">Pipeline</a></li>
-        <li><a href="autopilot.html">Autopilot</a></li>
-        <li><a href="release.html">Release</a></li>
-      </ul>
-    </nav>
+    <div class="mast-inner">
+      <p class="brand"><a href="index.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg><span>Eidolon</span></a></p>
+      <p class="dateline">Volume 0.1, October 2026</p>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="safety.html" aria-current="page">Safety</a></li>
+          <li><a href="pipeline.html">Pipeline</a></li>
+          <li><a href="autopilot.html">Autopilot</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="about.html">Makers</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main id="main" tabindex="-1">
-    <article class="feature">
-      <header class="opener">
-        <p class="kicker-page">On safety</p>
-        <h1>How the guards work</h1>
-        <p class="dek">What the hooks block or ask you about, and the written list of what they cannot see.</p>
-        <p class="lead">Eidolon's hooks are defense in depth. They are lexical checks on Claude Code tool calls, plus a floor of permission deny rules. They are not an operating system sandbox, and what they cannot see is listed under <a href="#gaps">known gaps</a>.</p>
-        <p>Every check ends in one of three verdicts:</p>
-        <div class="with-note">
-          <dl class="facts">
-            <div><dt>Block</dt><dd>The hook exits with code 2 and the call does not run. Claude sees the reason.</dd></div>
-            <div><dt>Ask</dt><dd>You approve or decline. Several asks about one call become one question.</dd></div>
-            <div><dt>Advise</dt><dd>The call runs and a note rides along as context.</dd></div>
-          </dl>
-          <p>A block always wins over an ask.</p>
-          <aside class="note" aria-label="Where the hooks are not wired">
-            <span class="label">What this does not do</span>
-            <p>Only a project install wires the hooks: the operator door, or the installer run with <code>--project</code>. A skill copied by the novice door or by <code>git clone</code> has no hooks.</p>
-          </aside>
+    <header class="page-hero">
+      <div class="aurora" aria-hidden="true"><span></span></div>
+      <svg class="strip" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <g class="trees trees-back" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M0 240V165M0 219L15 204V149M34 240V194M34 219L73 180V121M62 240V188M62 214L93 183V159M62 200L81 181V142M62 208L91 180V144M93 240V162M93 185L74 166V134M93 211L62 180V124M116 240V69M116 109L81 74V50M116 160L88 132V91M139 240V86M139 144L162 121V87M139 118L166 92V64M163 240V181M163 208L198 173V113M187 240V70M187 119L149 81V31M187 154L152 119V94M187 143L148 104V72M225 240V184M225 203L186 163V120M225 222L195 192V161M225 196L197 167V133M261 240V104M261 146L238 123V75M292 240V63M292 104L260 71V23M292 147L268 123V80M317 240V186M317 221L283 187V155M349 240V99M349 192L318 161V129M349 142L331 124V102M371 240V62M371 116L350 95V50M404 240V153M404 188L379 163V109M404 202L424 182V148M430 240V115M430 140L409 119V74M430 208L414 192V168M468 240V109M468 168L429 130V69M500 240V198M500 229L479 208V148M500 217L534 183V155M500 220L462 182V154M538 240V63M538 168L578 128V88M565 240V121M565 203L540 178V124M565 182L603 144V98M599 240V105M599 142L576 119V68M599 159L632 126V101M599 139L571 111V66M624 240V197M624 214L656 182V148M646 240V185M646 208L628 190V159M646 211L672 185V126M646 203L622 179V144M683 240V133M683 183L657 157V113M683 170L700 153V113M706 240V128M706 166L732 140V108M706 208L670 172V143M731 240V143M731 196L757 170V146M760 240V177M760 209L796 174V129M792 240V154M792 204L810 186V141M792 218L809 201V151M827 240V95M827 125L845 107V74M827 201L804 178V141M855 240V69M855 134L879 110V54M888 240V177M888 194L852 158V139M922 240V189M922 206L884 168V113M922 205L891 174V123M922 205L942 185V127M950 240V137M950 171L921 141V79M950 161L913 124V84M974 240V197M974 214L993 195V143M974 223L1011 186V134M1007 240V70M1007 184L987 164V142M1007 134L983 110V72M1007 136L979 108V84M1045 240V151M1045 174L1010 139V99M1081 240V93M1081 146L1044 109V48M1117 240V149M1117 206L1152 171V140M1117 171L1086 140V106M1117 207L1133 191V150M1140 240V88M1140 200L1123 183V133M1140 121L1100 81V34M1170 240V126M1170 171L1188 153V132M1170 162L1198 134V76M1202 240V112M1202 170L1165 133V77M1202 166L1163 127V99M1202 192L1222 173V144M1232 240V90M1232 200L1264 169V140M1232 141L1270 103V72M1270 240V78M1270 177L1299 148V100M1293 240V95M1293 160L1271 137V109M1293 168L1256 131V110M1316 240V116M1316 148L1335 129V87M1316 208L1290 183V133M1348 240V103M1348 190L1367 171V135M1348 196L1328 176V134M1348 191L1386 153V107M1379 240V152M1379 171L1363 155V128M1379 172L1350 143V116M1400 240V115M1400 166L1433 133V103M1400 167L1367 134V75M1436 240V141M1436 198L1404 166V103"/><circle cx="0" cy="165" r="3.2"/><circle cx="15" cy="149" r="3.2"/><circle cx="34" cy="194" r="3.2"/><circle cx="73" cy="121" r="3.2"/><circle cx="62" cy="188" r="3.2"/><circle cx="93" cy="159" r="3.2"/><circle cx="81" cy="142" r="3.2"/><circle cx="91" cy="144" r="3.2"/><circle cx="93" cy="162" r="3.2"/><circle cx="74" cy="134" r="3.2"/><circle cx="62" cy="124" r="3.2"/><circle cx="116" cy="69" r="3.2"/><circle cx="81" cy="50" r="3.2"/><circle cx="88" cy="91" r="3.2"/><circle cx="139" cy="86" r="3.2"/><circle cx="162" cy="87" r="3.2"/><circle cx="166" cy="64" r="3.2"/><circle cx="163" cy="181" r="3.2"/><circle cx="198" cy="113" r="3.2"/><circle cx="187" cy="70" r="3.2"/><circle cx="149" cy="31" r="3.2"/><circle cx="152" cy="94" r="3.2"/><circle cx="148" cy="72" r="3.2"/><circle cx="225" cy="184" r="3.2"/><circle cx="186" cy="120" r="3.2"/><circle cx="195" cy="161" r="3.2"/><circle cx="197" cy="133" r="3.2"/><circle cx="261" cy="104" r="3.2"/><circle cx="238" cy="75" r="3.2"/><circle cx="292" cy="63" r="3.2"/><circle cx="260" cy="23" r="3.2"/><circle cx="268" cy="80" r="3.2"/><circle cx="317" cy="186" r="3.2"/><circle cx="283" cy="155" r="3.2"/><circle cx="349" cy="99" r="3.2"/><circle cx="318" cy="129" r="3.2"/><circle cx="331" cy="102" r="3.2"/><circle cx="371" cy="62" r="3.2"/><circle cx="350" cy="50" r="3.2"/><circle cx="404" cy="153" r="3.2"/><circle cx="379" cy="109" r="3.2"/><circle cx="424" cy="148" r="3.2"/><circle cx="430" cy="115" r="3.2"/><circle cx="409" cy="74" r="3.2"/><circle cx="414" cy="168" r="3.2"/><circle cx="468" cy="109" r="3.2"/><circle cx="429" cy="69" r="3.2"/><circle cx="500" cy="198" r="3.2"/><circle cx="479" cy="148" r="3.2"/><circle cx="534" cy="155" r="3.2"/><circle cx="462" cy="154" r="3.2"/><circle cx="538" cy="63" r="3.2"/><circle cx="578" cy="88" r="3.2"/><circle cx="565" cy="121" r="3.2"/><circle cx="540" cy="124" r="3.2"/><circle cx="603" cy="98" r="3.2"/><circle cx="599" cy="105" r="3.2"/><circle cx="576" cy="68" r="3.2"/><circle cx="632" cy="101" r="3.2"/><circle cx="571" cy="66" r="3.2"/><circle cx="624" cy="197" r="3.2"/><circle cx="656" cy="148" r="3.2"/><circle cx="646" cy="185" r="3.2"/><circle cx="628" cy="159" r="3.2"/><circle cx="672" cy="126" r="3.2"/><circle cx="622" cy="144" r="3.2"/><circle cx="683" cy="133" r="3.2"/><circle cx="657" cy="113" r="3.2"/><circle cx="700" cy="113" r="3.2"/><circle cx="706" cy="128" r="3.2"/><circle cx="732" cy="108" r="3.2"/><circle cx="670" cy="143" r="3.2"/><circle cx="731" cy="143" r="3.2"/><circle cx="757" cy="146" r="3.2"/><circle cx="760" cy="177" r="3.2"/><circle cx="796" cy="129" r="3.2"/><circle cx="792" cy="154" r="3.2"/><circle cx="810" cy="141" r="3.2"/><circle cx="809" cy="151" r="3.2"/><circle cx="827" cy="95" r="3.2"/><circle cx="845" cy="74" r="3.2"/><circle cx="804" cy="141" r="3.2"/><circle cx="855" cy="69" r="3.2"/><circle cx="879" cy="54" r="3.2"/><circle cx="888" cy="177" r="3.2"/><circle cx="852" cy="139" r="3.2"/><circle cx="922" cy="189" r="3.2"/><circle cx="884" cy="113" r="3.2"/><circle cx="891" cy="123" r="3.2"/><circle cx="942" cy="127" r="3.2"/><circle cx="950" cy="137" r="3.2"/><circle cx="921" cy="79" r="3.2"/><circle cx="913" cy="84" r="3.2"/><circle cx="974" cy="197" r="3.2"/><circle cx="993" cy="143" r="3.2"/><circle cx="1011" cy="134" r="3.2"/><circle cx="1007" cy="70" r="3.2"/><circle cx="987" cy="142" r="3.2"/><circle cx="983" cy="72" r="3.2"/><circle cx="979" cy="84" r="3.2"/><circle cx="1045" cy="151" r="3.2"/><circle cx="1010" cy="99" r="3.2"/><circle cx="1081" cy="93" r="3.2"/><circle cx="1044" cy="48" r="3.2"/><circle cx="1117" cy="149" r="3.2"/><circle cx="1152" cy="140" r="3.2"/><circle cx="1086" cy="106" r="3.2"/><circle cx="1133" cy="150" r="3.2"/><circle cx="1140" cy="88" r="3.2"/><circle cx="1123" cy="133" r="3.2"/><circle cx="1100" cy="34" r="3.2"/><circle cx="1170" cy="126" r="3.2"/><circle cx="1188" cy="132" r="3.2"/><circle cx="1198" cy="76" r="3.2"/><circle cx="1202" cy="112" r="3.2"/><circle cx="1165" cy="77" r="3.2"/><circle cx="1163" cy="99" r="3.2"/><circle cx="1222" cy="144" r="3.2"/><circle cx="1232" cy="90" r="3.2"/><circle cx="1264" cy="140" r="3.2"/><circle cx="1270" cy="72" r="3.2"/><circle cx="1270" cy="78" r="3.2"/><circle cx="1299" cy="100" r="3.2"/><circle cx="1293" cy="95" r="3.2"/><circle cx="1271" cy="109" r="3.2"/><circle cx="1256" cy="110" r="3.2"/><circle cx="1316" cy="116" r="3.2"/><circle cx="1335" cy="87" r="3.2"/><circle cx="1290" cy="133" r="3.2"/><circle cx="1348" cy="103" r="3.2"/><circle cx="1367" cy="135" r="3.2"/><circle cx="1328" cy="134" r="3.2"/><circle cx="1386" cy="107" r="3.2"/><circle cx="1379" cy="152" r="3.2"/><circle cx="1363" cy="128" r="3.2"/><circle cx="1350" cy="116" r="3.2"/><circle cx="1400" cy="115" r="3.2"/><circle cx="1433" cy="103" r="3.2"/><circle cx="1367" cy="75" r="3.2"/><circle cx="1436" cy="141" r="3.2"/><circle cx="1404" cy="103" r="3.2"/></g>
+      <g class="trees trees-front" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 240V195M20 217L-4 193V151M20 207L55 172V124M74 240V181M74 220L52 199V171M74 197L45 169V132M74 199L110 164V135M131 240V164M131 196L104 169V123M182 240V199M182 211L148 177V144M266 240V160M266 188L301 152V128M331 240V206M331 226L314 210V159M405 240V162M405 214L420 199V148M405 201L422 184V163M460 240V123M460 207L439 186V164M460 184L439 163V145M522 240V150M522 209L544 187V153M611 240V213M611 226L628 209V190M699 240V122M699 146L665 112V87M699 197L683 181V138M749 240V181M749 209L779 179V133M749 200L717 167V131M805 240V171M805 222L788 205V172M805 187L838 154V126M869 240V144M869 177L904 142V86M950 240V217M950 230L974 205V148M950 234L929 213V185M1014 240V150M1014 186L1051 149V124M1097 240V143M1097 211L1062 176V113M1158 240V161M1158 188L1144 174V122M1220 240V147M1220 198L1239 179V126M1220 210L1259 172V141M1299 240V153M1299 199L1271 170V110M1359 240V196M1359 224L1379 203V170"/><circle cx="20" cy="195" r="3.2"/><circle cx="-4" cy="151" r="3.2"/><circle cx="55" cy="124" r="3.2"/><circle cx="74" cy="181" r="3.2"/><circle cx="52" cy="171" r="3.2"/><circle cx="45" cy="132" r="3.2"/><circle cx="110" cy="135" r="3.2"/><circle cx="131" cy="164" r="3.2"/><circle cx="104" cy="123" r="3.2"/><circle cx="182" cy="199" r="3.2"/><circle cx="148" cy="144" r="3.2"/><circle cx="266" cy="160" r="3.2"/><circle cx="301" cy="128" r="3.2"/><circle cx="331" cy="206" r="3.2"/><circle cx="314" cy="159" r="3.2"/><circle cx="405" cy="162" r="3.2"/><circle cx="420" cy="148" r="3.2"/><circle cx="422" cy="163" r="3.2"/><circle cx="460" cy="123" r="3.2"/><circle cx="439" cy="164" r="3.2"/><circle cx="439" cy="145" r="3.2"/><circle cx="522" cy="150" r="3.2"/><circle cx="544" cy="153" r="3.2"/><circle cx="611" cy="213" r="3.2"/><circle cx="628" cy="190" r="3.2"/><circle cx="699" cy="122" r="3.2"/><circle cx="665" cy="87" r="3.2"/><circle cx="683" cy="138" r="3.2"/><circle cx="749" cy="181" r="3.2"/><circle cx="779" cy="133" r="3.2"/><circle cx="717" cy="131" r="3.2"/><circle cx="805" cy="171" r="3.2"/><circle cx="788" cy="172" r="3.2"/><circle cx="838" cy="126" r="3.2"/><circle cx="869" cy="144" r="3.2"/><circle cx="904" cy="86" r="3.2"/><circle cx="950" cy="217" r="3.2"/><circle cx="974" cy="148" r="3.2"/><circle cx="929" cy="185" r="3.2"/><circle cx="1014" cy="150" r="3.2"/><circle cx="1051" cy="124" r="3.2"/><circle cx="1097" cy="143" r="3.2"/><circle cx="1062" cy="113" r="3.2"/><circle cx="1158" cy="161" r="3.2"/><circle cx="1144" cy="122" r="3.2"/><circle cx="1220" cy="147" r="3.2"/><circle cx="1239" cy="126" r="3.2"/><circle cx="1259" cy="141" r="3.2"/><circle cx="1299" cy="153" r="3.2"/><circle cx="1271" cy="110" r="3.2"/><circle cx="1359" cy="196" r="3.2"/><circle cx="1379" cy="170" r="3.2"/></g>
+    </svg>
+      <div class="wrap page-hero-grid">
+        <div>
+          <p class="kicker">On safety, or the keeper of the gates</p>
+          <h1>How the guards work</h1>
+          <p class="dek">What the hooks block or ask you about, and the written list of what they cannot see.</p>
+          <p class="lead">Eidolon's hooks are defense in depth. They are lexical checks on Claude Code tool calls, plus a floor of permission deny rules. They are not an operating system sandbox, and what they cannot see is listed under <a href="#gaps">known gaps</a>.</p>
         </div>
-      </header>
+        <div class="emblem"><svg class="orrery" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="194" stroke-width="1" stroke-dasharray="1 9"/><circle cx="200" cy="200" r="176" stroke-width=".75" opacity=".7"/><circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="10 8" opacity=".45"/></g><g fill="currentColor"><circle cx="200" cy="24" r="4"/><circle cx="352" cy="288" r="3"/><circle cx="62" cy="310" r="2.5"/></g></svg><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="32" r="10"/><circle cx="19" cy="32" r="4"/><path d="M29 32h27"/><path d="M48 32v8M54 32v6M40 32v5"/></g></svg></div>
+      </div>
+    </header>
 
-      <nav class="toc" aria-label="Chapters">
-        <h2>In this piece</h2>
+    <div class="wrap chapters">
+      <nav class="toc reveal" aria-label="Chapters">
+        <div class="toc-head"><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg><h2>In this piece</h2></div>
         <ol>
           <li><a href="#floor"><span class="n">1</span>The deny floor</a></li>
           <li><a href="#hooks"><span class="n">2</span>The hooks</a></li>
@@ -61,15 +62,45 @@
         </ol>
       </nav>
 
-      <div class="body">
-        <section class="chapter" id="floor" aria-labelledby="floor-h">
-          <h2 id="floor-h"><span class="kicker">Chapter <span class="num">1</span></span>The deny floor</h2>
-          <p>One edit to a settings file could silence every hook, so the floor has two layers. The first is a list of permission deny rules in <code>.claude/settings.json</code>. Claude Code's own permission parser reads them, so they hold even when hooks are turned off. They refuse a force push (<code>--force</code> or <code>-f</code>), a <code>git config</code> of <code>core.hooksPath</code>, <code>filter-branch</code>, <code>filter-repo</code>, and any Write or Edit of <code>.claude/settings.local.json</code>, for Bash and PowerShell alike. A project install adds Write and Edit denials for the installed skill, the policy manifest, the session state and the Eidolon manifest. <code>git push --force-with-lease</code> is left alone.</p>
-          <p>The second layer is the hooks. A permission rule matches a tool and a command or path, never file content. "This write turns on <code>disableAllHooks</code>" is a fact about content, so a hook checks it.</p>
-        </section>
+      <section class="chapter split" id="verdicts" aria-labelledby="verdicts-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 57V25"/><path d="M55 57V25"/><path d="M9 25c7-11 39-11 46 0"/><path d="M18 57V21M25.5 57V18.5M32 57V17.5M38.5 57V18.5M46 57V21"/><path d="M9 39h46"/><path d="M5 57h54"/></g><circle class="v-glow" cx="32" cy="9" r="3"/></svg>
+          <div><span class="kicker">Before the first chapter</span><h2 id="verdicts-h">Three verdicts</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Every check ends in one of three verdicts:</p>
+          <div class="with-note">
+            <dl class="facts verdict-facts">
+              <div><dt><span class="chip chip-block">Block</span></dt><dd>The hook exits with code 2 and the call does not run. Claude sees the reason.</dd></div>
+              <div><dt><span class="chip chip-ask">Ask</span></dt><dd>You approve or decline. Several asks about one call become one question.</dd></div>
+              <div><dt><span class="chip chip-allow">Advise</span></dt><dd>The call runs and a note rides along as context.</dd></div>
+            </dl>
+            <aside class="note" aria-label="Where the hooks are not wired">
+              <span class="label">What this does not do</span>
+              <p>Only a project install wires the hooks: the operator door, or the installer run with <code>--project</code>. A skill copied by the novice door or by <code>git clone</code> has no hooks.</p>
+            </aside>
+          </div>
+          <p>A block always wins over an ask.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="hooks" aria-labelledby="hooks-h">
-          <h2 id="hooks-h"><span class="kicker">Chapter <span class="num">2</span></span>The hooks</h2>
+      <section class="chapter split" id="floor" aria-labelledby="floor-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="32" r="10"/><circle cx="19" cy="32" r="4"/><path d="M29 32h27"/><path d="M48 32v8M54 32v6M40 32v5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">1</span></span><h2 id="floor-h">The deny floor</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">One edit to a settings file can silence every hook. So the floor has two layers. The first is a list of permission deny rules in <code>.claude/settings.json</code>. Claude Code's own permission parser reads them, so they hold even when someone turns the hooks off. They refuse a force push (<code>--force</code> or <code>-f</code>) and a <code>git config</code> of <code>core.hooksPath</code>. They also refuse <code>filter-branch</code>, <code>filter-repo</code> and any Write or Edit of <code>.claude/settings.local.json</code>. Each rule covers Bash and PowerShell alike. A project install adds Write and Edit denials for the installed skill, the policy manifest, the session state and the Eidolon manifest. The rules leave <code>git push --force-with-lease</code> alone.</p>
+          <p>The second layer is the hooks. A permission rule matches a tool and a command or path, never file content. "This write turns on <code>disableAllHooks</code>" is a fact about content, so a hook checks it.</p>
+        </div>
+      </section>
+
+      <section class="chapter split" id="hooks" aria-labelledby="hooks-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="9"/><circle cx="24" cy="27" r="13" stroke-dasharray="3.4 3.4" stroke-width="3.5"/><circle cx="24" cy="27" r="2.5"/><circle cx="45" cy="44" r="6"/><circle cx="45" cy="44" r="9" stroke-dasharray="2.6 2.6" stroke-width="3"/><circle cx="45" cy="44" r="1.8"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">2</span></span><h2 id="hooks-h">The hooks</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="table stack">
             <table role="table">
               <caption>Six hooks, and the moment each one runs</caption>
@@ -78,7 +109,7 @@
               </thead>
               <tbody role="rowgroup">
                 <tr role="row"><th scope="row" role="rowheader">Before Bash or PowerShell</th><td role="cell" data-label="Hook"><code>guard-bash.mjs</code></td><td role="cell" data-label="What it does">Ten checks in a fixed order. A PowerShell call reaches the same checks as a Bash call.</td></tr>
-                <tr role="row"><th scope="row" role="rowheader">Before Write or Edit</th><td role="cell" data-label="Hook"><code>guard-write.mjs</code></td><td role="cell" data-label="What it does">Seven checks on the file and the result the write would leave.</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Before Write or Edit</th><td role="cell" data-label="Hook"><code>guard-write.mjs</code></td><td role="cell" data-label="What it does">Seven checks on the file, and on what the file looks like after the write.</td></tr>
                 <tr role="row"><th scope="row" role="rowheader">Before Agent</th><td role="cell" data-label="Hook"><code>guard-dispatch.mjs</code></td><td role="cell" data-label="What it does">The dispatch gate, in chapter 4.</td></tr>
                 <tr role="row"><th scope="row" role="rowheader">After Write or Edit</th><td role="cell" data-label="Hook"><code>post-tool-entry.mjs</code></td><td role="cell" data-label="What it does">Counts writes in a row to scaffolding such as hooks, scripts and config. The write guard advises from 6 and blocks at 10.</td></tr>
                 <tr role="row"><th scope="row" role="rowheader">When a worker starts</th><td role="cell" data-label="Hook"><code>subagent-start.mjs</code></td><td role="cell" data-label="What it does">Hands the worker its write lane and the brief contract.</td></tr>
@@ -86,107 +117,140 @@
               </tbody>
             </table>
           </div>
-          <p>Every check, in order, with its verdict, is in <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/hooks/README.md">hooks/README.md</a>.</p>
-        </section>
+          <p>The file <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/hooks/README.md">hooks/README.md</a> lists every check in order, with its verdict.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="lanes" aria-labelledby="lanes-h">
-          <h2 id="lanes-h"><span class="kicker">Chapter <span class="num">3</span></span>Write lanes</h2>
-          <p>A worker that can write anywhere could undo the controller's gates. So each worker gets a lane in <code>.claude/agent-scopes.json</code>, naming the folders it may read and write. A worker's Write, Edit or shell write outside its lane is blocked, as is any worker write outside the project; scratch files in the system temp folder are allowed. A reviewer gets an empty write list. A worker with no entry has no lane, and the controller, your main session, never has one.</p>
-        </section>
+      <section class="chapter split" id="lanes" aria-labelledby="lanes-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg>
+          <div><span class="kicker">Chapter <span class="num">3</span></span><h2 id="lanes-h">Write lanes</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">A worker that can write anywhere can undo the controller's gates. So each worker gets a lane in <code>.claude/agent-scopes.json</code>. The lane names the folders the worker may read and write. The hooks block a worker's Write, Edit or shell write outside its lane. They also block any worker write outside the project, but they allow scratch files in the system temp folder. A reviewer gets an empty write list. A worker with no entry has no lane. The controller is your main session, and it never has a lane.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="dispatch" aria-labelledby="dispatch-h">
-          <h2 id="dispatch-h"><span class="kicker">Chapter <span class="num">4</span></span>The dispatch gate</h2>
-          <p>When the controller hands work to an agent, <code>guard-dispatch.mjs</code> checks the hand-off.</p>
+      <section class="chapter split" id="dispatch" aria-labelledby="dispatch-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56h44"/><path d="M14 56V27a10 10 0 0 1 20 0v29"/><path d="M30 56V27a10 10 0 0 1 20 0v29" opacity=".6"/><circle cx="29" cy="40" r="1.4"/><circle cx="45" cy="40" r="1.4"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">4</span></span><h2 id="dispatch-h">The dispatch gate</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">When the controller hands work to an agent, <code>guard-dispatch.mjs</code> checks the hand-off.</p>
           <ul>
-            <li>It asks you when the task names sensitive work, such as a deploy, a migration, personal data, payments, credentials, deleting or a force push.</li>
+            <li>It asks you when the task names sensitive work. Sensitive work includes a deploy, a migration, personal data and payments. It also includes credentials, a deletion and a force push.</li>
             <li>It blocks a worker that tries to dispatch another worker.</li>
-            <li>For a worker that can write, it asks when the brief has no line starting <code>Done-check:</code> (or <code>Acceptance:</code>) with a real check after it. <code>none</code>, <code>tbd</code> and similar placeholders count as missing.</li>
+            <li>For a worker that can write, it asks when the brief has no line that starts with <code>Done-check:</code> (or <code>Acceptance:</code>) and a real check after it. It treats <code>none</code>, <code>tbd</code> and similar placeholders as no check.</li>
             <li>For a worker that can write, it asks when <code>.claude/waves/</code> holds no plan of at least 20 characters newer than the session start.</li>
             <li>It asks when the dispatch names no model tier.</li>
             <li>It logs every dispatch it does not block to <code>.claude/.dispatch-log.jsonl</code>.</li>
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="commits" aria-labelledby="commits-h">
-          <h2 id="commits-h"><span class="kicker">Chapter <span class="num">5</span></span>The commit rules</h2>
+      <section class="chapter split" id="commits" aria-labelledby="commits-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">5</span></span><h2 id="commits-h">The commit rules</h2></div>
+        </header>
+        <div class="chapter-body">
           <ul>
-            <li><code>--no-verify</code>, or <code>-n</code> on a commit, is blocked on commit and push.</li>
-            <li>A force push is blocked. <code>--force-with-lease</code> on its own passes.</li>
-            <li>A mirror push, a <code>core.hooksPath</code> override, <code>filter-branch</code> and <code>filter-repo</code> are blocked.</li>
-            <li>A commit message saying a screen or a run works, with no evidence named, is blocked.</li>
+            <li>The hooks block <code>--no-verify</code> on a commit or a push. They also block its short form <code>-n</code> on a commit.</li>
+            <li>They block a force push. They pass <code>--force-with-lease</code> on its own.</li>
+            <li>They block a mirror push, a <code>core.hooksPath</code> override, <code>filter-branch</code> and <code>filter-repo</code>.</li>
+            <li>They block a commit message that says a screen or a run works but names no evidence.</li>
             <li>A commit that stages an image, video or PDF with no evidence named asks first.</li>
             <li>Commands that throw away uncommitted work, such as <code>git reset --hard</code> or <code>git clean -f</code> with no path, ask first.</li>
-            <li>The records in <code>docs/fixes/</code>, <code>docs/insights/</code> and <code>docs/decisions/</code> only grow. Appending passes; overwriting or deleting one is blocked.</li>
+            <li>The records in <code>docs/fixes/</code>, <code>docs/insights/</code> and <code>docs/decisions/</code> only grow. The hooks pass an append to a record. They block a write that overwrites or deletes one.</li>
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="short" aria-labelledby="short-h">
-          <h2 id="short-h"><span class="kicker">Chapter <span class="num">6</span></span>What asks and what blocks</h2>
-          <p>Besides the dispatch and commit cases above, these ask you:</p>
+      <section class="chapter split" id="short" aria-labelledby="short-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 57V25"/><path d="M55 57V25"/><path d="M9 25c7-11 39-11 46 0"/><path d="M18 57V21M25.5 57V18.5M32 57V17.5M38.5 57V18.5M46 57V21"/><path d="M9 39h46"/><path d="M5 57h54"/></g><circle class="v-glow" cx="32" cy="9" r="3"/></svg>
+          <div><span class="kicker">Chapter <span class="num">6</span></span><h2 id="short-h">What asks and what blocks</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Besides the dispatch and commit cases above, these ask you:</p>
           <ul>
-            <li>A change the parser cannot place, such as a wildcard or unexpanded variable that could reach a protected file.</li>
-            <li>Code passed as a string to an interpreter (<code>node -e</code>, <code>python -c</code>, <code>eval</code> and the like) that names git, a protected path, settings or hooks.</li>
-            <li>Unpacking an archive with no destination folder, or into the project root.</li>
+            <li>A change the parser cannot place, such as a wildcard or unexpanded variable that can reach a protected file.</li>
+            <li>Code passed as a string to an interpreter, such as <code>node -e</code>, <code>python -c</code> or <code>eval</code>. The hooks ask when that code names git, a protected path, settings or hooks.</li>
+            <li>An archive that unpacks with no destination folder, or into the project root.</li>
             <li>A command it cannot parse.</li>
-            <li>The controller writing a hook file. A worker doing the same is blocked.</li>
+            <li>A write to a hook file by the controller. The hooks block a worker that does the same.</li>
           </ul>
           <p>These are blocked:</p>
           <ul>
-            <li>Deleting or moving <code>.git</code>, a hook, the persona template, the security policy or a record, or a folder that holds one.</li>
+            <li>A delete or a move of <code>.git</code>, a hook or the persona template. The same goes for the security policy, a record and a folder that holds one.</li>
             <li>A shell command that changes a settings file or the installed skill.</li>
             <li>A settings write that turns hooks off, or drops a hook entry or deny rule the install manages.</li>
             <li>Writing through a file that has more than one hard link.</li>
             <li>Spellings that once slipped past: 8.3 short names, alternate data streams, <code>/c/</code> drive paths and symlinks.</li>
           </ul>
           <p>These are the short versions. A call that matches neither full list in the README passes.</p>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="gaps" aria-labelledby="gaps-h">
-          <h2 id="gaps-h"><span class="kicker">Chapter <span class="num">7</span></span>Known gaps</h2>
+      <section class="chapter split" id="gaps" aria-labelledby="gaps-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="26" rx="15" ry="19"/><ellipse cx="32" cy="26" rx="11" ry="15"/><path d="M32 45v9"/><path d="M23 56h18"/><path d="M28 9.5l2-3 2 3"/></g><path class="v-glint" d="M26 20l6-6M26.5 27l11-11" fill="none" stroke-width="1.25" stroke-linecap="round"/></svg>
+          <div><span class="kicker">Chapter <span class="num">7</span></span><h2 id="gaps-h">Known gaps</h2></div>
+        </header>
+        <div class="chapter-body">
           <figure class="pullquote">
             <blockquote><p>a guard that claims more than it does is worse than none; this is the honest list</p></blockquote>
             <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
           </figure>
-          <p>These are the shapes the checks and the deny floor do not cover.</p>
+          <p class="initial">These are the shapes the checks and the deny floor do not cover.</p>
           <ul>
             <li>A script file a worker runs (<code>node build.js</code>, <code>sh run.sh</code>) does whatever it does. The guards see only its command line.</li>
             <li>A wildcard or <code>$var</code> path does not trigger the lane check.</li>
-            <li>Code inside <code>node -e</code>, <code>python -c</code> and other interpreters is never parsed. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
-            <li>Git aliases defined in <code>.git/config</code> are not visible.</li>
-            <li>A subshell is judged command by command, not as a unit.</li>
-            <li>PowerShell <code>-EncodedCommand</code> bodies are not decoded; the command asks.</li>
-            <li>The controller may still run <code>git checkout</code>, <code>switch</code>, <code>merge</code>, <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
-            <li>A hard link made by a script, or behind a wildcard, is not seen. Linking a whole parent folder with <code>cp -al</code> or <code>rsync --link-dest</code> is not judged as linking the records inside it.</li>
-            <li><code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> set in a bash prefix or export is not blocked. The PowerShell forms are, but only when git runs in the same command.</li>
-            <li>A PowerShell call target held in a variable (<code>&amp; $cmd</code>) is not resolved.</li>
+            <li>The hooks never parse code inside <code>node -e</code>, <code>python -c</code> and other interpreters. A <code>node -e</code> call that deletes <code>docs</code> with <code>rmSync</code> passes.</li>
+            <li>The hooks cannot see git aliases defined in <code>.git/config</code>.</li>
+            <li>The hooks judge a subshell command by command, not as a unit.</li>
+            <li>The hooks do not decode PowerShell <code>-EncodedCommand</code> bodies. Such a command asks you instead.</li>
+            <li>The controller can still run <code>git checkout</code>, <code>switch</code> and <code>merge</code>. It can also run <code>pull</code>, <code>rebase</code> and other whole-tree commands. Only those that discard uncommitted work ask.</li>
+            <li>The hooks do not see a hard link that a script makes, or one behind a wildcard. They do not treat a link of a whole parent folder (<code>cp -al</code> or <code>rsync --link-dest</code>) as a link to the records inside it.</li>
+            <li>The hooks do not block <code>GIT_DIR</code> or <code>GIT_CONFIG_COUNT</code> when a bash prefix or an export sets it. They block the PowerShell forms, but only when git runs in the same command.</li>
+            <li>The hooks do not resolve a PowerShell call target held in a variable (<code>&amp; $cmd</code>).</li>
             <li>An archive unpacked into an unprotected folder can hold entries that climb out of it.</li>
             <li>A project inside the temp folder gives its workers no scratch space.</li>
-            <li>The controller's own writes outside the project are not judged, except to settings files.</li>
+            <li>The hooks do not judge the controller's own writes outside the project, except writes to settings files.</li>
             <li>The README lists a worker's agent type as unverified until a live debug run. In the live run of 2026-10-13, the worker's inputs did carry it.</li>
             <li>The hooks are not an operating system sandbox.</li>
-            <li>A hook script that is missing, or crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. Turning that into a block needs Claude Code 2.1.295 or newer.</li>
+            <li>A hook script that is absent, or that crashes with exit code 1, does not block the call. Claude Code shows the error and carries on. To make that a block, you need Claude Code 2.1.295 or newer.</li>
           </ul>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="true" aria-labelledby="true-h">
-          <h2 id="true-h"><span class="kicker">Chapter <span class="num">8</span></span>How the docs are kept true</h2>
-          <p><code>hooks/README.md</code> is treated as generated from the code. <code>scripts/hooks-readme-check.mjs</code> compares the two: the wiring, the order of the checks, the hook rows, the project argument, the "What asks" heading and the absence of dashes.</p>
+      <section class="chapter split" id="true" aria-labelledby="true-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="7" r="2.5"/><path d="M24 17c0-5 3.5-7.5 8-7.5s8 2.5 8 7.5"/><path d="M20 18h24l4 6H16z"/><path d="M18 26h28l-3 26H21z"/><path d="M23 30h18l-2 18H25z" opacity=".55"/><path d="M20 56h24"/></g><path class="v-flame" d="M32 33c3.5 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 1.5-5 5-9z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">8</span></span><h2 id="true-h">How the docs are kept true</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The project treats <code>hooks/README.md</code> as output generated from the code. The script <code>scripts/hooks-readme-check.mjs</code> compares the two. It checks the wiring, the order of the checks and the hook rows. It also checks the project argument, the "What asks" section title and the absence of dashes.</p>
           <figure class="pullquote">
             <blockquote><p>When a hook, an evaluator or a wiring entry changes, change this file in the same commit; never silence the check.</p></blockquote>
             <figcaption>From <cite>hooks/README.md</cite>, the eidolon repository</figcaption>
           </figure>
           <p>Before v0.1.0, the hooks went through three review rounds and the installer through two, with the findings fixed test first. Each round replayed the previous round's payloads and 60 ordinary developer commands, so a fix that blocked normal work showed up. The <a href="release.html">release page</a> has the counts.</p>
-          <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that would settle it.</p>
-        </section>
-      </div>
-    </article>
+          <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that settles it.</p>
+        </div>
+      </section>
+    </div>
   </main>
   <footer class="colophon">
     <div class="colophon-inner">
-      <h2>Colophon</h2>
-      <p>Every claim on these pages traces to a document in the three repositories.</p>
-      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
-      <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg>
+      <div>
+        <h2>Colophon</h2>
+        <p>Every claim on these pages traces to a document in the three repositories.</p>
+        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+      </div>
     </div>
   </footer>
 </body>

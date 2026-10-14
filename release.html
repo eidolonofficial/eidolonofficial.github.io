@@ -5,37 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eidolon v0.1.0</title>
   <meta name="description" content="What shipped in v0.1.0, the gates, the live tests, what is still open and how the release came about.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
-    <p class="dateline">Volume 0.1, October 2026</p>
-    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
-    <nav class="site-nav" aria-label="Site">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="safety.html">Safety</a></li>
-        <li><a href="pipeline.html">Pipeline</a></li>
-        <li><a href="autopilot.html">Autopilot</a></li>
-        <li><a href="release.html" aria-current="page">Release</a></li>
-      </ul>
-    </nav>
+    <div class="mast-inner">
+      <p class="brand"><a href="index.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg><span>Eidolon</span></a></p>
+      <p class="dateline">Volume 0.1, October 2026</p>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="pipeline.html">Pipeline</a></li>
+          <li><a href="autopilot.html">Autopilot</a></li>
+          <li><a href="release.html" aria-current="page">Release</a></li>
+          <li><a href="about.html">Makers</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main id="main" tabindex="-1">
-    <article class="feature">
-      <header class="opener">
-        <p class="kicker-page">The record</p>
-        <h1>Release v0.1.0, the first edition</h1>
-        <p class="dek">What shipped, what was cut, how it was tested, and what is still open.</p>
-        <p class="lead">This is the first tagged release of all three repositories, on 13 October 2026. It supports Claude Code only.</p>
-      </header>
+    <header class="page-hero">
+      <div class="aurora" aria-hidden="true"><span></span></div>
+      <svg class="strip" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <g class="trees trees-back" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M0 240V163M0 192L-15 177V125M0 211L-29 182V144M25 240V113M25 162L-8 129V67M51 240V146M51 173L29 151V131M88 240V79M88 199L115 172V121M117 240V72M117 141L103 127V98M141 240V147M141 181L124 164V121M164 240V103M164 187L149 172V119M190 240V85M190 188L168 166V124M224 240V128M224 205L244 185V150M262 240V177M262 222L286 197V137M299 240V167M299 217L324 192V156M299 185L335 149V105M299 216L317 198V136M335 240V76M335 122L297 84V23M335 155L309 129V95M335 135L360 110V87M369 240V79M369 146L329 107V84M369 186L394 162V119M369 126L331 88V35M403 240V108M403 197L432 168V132M431 240V186M431 222L461 191V139M431 199L402 171V121M457 240V196M457 228L442 213V167M457 227L425 195V163M457 209L492 173V154M495 240V116M495 189L515 169V106M495 166L522 139V77M495 205L477 186V124M533 240V69M533 118L497 82V57M533 179L556 156V122M533 188L566 155V116M565 240V109M565 151L587 129V93M589 240V139M589 211L617 183V156M589 194L574 180V141M624 240V172M624 217L654 188V137M663 240V177M663 216L689 190V150M663 203L679 187V136M691 240V99M691 166L712 146V121M691 192L653 154V107M724 240V150M724 171L754 141V92M724 212L742 194V141M724 168L705 149V95M761 240V67M761 168L782 148V106M761 152L785 128V74M796 240V154M796 211L762 178V160M796 189L762 155V102M822 240V105M822 184L783 145V113M822 152L861 113V87M854 240V163M854 206L870 189V157M854 180L838 164V122M891 240V80M891 168L921 139V103M912 240V198M912 211L897 195V158M912 229L942 199V152M941 240V181M941 203L918 180V121M941 195L904 158V102M975 240V198M975 229L1012 192V152M975 210L959 194V162M975 229L937 191V138M1006 240V74M1006 184L972 150V126M1006 145L971 110V82M1034 240V158M1034 208L1072 170V137M1061 240V146M1061 191L1047 177V130M1096 240V194M1096 213L1122 187V161M1131 240V122M1131 168L1113 150V106M1169 240V178M1169 209L1206 172V136M1191 240V105M1191 202L1162 174V143M1191 192L1164 165V106M1213 240V128M1213 203L1237 179V123M1213 206L1193 185V144M1246 240V193M1246 225L1224 203V179M1268 240V123M1268 172L1233 137V80M1268 174L1229 136V109M1268 161L1300 129V104M1300 240V153M1300 181L1338 144V93M1300 196L1319 178V154M1336 240V105M1336 147L1320 130V81M1336 159L1374 121V92M1366 240V109M1366 163L1332 129V95M1366 200L1340 175V142M1366 171L1350 155V135M1397 240V118M1397 188L1375 166V140M1435 240V140M1435 188L1412 164V144M1435 201L1411 177V150"/><circle cx="0" cy="163" r="3.2"/><circle cx="-15" cy="125" r="3.2"/><circle cx="-29" cy="144" r="3.2"/><circle cx="25" cy="113" r="3.2"/><circle cx="-8" cy="67" r="3.2"/><circle cx="51" cy="146" r="3.2"/><circle cx="29" cy="131" r="3.2"/><circle cx="88" cy="79" r="3.2"/><circle cx="115" cy="121" r="3.2"/><circle cx="117" cy="72" r="3.2"/><circle cx="103" cy="98" r="3.2"/><circle cx="141" cy="147" r="3.2"/><circle cx="124" cy="121" r="3.2"/><circle cx="164" cy="103" r="3.2"/><circle cx="149" cy="119" r="3.2"/><circle cx="190" cy="85" r="3.2"/><circle cx="168" cy="124" r="3.2"/><circle cx="224" cy="128" r="3.2"/><circle cx="244" cy="150" r="3.2"/><circle cx="262" cy="177" r="3.2"/><circle cx="286" cy="137" r="3.2"/><circle cx="299" cy="167" r="3.2"/><circle cx="324" cy="156" r="3.2"/><circle cx="335" cy="105" r="3.2"/><circle cx="317" cy="136" r="3.2"/><circle cx="335" cy="76" r="3.2"/><circle cx="297" cy="23" r="3.2"/><circle cx="309" cy="95" r="3.2"/><circle cx="360" cy="87" r="3.2"/><circle cx="369" cy="79" r="3.2"/><circle cx="329" cy="84" r="3.2"/><circle cx="394" cy="119" r="3.2"/><circle cx="331" cy="35" r="3.2"/><circle cx="403" cy="108" r="3.2"/><circle cx="432" cy="132" r="3.2"/><circle cx="431" cy="186" r="3.2"/><circle cx="461" cy="139" r="3.2"/><circle cx="402" cy="121" r="3.2"/><circle cx="457" cy="196" r="3.2"/><circle cx="442" cy="167" r="3.2"/><circle cx="425" cy="163" r="3.2"/><circle cx="492" cy="154" r="3.2"/><circle cx="495" cy="116" r="3.2"/><circle cx="515" cy="106" r="3.2"/><circle cx="522" cy="77" r="3.2"/><circle cx="477" cy="124" r="3.2"/><circle cx="533" cy="69" r="3.2"/><circle cx="497" cy="57" r="3.2"/><circle cx="556" cy="122" r="3.2"/><circle cx="566" cy="116" r="3.2"/><circle cx="565" cy="109" r="3.2"/><circle cx="587" cy="93" r="3.2"/><circle cx="589" cy="139" r="3.2"/><circle cx="617" cy="156" r="3.2"/><circle cx="574" cy="141" r="3.2"/><circle cx="624" cy="172" r="3.2"/><circle cx="654" cy="137" r="3.2"/><circle cx="663" cy="177" r="3.2"/><circle cx="689" cy="150" r="3.2"/><circle cx="679" cy="136" r="3.2"/><circle cx="691" cy="99" r="3.2"/><circle cx="712" cy="121" r="3.2"/><circle cx="653" cy="107" r="3.2"/><circle cx="724" cy="150" r="3.2"/><circle cx="754" cy="92" r="3.2"/><circle cx="742" cy="141" r="3.2"/><circle cx="705" cy="95" r="3.2"/><circle cx="761" cy="67" r="3.2"/><circle cx="782" cy="106" r="3.2"/><circle cx="785" cy="74" r="3.2"/><circle cx="796" cy="154" r="3.2"/><circle cx="762" cy="160" r="3.2"/><circle cx="762" cy="102" r="3.2"/><circle cx="822" cy="105" r="3.2"/><circle cx="783" cy="113" r="3.2"/><circle cx="861" cy="87" r="3.2"/><circle cx="854" cy="163" r="3.2"/><circle cx="870" cy="157" r="3.2"/><circle cx="838" cy="122" r="3.2"/><circle cx="891" cy="80" r="3.2"/><circle cx="921" cy="103" r="3.2"/><circle cx="912" cy="198" r="3.2"/><circle cx="897" cy="158" r="3.2"/><circle cx="942" cy="152" r="3.2"/><circle cx="941" cy="181" r="3.2"/><circle cx="918" cy="121" r="3.2"/><circle cx="904" cy="102" r="3.2"/><circle cx="975" cy="198" r="3.2"/><circle cx="1012" cy="152" r="3.2"/><circle cx="959" cy="162" r="3.2"/><circle cx="937" cy="138" r="3.2"/><circle cx="1006" cy="74" r="3.2"/><circle cx="972" cy="126" r="3.2"/><circle cx="971" cy="82" r="3.2"/><circle cx="1034" cy="158" r="3.2"/><circle cx="1072" cy="137" r="3.2"/><circle cx="1061" cy="146" r="3.2"/><circle cx="1047" cy="130" r="3.2"/><circle cx="1096" cy="194" r="3.2"/><circle cx="1122" cy="161" r="3.2"/><circle cx="1131" cy="122" r="3.2"/><circle cx="1113" cy="106" r="3.2"/><circle cx="1169" cy="178" r="3.2"/><circle cx="1206" cy="136" r="3.2"/><circle cx="1191" cy="105" r="3.2"/><circle cx="1162" cy="143" r="3.2"/><circle cx="1164" cy="106" r="3.2"/><circle cx="1213" cy="128" r="3.2"/><circle cx="1237" cy="123" r="3.2"/><circle cx="1193" cy="144" r="3.2"/><circle cx="1246" cy="193" r="3.2"/><circle cx="1224" cy="179" r="3.2"/><circle cx="1268" cy="123" r="3.2"/><circle cx="1233" cy="80" r="3.2"/><circle cx="1229" cy="109" r="3.2"/><circle cx="1300" cy="104" r="3.2"/><circle cx="1300" cy="153" r="3.2"/><circle cx="1338" cy="93" r="3.2"/><circle cx="1319" cy="154" r="3.2"/><circle cx="1336" cy="105" r="3.2"/><circle cx="1320" cy="81" r="3.2"/><circle cx="1374" cy="92" r="3.2"/><circle cx="1366" cy="109" r="3.2"/><circle cx="1332" cy="95" r="3.2"/><circle cx="1340" cy="142" r="3.2"/><circle cx="1350" cy="135" r="3.2"/><circle cx="1397" cy="118" r="3.2"/><circle cx="1375" cy="140" r="3.2"/><circle cx="1435" cy="140" r="3.2"/><circle cx="1412" cy="144" r="3.2"/><circle cx="1411" cy="150" r="3.2"/></g>
+      <g class="trees trees-front" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 240V194M20 225L-4 202V163M20 219L38 201V150M20 217L-19 178V141M88 240V213M88 227L115 200V169M88 232L113 208V168M88 232L52 196V143M161 240V155M161 185L131 155V134M222 240V184M222 223L240 205V146M222 199L239 182V133M307 240V146M307 166L279 138V86M361 240V198M361 227L323 188V136M361 228L330 197V141M361 214L383 192V132M428 240V184M428 205L399 176V127M428 212L454 186V144M428 203L402 177V126M481 240V181M481 205L502 184V137M481 223L519 185V135M481 218L505 194V149M554 240V162M554 213L573 194V140M612 240V158M612 196L637 171V135M686 240V172M686 193L717 162V139M686 192L716 163V111M686 198L714 170V146M750 240V183M750 197L733 180V120M750 208L718 176V113M750 195L733 178V136M802 240V158M802 217L841 178V153M802 179L819 162V138M851 240V173M851 206L814 169V147M908 240V154M908 177L879 147V115M908 218L931 194V171M908 177L943 142V101M982 240V211M982 229L1001 210V169M1033 240V141M1033 199L1057 175V151M1033 184L1016 167V108M1033 209L1066 176V131M1095 240V174M1095 203L1069 177V156M1095 220L1133 181V128M1095 196L1075 176V125M1151 240V182M1151 204L1174 181V123M1151 205L1131 185V132M1235 240V220M1235 226L1208 199V166M1286 240V128M1286 151L1306 131V86M1286 165L1323 129V70M1286 164L1315 135V78M1361 240V217M1361 222L1346 207V174M1361 226L1389 198V144"/><circle cx="20" cy="194" r="3.2"/><circle cx="-4" cy="163" r="3.2"/><circle cx="38" cy="150" r="3.2"/><circle cx="-19" cy="141" r="3.2"/><circle cx="88" cy="213" r="3.2"/><circle cx="115" cy="169" r="3.2"/><circle cx="113" cy="168" r="3.2"/><circle cx="52" cy="143" r="3.2"/><circle cx="161" cy="155" r="3.2"/><circle cx="131" cy="134" r="3.2"/><circle cx="222" cy="184" r="3.2"/><circle cx="240" cy="146" r="3.2"/><circle cx="239" cy="133" r="3.2"/><circle cx="307" cy="146" r="3.2"/><circle cx="279" cy="86" r="3.2"/><circle cx="361" cy="198" r="3.2"/><circle cx="323" cy="136" r="3.2"/><circle cx="330" cy="141" r="3.2"/><circle cx="383" cy="132" r="3.2"/><circle cx="428" cy="184" r="3.2"/><circle cx="399" cy="127" r="3.2"/><circle cx="454" cy="144" r="3.2"/><circle cx="402" cy="126" r="3.2"/><circle cx="481" cy="181" r="3.2"/><circle cx="502" cy="137" r="3.2"/><circle cx="519" cy="135" r="3.2"/><circle cx="505" cy="149" r="3.2"/><circle cx="554" cy="162" r="3.2"/><circle cx="573" cy="140" r="3.2"/><circle cx="612" cy="158" r="3.2"/><circle cx="637" cy="135" r="3.2"/><circle cx="686" cy="172" r="3.2"/><circle cx="717" cy="139" r="3.2"/><circle cx="716" cy="111" r="3.2"/><circle cx="714" cy="146" r="3.2"/><circle cx="750" cy="183" r="3.2"/><circle cx="733" cy="120" r="3.2"/><circle cx="718" cy="113" r="3.2"/><circle cx="733" cy="136" r="3.2"/><circle cx="802" cy="158" r="3.2"/><circle cx="841" cy="153" r="3.2"/><circle cx="819" cy="138" r="3.2"/><circle cx="851" cy="173" r="3.2"/><circle cx="814" cy="147" r="3.2"/><circle cx="908" cy="154" r="3.2"/><circle cx="879" cy="115" r="3.2"/><circle cx="931" cy="171" r="3.2"/><circle cx="943" cy="101" r="3.2"/><circle cx="982" cy="211" r="3.2"/><circle cx="1001" cy="169" r="3.2"/><circle cx="1033" cy="141" r="3.2"/><circle cx="1057" cy="151" r="3.2"/><circle cx="1016" cy="108" r="3.2"/><circle cx="1066" cy="131" r="3.2"/><circle cx="1095" cy="174" r="3.2"/><circle cx="1069" cy="156" r="3.2"/><circle cx="1133" cy="128" r="3.2"/><circle cx="1075" cy="125" r="3.2"/><circle cx="1151" cy="182" r="3.2"/><circle cx="1174" cy="123" r="3.2"/><circle cx="1131" cy="132" r="3.2"/><circle cx="1235" cy="220" r="3.2"/><circle cx="1208" cy="166" r="3.2"/><circle cx="1286" cy="128" r="3.2"/><circle cx="1306" cy="86" r="3.2"/><circle cx="1323" cy="70" r="3.2"/><circle cx="1315" cy="78" r="3.2"/><circle cx="1361" cy="217" r="3.2"/><circle cx="1346" cy="174" r="3.2"/><circle cx="1389" cy="144" r="3.2"/></g>
+    </svg>
+      <div class="wrap page-hero-grid">
+        <div>
+          <p class="kicker">The record, or the ledger of the first edition</p>
+          <h1>Release v0.1.0, the first edition</h1>
+          <p class="dek">What shipped, what was cut, how it was tested, and what is still open.</p>
+          <p class="lead">This is the first tagged release of all three repositories, on 13 October 2026. It supports Claude Code only.</p>
+        </div>
+        <div class="emblem"><svg class="orrery" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="194" stroke-width="1" stroke-dasharray="1 9"/><circle cx="200" cy="200" r="176" stroke-width=".75" opacity=".7"/><circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="10 8" opacity=".45"/></g><g fill="currentColor"><circle cx="200" cy="24" r="4"/><circle cx="352" cy="288" r="3"/><circle cx="62" cy="310" r="2.5"/></g></svg><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg></div>
+      </div>
+    </header>
 
-      <nav class="toc" aria-label="Chapters">
-        <h2>In this piece</h2>
+    <div class="wrap chapters">
+      <nav class="toc reveal" aria-label="Chapters">
+        <div class="toc-head"><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg><h2>In this piece</h2></div>
         <ol>
           <li><a href="#releases"><span class="n">1</span>The releases</a></li>
           <li><a href="#shipped"><span class="n">2</span>What shipped</a></li>
@@ -45,13 +59,15 @@
           <li><a href="#rounds"><span class="n">6</span>Review rounds, by execution</a></li>
           <li><a href="#live"><span class="n">7</span>Live gates</a></li>
           <li><a href="#open"><span class="n">8</span>Still open</a></li>
-          <li><a href="#origin"><span class="n">9</span>How this release came about</a></li>
         </ol>
       </nav>
 
-      <div class="body">
-        <section class="chapter" id="releases" aria-labelledby="releases-h">
-          <h2 id="releases-h"><span class="kicker">Chapter <span class="num">1</span></span>The releases</h2>
+      <section class="chapter split" id="releases" aria-labelledby="releases-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">1</span></span><h2 id="releases-h">The releases</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="table">
             <table>
               <caption>Three repositories, one tag each</caption>
@@ -65,52 +81,162 @@
               </tbody>
             </table>
           </div>
-          <p>The Hearth release carries <code>Hearth-v0.1.0.zip</code>. Its SHA-256 is:</p>
-          <pre><code>ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
-          <p>Compare it with the hash of the file you downloaded before you open it.</p>
-          <p>CI is green on Ubuntu, macOS and Windows for all three repositories, with a scan of the full history for secrets.</p>
-        </section>
-
-        <section class="chapter" id="shipped" aria-labelledby="shipped-h">
-          <h2 id="shipped-h"><span class="kicker">Chapter <span class="num">2</span></span>What shipped</h2>
-          <ul>
-            <li>Eidolon as a router skill with three modes: setup, build and autopilot.</li>
-            <li>The native <a href="pipeline.html">persona pipeline</a>: agent files generated from the persona roster with tools, model and effort; a write lane per worker; the brief gate; the dispatch log; SubagentStart and SubagentStop hooks; a wave plan before any swarm; and a causal reasoning rail in every persona.</li>
-            <li>The <a href="autopilot.html">autopilot guide</a> for loops, goals and routines, opening with a brain dump and a chips interview.</li>
-            <li>The engineering principles reference.</li>
-            <li>A drift test that checks the hooks README against the code.</li>
-            <li>A hardened installer: preview by default, apply bound to the digest of the previewed plan, a vendor lock, staged writes with rollback, and backups with receipts.</li>
-            <li>Setup, which opens a session with the brain dump and asks only for what is missing.</li>
-            <li>Hearth with <a href="index.html#door-novice">two doors</a>: a novice door with no Node and no hooks, and an operator door that needs Node 22 and wires the project hooks.</li>
+          <p class="initial">The Hearth release carries <code>Hearth-v0.1.0.zip</code>. Its SHA-256 is:</p>
+          <pre><code class="hash">ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
+          <p>Before you open the file you downloaded, compare its hash with this one.</p>
+          <ul class="ci" aria-label="CI">
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Ubuntu</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>macOS</li>
+            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Windows</li>
           </ul>
+          <p class="ci-line">CI passes on Ubuntu, macOS and Windows for all three repositories. It also scans the full history for secrets.</p>
+          <section class="install reveal" aria-labelledby="install-h">
+          <div class="install-head">
+            <h3 id="install-h">Install from a terminal</h3>
+            <p class="label">Three doors, one command block each</p>
+          </div>
+          <div class="seg" role="radiogroup" aria-label="Choose a door">
+            <input class="seg-input" type="radio" name="door" id="seg-win" checked>
+            <input class="seg-input" type="radio" name="door" id="seg-mac">
+            <input class="seg-input" type="radio" name="door" id="seg-op">
+            <div class="seg-bar"><label for="seg-win">Windows</label><label for="seg-mac">macOS and Linux</label><label for="seg-op">Operator door</label></div>
+            <div class="seg-panels">
+              <div class="seg-panel panel-win">
+                <p class="cmd-title"><strong>Windows, novice door</strong> (PowerShell 5.1, nothing else needed)</p>
+                <div class="cmd">
+                  <pre><code>iwr -UseBasicParsing https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip -OutFile Hearth.zip
+if ((Get-FileHash Hearth.zip -Algorithm SHA256).Hash -ne 'AB147CF82141EB54CB17389D391E3D58A6C0F4A709B59D6F8AA5AD905B1F187D') { throw 'hash mismatch' }
+Expand-Archive Hearth.zip -DestinationPath . -Force
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.0\welcome.ps1</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
+                </div>
+                <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
+              </div>
+              <div class="seg-panel panel-mac">
+                <p class="cmd-title"><strong>macOS and Linux, novice door</strong> (bash)</p>
+                <div class="cmd">
+                  <pre><code>curl -L -o Hearth.zip https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip
+echo "ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d  Hearth.zip" | shasum -a 256 -c
+unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.0/macos/Welcome.command</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
+                </div>
+                <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
+              </div>
+              <div class="seg-panel panel-op">
+                <p class="cmd-title"><strong>Operator door, project hooks</strong> (Git and Node 22)</p>
+                <div class="cmd">
+                  <pre><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/Hearth.git
+node Hearth/scripts/welcome.mjs</code></pre>
+                  <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
+                </div>
+                <p class="cmd-cap">It clones the v0.1.0 tag of Hearth and runs the operator door. The door shows its plan and asks before it replaces anything.</p>
+              </div>
+            </div>
+          </div>
+          <p class="install-note">There is no npm package. Hearth ships as a zip and a repository, and the operator door is a Node script inside it.</p>
         </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="fixed" aria-labelledby="fixed-h">
-          <h2 id="fixed-h"><span class="kicker">Chapter <span class="num">3</span></span>What was fixed</h2>
-          <p>The PowerShell tool now reaches the shell guards. The release also fixes these shapes: combined short flags such as <code>-nm</code>, a hooks path set through <code>GIT_CONFIG_*</code>, <code>cd</code> followed by a relative path, redirect and copy overwrites of records, and path spellings that got past the record guards. The drift counter is now wired after each write, and the dispatch matcher is <code>Agent</code>.</p>
-        </section>
-
-        <section class="chapter" id="removed" aria-labelledby="removed-h">
-          <h2 id="removed-h"><span class="kicker">Chapter <span class="num">4</span></span>What was removed</h2>
-          <ul>
-            <li>From Eidolon: the Codex adapter and the text written for two hosts; the vendored ASI-Evolve engine and evolve mode; the security-attestation and review-receipt ceremonies; the September persona-pipeline command line tools; and the advisor, conduct, process-doctrine, security-surface and orient-gate hooks.</li>
-            <li>From Hearth: the three graphical installers (the Windows WPF window, the macOS app and the browser installer), Codex support, the optional tool cards, and <code>AGENTS.md</code>.</li>
+      <section class="chapter split" id="shipped" aria-labelledby="shipped-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="7" r="2.5"/><path d="M24 17c0-5 3.5-7.5 8-7.5s8 2.5 8 7.5"/><path d="M20 18h24l4 6H16z"/><path d="M18 26h28l-3 26H21z"/><path d="M23 30h18l-2 18H25z" opacity=".55"/><path d="M20 56h24"/></g><path class="v-flame" d="M32 33c3.5 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 1.5-5 5-9z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">2</span></span><h2 id="shipped-h">What shipped</h2></div>
+        </header>
+        <div class="chapter-body">
+          <ul class="initial-list">
+            <li>Eidolon as a router skill with three modes: setup, build and autopilot</li>
+            <li>The native <a href="pipeline.html">persona pipeline</a>, with these parts:
+              <ul>
+                <li>agent files generated from the persona roster, with tools, model and effort</li>
+                <li>a write lane per worker</li>
+                <li>the brief gate</li>
+                <li>the dispatch log</li>
+                <li>SubagentStart and SubagentStop hooks</li>
+                <li>a wave plan before any swarm</li>
+                <li>a causal reasoning rail in every persona</li>
+              </ul>
+            </li>
+            <li>The <a href="autopilot.html">autopilot guide</a> for loops, goals and routines, which opens with a brain dump and a chips interview</li>
+            <li>The engineering principles reference</li>
+            <li>A drift test that checks the hooks README against the code</li>
+            <li>A hardened installer: preview by default, apply bound to the digest of the previewed plan, a vendor lock, staged writes with rollback, and backups with receipts</li>
+            <li>Setup, which opens a session with the brain dump and asks only for what is missing</li>
+            <li>Hearth with <a href="index.html#door-novice">two doors</a>: a novice door with no Node and no hooks, and an operator door that needs Node 22 and wires the project hooks</li>
           </ul>
-          <p>For Hearth, Git history keeps what was removed.</p>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="gates" aria-labelledby="gates-h">
-          <h2 id="gates-h"><span class="kicker">Chapter <span class="num">5</span></span>The gates</h2>
-          <p>As recorded in the release notes for each tag:</p>
+      <section class="chapter split" id="fixed" aria-labelledby="fixed-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="32" r="10"/><circle cx="19" cy="32" r="4"/><path d="M29 32h27"/><path d="M48 32v8M54 32v6M40 32v5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">3</span></span><h2 id="fixed-h">What was fixed</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The PowerShell tool now reaches the shell guards. The release also fixes these shapes:</p>
           <ul>
-            <li>Eidolon: the hook and script suites, 285 pass and 0 fail. <code>selfcheck</code> prints 67 PASS lines and PASS. The harness audit, the hooks README check and the persona lint all pass.</li>
-            <li>Setup: 16 pass, 0 fail.</li>
-            <li>Hearth: 28 pass. The generator regression test passes. The bundled Eidolon suite has 281 pass and 4 skipped, because those 4 need the Eidolon repository's own settings file. The bundled Setup suite has 16 pass. The bundle check against the pinned commits passes.</li>
+            <li>combined short flags such as <code>-nm</code></li>
+            <li>a hooks path set through <code>GIT_CONFIG_*</code></li>
+            <li><code>cd</code> followed by a relative path</li>
+            <li>redirect and copy overwrites of records</li>
+            <li>path spellings that got past the record guards</li>
           </ul>
-        </section>
+          <p>The release wires the drift counter after each write. The dispatch matcher is <code>Agent</code>.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="rounds" aria-labelledby="rounds-h">
-          <h2 id="rounds-h"><span class="kicker">Chapter <span class="num">6</span></span>Review rounds, by execution</h2>
+      <section class="chapter split" id="removed" aria-labelledby="removed-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56h44"/><path d="M14 56V27a10 10 0 0 1 20 0v29"/><path d="M30 56V27a10 10 0 0 1 20 0v29" opacity=".6"/><circle cx="29" cy="40" r="1.4"/><circle cx="45" cy="40" r="1.4"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">4</span></span><h2 id="removed-h">What was removed</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The release removes these parts from Eidolon:</p>
+          <ul>
+            <li>the Codex adapter and the text written for two hosts</li>
+            <li>the vendored ASI-Evolve engine and evolve mode</li>
+            <li>the security-attestation and review-receipt ceremonies</li>
+            <li>the September persona-pipeline command line tools</li>
+            <li>the advisor, conduct, process-doctrine, security-surface and orient-gate hooks</li>
+          </ul>
+          <p>It removes these parts from Hearth:</p>
+          <ul>
+            <li>the three graphical installers: the Windows WPF window, the macOS app and the browser installer</li>
+            <li>Codex support</li>
+            <li>the optional tool cards</li>
+            <li><code>AGENTS.md</code></li>
+          </ul>
+          <p>For Hearth, Git history keeps what the release removed.</p>
+        </div>
+      </section>
+
+      <section class="chapter split" id="gates" aria-labelledby="gates-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 57V25"/><path d="M55 57V25"/><path d="M9 25c7-11 39-11 46 0"/><path d="M18 57V21M25.5 57V18.5M32 57V17.5M38.5 57V18.5M46 57V21"/><path d="M9 39h46"/><path d="M5 57h54"/></g><circle class="v-glow" cx="32" cy="9" r="3"/></svg>
+          <div><span class="kicker">Chapter <span class="num">5</span></span><h2 id="gates-h">The gates</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The release notes for each tag record these gates. The <a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth</a> release pages carry them.</p>
+          <dl class="facts">
+            <div><dt>Eidolon</dt><dd>The hook and script suites have 285 pass and 0 fail. <code>selfcheck</code> prints 67 PASS lines and PASS. The harness audit, the hooks README check and the persona lint all pass.</dd></div>
+            <div><dt>Setup</dt><dd>16 pass, 0 fail.</dd></div>
+            <div><dt>Hearth</dt><dd>28 pass. The generator regression test passes. The bundled Eidolon suite has 281 pass and 4 skipped. Those 4 need the settings file of the Eidolon repository itself. The bundled Setup suite has 16 pass. The bundle check against the pinned commits passes.</dd></div>
+          </dl>
+          <p>The CI runs are on the Actions tab of <a href="https://github.com/eidolonofficial/eidolon/actions">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/actions">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/actions">Hearth</a>. To run the eidolon suite and the self-check at the tag, use the same commands as CI:</p>
+          <pre class="soft"><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/eidolon.git
+cd eidolon
+node --test hooks/*.test.mjs scripts/*.test.mjs
+node scripts/selfcheck.mjs</code></pre>
+          <p>For Hearth, run <code>npm test</code> in a clone of the tag.</p>
+        </div>
+      </section>
+
+      <section class="chapter split" id="rounds" aria-labelledby="rounds-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="9"/><circle cx="24" cy="27" r="13" stroke-dasharray="3.4 3.4" stroke-width="3.5"/><circle cx="24" cy="27" r="2.5"/><circle cx="45" cy="44" r="6"/><circle cx="45" cy="44" r="9" stroke-dasharray="2.6 2.6" stroke-width="3"/><circle cx="45" cy="44" r="1.8"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">6</span></span><h2 id="rounds-h">Review rounds, by execution</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="table">
             <table>
               <caption>Six review rounds and the commits that fixed them</caption>
@@ -127,60 +253,79 @@
               </tbody>
             </table>
           </div>
-          <p>The high finding in the second installer round was that short 8.3 and network-share spellings of the home folder got past the refusal to install into it. Every round replayed the payloads of the round before and 60 ordinary developer commands. Two deliberate mutations were caught by existing tests in every round.</p>
-        </section>
+          <p class="initial">The decision record lists the results of each round. The high item in the second installer round was about the home folder. Short 8.3 and network-share spellings of the home folder got past the refusal to install into it. Every round replayed the payloads of the round before. It also replayed 60 ordinary developer commands. In every round, the tests that existed caught two deliberate mutations.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="live" aria-labelledby="live-h">
-          <h2 id="live-h"><span class="kicker">Chapter <span class="num">7</span></span>Live gates</h2>
-          <p>G2 to G4 ran in headless Claude Code 2.1.206, in a throwaway project after a real install, with hook debug logging on. G1 and G5 were settled later the same day in sandboxes.</p>
+      <section class="chapter split" id="live" aria-labelledby="live-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="26" rx="15" ry="19"/><ellipse cx="32" cy="26" rx="11" ry="15"/><path d="M32 45v9"/><path d="M23 56h18"/><path d="M28 9.5l2-3 2 3"/></g><path class="v-glint" d="M26 20l6-6M26.5 27l11-11" fill="none" stroke-width="1.25" stroke-linecap="round"/></svg>
+          <div><span class="kicker">Chapter <span class="num">7</span></span><h2 id="live-h">Live gates</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that settles it. G2 to G4 ran in headless Claude Code 2.1.206. They ran in a throwaway project after a real install, with hook debug logging on. Sandbox runs settled G1 and G5 later the same day.</p>
           <dl class="facts">
-            <div><dt>G1, the novice door</dt><dd>With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte and nothing else was written. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy, so it was archived and the platform notes now say to keep one copy per machine.</dd></div>
-            <div><dt>G2, the guards</dt><dd><code>git commit -n</code> was blocked. Deleting a hook through the PowerShell tool was blocked, which shows the shell guard reaches PowerShell. A dispatch with no <code>Done-check:</code> line was refused. <code>git push --force-with-lease</code> passed the hook; Claude Code's own permission layer then denied the push, which is separate from Eidolon.</dd></div>
-            <div><dt>G3, a dry run</dt><dd><code>/eidolon --dry-run</code> produced the recon and the ten-stage plan and wrote nothing. It passed on the second attempt.</dd></div>
-            <div><dt>G4, the pipeline</dt><dd>A wave plan was written, then a builder agent ran on haiku with the lane <code>src/**</code>. Its writes outside the lane were blocked, the dispatch log recorded it, and a worker that tried to dispatch was blocked. Setting the spawn depth to 1 did not remove a worker's Agent tool, so the dispatch guard is the control that stops recursion.</dd></div>
-            <div><dt>G5, the interview</dt><dd>The brain dump, the reflect-back and the goal text all worked, and the goal reached its end state. The interview guessed the permission choice instead of asking, and the guide now forbids that.</dd></div>
-            <div><dt>The macOS doors</dt><dd>Ran on GitHub's macOS runner and under WSL Ubuntu.</dd></div>
+            <div><dt>G1, the novice door</dt><dd>With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte. The install wrote nothing else. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy. That copy is now in an archive, and the platform notes now say to keep one copy per machine.</dd></div>
+            <div><dt>G2, the guards</dt><dd>The hooks blocked <code>git commit -n</code>. They blocked a delete of a hook through the PowerShell tool, so the shell guard reaches PowerShell. The gate refused a dispatch with no <code>Done-check:</code> line. <code>git push --force-with-lease</code> passed the hook. Then the permission layer of Claude Code denied the push. That layer is separate from Eidolon.</dd></div>
+            <div><dt>G3, a dry run</dt><dd><code>/eidolon --dry-run</code> produced the recon and the ten-stage plan, and it wrote nothing. It passed on the second try.</dd></div>
+            <div><dt>G4, the pipeline</dt><dd>The conductor wrote a wave plan. Then a builder agent ran on haiku with the lane <code>src/**</code>. The hooks blocked its writes outside the lane, and the dispatch log recorded it. The guard blocked a worker that tried to dispatch. A spawn depth of 1 did not remove the Agent tool from a worker. So the dispatch guard is the control that stops recursion.</dd></div>
+            <div><dt>G5, the interview</dt><dd>The brain dump, the reflect-back and the goal text all worked. The goal reached its end state. The interview guessed the permission choice and did not ask. The guide now forbids that.</dd></div>
+            <div><dt>The macOS doors</dt><dd>They ran on GitHub's macOS runner and under WSL Ubuntu.</dd></div>
           </dl>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="open" aria-labelledby="open-h">
-          <h2 id="open-h"><span class="kicker">Chapter <span class="num">8</span></span>Still open</h2>
-          <ul>
+      <section class="chapter split" id="open" aria-labelledby="open-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="19"/><circle cx="32" cy="34" r="23" stroke-dasharray="1.5 4.5"/><path d="M32 22v12l8 5"/><circle cx="32" cy="34" r="1.6"/><path d="M32 11V6"/><path d="M27 6h10"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">8</span></span><h2 id="open-h">Still open</h2></div>
+        </header>
+        <div class="chapter-body">
+          <ul class="open-list">
             <li>Claude Code's built-in <code>/goal</code> evaluator in an interactive session. Headless mode does not expand slash commands, so this needs a person.</li>
             <li>A run of the doors on a user's own Mac.</li>
-            <li>Whether Claude Code itself refuses a worker's spawn at depth 1. The dispatch guard blocks the call first, so this has not been seen.</li>
-            <li>Whether the installer's Node 22 check runs before any syntax an older Node would reject. Running it under Node 20 would settle this.</li>
+            <li>Whether Claude Code itself refuses the spawn of a worker at depth 1. The dispatch guard blocks the call first, so no test shows this yet.</li>
+            <li>Whether the installer's Node 22 check runs before any syntax that an older Node rejects. A run under Node 20 settles this.</li>
           </ul>
-          <p>The hooks remain defense in depth. Their <a href="safety.html#gaps">known gaps</a> are the honest limit of what they cover.</p>
-        </section>
-
-        <section class="chapter" id="origin" aria-labelledby="origin-h">
-          <h2 id="origin-h"><span class="kicker">Chapter <span class="num">9</span></span>How this release came about</h2>
-          <p>An audit on 13 October 2026 found four lines of this harness that had drifted apart. GitHub main, dated 10 September, was the only one with CI, pins and public history. The other three held months of work that had been verified green in a working tree but never committed or pushed:</p>
-          <ul>
-            <li>a triage refactor from 9 July and a skill cleanup from 5 September, in a local clone;</li>
-            <li>a re-mirror of Hearth from 9 July;</li>
-            <li>a "safety program" in Codex worktrees from 13 September, verified through builds 1 to 4 and 7, and stopped at build 5 of 14.</li>
-          </ul>
-          <p>Two separate measures agreed that the hooks were lexical and could be bypassed, while the docs called them hard enforcement.</p>
-          <p>The owner's decisions that day made GitHub main canonical, with one reviewed re-cut on top of it. The three uncommitted lines are kept as archive branches and never merged.</p>
-          <figure class="pullquote">
-            <blockquote><p>Claude Code is the product.</p></blockquote>
-            <figcaption>From <cite>docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md</cite>, the eidolon repository</figcaption>
-          </figure>
-          <p>The intent behind the old persona tools was rebuilt on Claude Code's own agents, hooks and settings. The docs now call the hooks defense in depth, and a drift test holds every documented block and ask to the code. The graphical installers had measured contrast ratios of 4.02, 3.42 and 2.89 to 1 against a 4.5 target; those numbers are kept in the record, and the installers are gone.</p>
-          <p>The full account is the decision record, <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">2026-10-13-archive-branches-and-v010-re-cut.md</a>.</p>
-        </section>
-      </div>
-    </article>
+          <p class="honest">The hooks remain defense in depth. Their <a href="safety.html#gaps">known gaps</a> are the honest limit of what they cover.</p>
+        </div>
+      </section>
+    </div>
   </main>
   <footer class="colophon">
     <div class="colophon-inner">
-      <h2>Colophon</h2>
-      <p>Every claim on these pages traces to a document in the three repositories.</p>
-      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
-      <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg>
+      <div>
+        <h2>Colophon</h2>
+        <p>Every claim on these pages traces to a document in the three repositories.</p>
+        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+      </div>
     </div>
   </footer>
+  <script>
+    document.documentElement.classList.add('can-copy');
+    document.addEventListener('click', function (event) {
+      var button = event.target.closest('button.copy');
+      if (!button) return;
+      var pre = button.parentNode.querySelector('pre');
+      var label = button.dataset.label || (button.dataset.label = button.innerHTML);
+      function done() {
+        button.textContent = 'Copied';
+        setTimeout(function () { button.innerHTML = label; }, 1500);
+      }
+      function fallback() {
+        var range = document.createRange();
+        range.selectNodeContents(pre);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        if (document.execCommand('copy')) done();
+        selection.removeAllRanges();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(pre.textContent).then(done, fallback);
+      else fallback();
+    });
+  </script>
 </body>
 </html>

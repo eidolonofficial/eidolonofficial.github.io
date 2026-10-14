@@ -5,37 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Eidolon pipeline</title>
   <meta name="description" content="The persona pipeline: agent files, model tiers, wave plans, briefs, the dispatch log, review swarms and the engineering principles.">
+  <meta name="color-scheme" content="light dark">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&amp;family=Instrument+Sans:ital,wght@0,400..700;1,400..700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
   <header class="masthead">
-    <p class="dateline">Volume 0.1, October 2026</p>
-    <p class="brand"><span class="lamp"><img src="lantern.svg" alt="Eidolon lantern mark" width="34" height="42"></span><a href="index.html">Eidolon</a></p>
-    <nav class="site-nav" aria-label="Site">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="safety.html">Safety</a></li>
-        <li><a href="pipeline.html" aria-current="page">Pipeline</a></li>
-        <li><a href="autopilot.html">Autopilot</a></li>
-        <li><a href="release.html">Release</a></li>
-      </ul>
-    </nav>
+    <div class="mast-inner">
+      <p class="brand"><a href="index.html"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg><span>Eidolon</span></a></p>
+      <p class="dateline">Volume 0.1, October 2026</p>
+      <nav class="site-nav" aria-label="Site">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="pipeline.html" aria-current="page">Pipeline</a></li>
+          <li><a href="autopilot.html">Autopilot</a></li>
+          <li><a href="release.html">Release</a></li>
+          <li><a href="about.html">Makers</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main id="main" tabindex="-1">
-    <article class="feature">
-      <header class="opener">
-        <p class="kicker-page">On the build</p>
-        <h1>The persona pipeline</h1>
-        <p class="dek">How one session conducts a company of named agents, from a spec you approve to a single commit.</p>
-        <p class="lead">In build mode, your main Claude Code session conducts. It plans, hands each piece of work to a named agent, checks the result against the files on disk, and makes the one commit at the end. All of it runs on Claude Code's own agents, hooks and settings.</p>
-      </header>
+    <header class="page-hero">
+      <div class="aurora" aria-hidden="true"><span></span></div>
+      <svg class="strip" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+      <g class="trees trees-back" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M0 240V165M0 184L-32 152V121M0 221L-23 197V136M0 205L31 173V114M28 240V113M28 143L42 129V71M28 165L47 146V90M28 182L44 166V118M57 240V139M57 167L36 145V106M57 174L92 139V95M82 240V122M82 169L99 152V117M82 155L97 140V121M111 240V64M111 144L71 104V57M111 141L143 110V57M134 240V85M134 179L115 159V98M134 147L94 107V54M134 152L117 134V115M161 240V169M161 218L190 189V161M161 222L137 198V143M161 221L125 184V134M189 240V165M189 185L209 165V133M189 204L228 165V127M222 240V154M222 209L203 190V166M222 213L248 187V149M222 187L261 147V104M258 240V188M258 208L221 171V139M258 224L231 197V178M284 240V164M284 198L317 165V113M284 180L263 160V135M284 217L303 198V150M310 240V121M310 154L281 124V63M310 202L286 178V115M310 198L330 178V157M349 240V157M349 204L333 188V154M349 182L327 160V111M375 240V127M375 193L404 164V127M375 178L341 144V113M408 240V191M408 221L447 182V146M408 211L371 173V151M443 240V161M443 205L415 177V135M479 240V131M479 164L449 134V88M479 196L511 164V108M503 240V181M503 216L486 199V159M533 240V135M533 187L569 151V90M533 174L566 141V116M561 240V119M561 178L535 152V130M594 240V74M594 165L577 148V91M624 240V184M624 214L608 197V143M624 199L597 171V136M649 240V180M649 218L688 179V116M649 216L618 185V128M649 223L689 184V159M678 240V105M678 156L695 139V107M678 172L662 156V123M678 137L713 102V84M713 240V181M713 194L680 161V129M737 240V107M737 169L712 143V95M763 240V178M763 218L788 194V130M794 240V182M794 207L827 174V128M831 240V96M831 138L854 115V63M831 165L861 135V115M866 240V103M866 154L833 121V74M893 240V70M893 119L911 100V81M893 113L871 90V48M893 146L860 113V92M929 240V93M929 159L910 140V86M929 164L904 139V98M954 240V148M954 208L939 193V144M981 240V163M981 204L1018 168V148M1009 240V152M1009 176L1043 141V100M1009 216L1027 199V169M1009 183L1046 146V112M1039 240V103M1039 139L1023 123V79M1071 240V132M1071 208L1091 188V139M1071 200L1050 179V127M1071 178L1036 144V109M1099 240V175M1099 222L1127 195V166M1099 222L1134 187V133M1099 217L1118 198V152M1123 240V134M1123 199L1092 169V105M1123 178L1108 162V122M1145 240V70M1145 167L1161 151V109M1145 118L1166 97V73M1171 240V79M1171 153L1207 117V90M1192 240V176M1192 193L1156 158V135M1192 194L1164 166V134M1192 211L1218 185V125M1224 240V104M1224 147L1257 114V85M1224 162L1249 137V90M1224 176L1186 138V103M1253 240V190M1253 215L1218 180V153M1253 216L1233 196V159M1253 201L1227 175V127M1286 240V141M1286 161L1311 137V114M1323 240V70M1323 166L1358 131V95M1323 142L1346 119V73M1346 240V167M1346 196L1370 172V151M1346 213L1360 199V140M1385 240V91M1385 193L1357 166V127M1385 148L1417 117V79M1414 240V79M1414 130L1393 109V88M1414 184L1432 166V112"/><circle cx="0" cy="165" r="3.2"/><circle cx="-32" cy="121" r="3.2"/><circle cx="-23" cy="136" r="3.2"/><circle cx="31" cy="114" r="3.2"/><circle cx="28" cy="113" r="3.2"/><circle cx="42" cy="71" r="3.2"/><circle cx="47" cy="90" r="3.2"/><circle cx="44" cy="118" r="3.2"/><circle cx="57" cy="139" r="3.2"/><circle cx="36" cy="106" r="3.2"/><circle cx="92" cy="95" r="3.2"/><circle cx="82" cy="122" r="3.2"/><circle cx="99" cy="117" r="3.2"/><circle cx="97" cy="121" r="3.2"/><circle cx="111" cy="64" r="3.2"/><circle cx="71" cy="57" r="3.2"/><circle cx="143" cy="57" r="3.2"/><circle cx="134" cy="85" r="3.2"/><circle cx="115" cy="98" r="3.2"/><circle cx="94" cy="54" r="3.2"/><circle cx="117" cy="115" r="3.2"/><circle cx="161" cy="169" r="3.2"/><circle cx="190" cy="161" r="3.2"/><circle cx="137" cy="143" r="3.2"/><circle cx="125" cy="134" r="3.2"/><circle cx="189" cy="165" r="3.2"/><circle cx="209" cy="133" r="3.2"/><circle cx="228" cy="127" r="3.2"/><circle cx="222" cy="154" r="3.2"/><circle cx="203" cy="166" r="3.2"/><circle cx="248" cy="149" r="3.2"/><circle cx="261" cy="104" r="3.2"/><circle cx="258" cy="188" r="3.2"/><circle cx="221" cy="139" r="3.2"/><circle cx="231" cy="178" r="3.2"/><circle cx="284" cy="164" r="3.2"/><circle cx="317" cy="113" r="3.2"/><circle cx="263" cy="135" r="3.2"/><circle cx="303" cy="150" r="3.2"/><circle cx="310" cy="121" r="3.2"/><circle cx="281" cy="63" r="3.2"/><circle cx="286" cy="115" r="3.2"/><circle cx="330" cy="157" r="3.2"/><circle cx="349" cy="157" r="3.2"/><circle cx="333" cy="154" r="3.2"/><circle cx="327" cy="111" r="3.2"/><circle cx="375" cy="127" r="3.2"/><circle cx="404" cy="127" r="3.2"/><circle cx="341" cy="113" r="3.2"/><circle cx="408" cy="191" r="3.2"/><circle cx="447" cy="146" r="3.2"/><circle cx="371" cy="151" r="3.2"/><circle cx="443" cy="161" r="3.2"/><circle cx="415" cy="135" r="3.2"/><circle cx="479" cy="131" r="3.2"/><circle cx="449" cy="88" r="3.2"/><circle cx="511" cy="108" r="3.2"/><circle cx="503" cy="181" r="3.2"/><circle cx="486" cy="159" r="3.2"/><circle cx="533" cy="135" r="3.2"/><circle cx="569" cy="90" r="3.2"/><circle cx="566" cy="116" r="3.2"/><circle cx="561" cy="119" r="3.2"/><circle cx="535" cy="130" r="3.2"/><circle cx="594" cy="74" r="3.2"/><circle cx="577" cy="91" r="3.2"/><circle cx="624" cy="184" r="3.2"/><circle cx="608" cy="143" r="3.2"/><circle cx="597" cy="136" r="3.2"/><circle cx="649" cy="180" r="3.2"/><circle cx="688" cy="116" r="3.2"/><circle cx="618" cy="128" r="3.2"/><circle cx="689" cy="159" r="3.2"/><circle cx="678" cy="105" r="3.2"/><circle cx="695" cy="107" r="3.2"/><circle cx="662" cy="123" r="3.2"/><circle cx="713" cy="84" r="3.2"/><circle cx="713" cy="181" r="3.2"/><circle cx="680" cy="129" r="3.2"/><circle cx="737" cy="107" r="3.2"/><circle cx="712" cy="95" r="3.2"/><circle cx="763" cy="178" r="3.2"/><circle cx="788" cy="130" r="3.2"/><circle cx="794" cy="182" r="3.2"/><circle cx="827" cy="128" r="3.2"/><circle cx="831" cy="96" r="3.2"/><circle cx="854" cy="63" r="3.2"/><circle cx="861" cy="115" r="3.2"/><circle cx="866" cy="103" r="3.2"/><circle cx="833" cy="74" r="3.2"/><circle cx="893" cy="70" r="3.2"/><circle cx="911" cy="81" r="3.2"/><circle cx="871" cy="48" r="3.2"/><circle cx="860" cy="92" r="3.2"/><circle cx="929" cy="93" r="3.2"/><circle cx="910" cy="86" r="3.2"/><circle cx="904" cy="98" r="3.2"/><circle cx="954" cy="148" r="3.2"/><circle cx="939" cy="144" r="3.2"/><circle cx="981" cy="163" r="3.2"/><circle cx="1018" cy="148" r="3.2"/><circle cx="1009" cy="152" r="3.2"/><circle cx="1043" cy="100" r="3.2"/><circle cx="1027" cy="169" r="3.2"/><circle cx="1046" cy="112" r="3.2"/><circle cx="1039" cy="103" r="3.2"/><circle cx="1023" cy="79" r="3.2"/><circle cx="1071" cy="132" r="3.2"/><circle cx="1091" cy="139" r="3.2"/><circle cx="1050" cy="127" r="3.2"/><circle cx="1036" cy="109" r="3.2"/><circle cx="1099" cy="175" r="3.2"/><circle cx="1127" cy="166" r="3.2"/><circle cx="1134" cy="133" r="3.2"/><circle cx="1118" cy="152" r="3.2"/><circle cx="1123" cy="134" r="3.2"/><circle cx="1092" cy="105" r="3.2"/><circle cx="1108" cy="122" r="3.2"/><circle cx="1145" cy="70" r="3.2"/><circle cx="1161" cy="109" r="3.2"/><circle cx="1166" cy="73" r="3.2"/><circle cx="1171" cy="79" r="3.2"/><circle cx="1207" cy="90" r="3.2"/><circle cx="1192" cy="176" r="3.2"/><circle cx="1156" cy="135" r="3.2"/><circle cx="1164" cy="134" r="3.2"/><circle cx="1218" cy="125" r="3.2"/><circle cx="1224" cy="104" r="3.2"/><circle cx="1257" cy="85" r="3.2"/><circle cx="1249" cy="90" r="3.2"/><circle cx="1186" cy="103" r="3.2"/><circle cx="1253" cy="190" r="3.2"/><circle cx="1218" cy="153" r="3.2"/><circle cx="1233" cy="159" r="3.2"/><circle cx="1227" cy="127" r="3.2"/><circle cx="1286" cy="141" r="3.2"/><circle cx="1311" cy="114" r="3.2"/><circle cx="1323" cy="70" r="3.2"/><circle cx="1358" cy="95" r="3.2"/><circle cx="1346" cy="73" r="3.2"/><circle cx="1346" cy="167" r="3.2"/><circle cx="1370" cy="151" r="3.2"/><circle cx="1360" cy="140" r="3.2"/><circle cx="1385" cy="91" r="3.2"/><circle cx="1357" cy="127" r="3.2"/><circle cx="1417" cy="79" r="3.2"/><circle cx="1414" cy="79" r="3.2"/><circle cx="1393" cy="88" r="3.2"/><circle cx="1432" cy="112" r="3.2"/></g>
+      <g class="trees trees-front" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 240V195M20 221L5 206V187M20 224L58 187V158M97 240V196M97 213L136 174V121M97 229L72 203V171M164 240V197M164 219L192 191V132M164 212L188 189V164M242 240V193M242 226L202 187V155M304 240V128M304 191L268 155V131M368 240V164M368 187L400 155V127M368 204L396 176V121M368 202L350 184V123M440 240V207M440 225L473 192V158M440 217L475 182V138M511 240V130M511 154L481 124V94M511 212L528 195V167M575 240V124M575 200L559 184V134M575 165L608 132V104M575 192L602 165V141M647 240V192M647 213L611 177V129M647 208L667 187V156M647 214L665 195V156M717 240V189M717 203L751 170V127M717 221L690 195V176M717 211L691 185V159M775 240V148M775 173L797 151V129M775 186L810 151V122M827 240V133M827 206L858 176V146M827 176L857 146V86M827 165L791 129V77M906 240V142M906 176L945 137V79M906 174L923 156V102M906 168L878 140V100M978 240V158M978 213L1013 178V128M978 189L998 169V139M978 205L940 168V129M1039 240V209M1039 217L1055 201V144M1039 226L1009 195V171M1039 216L1023 200V164M1109 240V196M1109 206L1093 191V172M1109 205L1072 168V134M1109 205L1135 179V122M1183 240V164M1183 183L1151 150V104M1183 215L1211 187V152M1252 240V217M1252 224L1285 191V146M1330 240V140M1330 211L1297 179V144M1330 199L1358 171V132M1417 240V125M1417 177L1379 139V108M1417 197L1439 175V151M1417 189L1387 160V130"/><circle cx="20" cy="195" r="3.2"/><circle cx="5" cy="187" r="3.2"/><circle cx="58" cy="158" r="3.2"/><circle cx="97" cy="196" r="3.2"/><circle cx="136" cy="121" r="3.2"/><circle cx="72" cy="171" r="3.2"/><circle cx="164" cy="197" r="3.2"/><circle cx="192" cy="132" r="3.2"/><circle cx="188" cy="164" r="3.2"/><circle cx="242" cy="193" r="3.2"/><circle cx="202" cy="155" r="3.2"/><circle cx="304" cy="128" r="3.2"/><circle cx="268" cy="131" r="3.2"/><circle cx="368" cy="164" r="3.2"/><circle cx="400" cy="127" r="3.2"/><circle cx="396" cy="121" r="3.2"/><circle cx="350" cy="123" r="3.2"/><circle cx="440" cy="207" r="3.2"/><circle cx="473" cy="158" r="3.2"/><circle cx="475" cy="138" r="3.2"/><circle cx="511" cy="130" r="3.2"/><circle cx="481" cy="94" r="3.2"/><circle cx="528" cy="167" r="3.2"/><circle cx="575" cy="124" r="3.2"/><circle cx="559" cy="134" r="3.2"/><circle cx="608" cy="104" r="3.2"/><circle cx="602" cy="141" r="3.2"/><circle cx="647" cy="192" r="3.2"/><circle cx="611" cy="129" r="3.2"/><circle cx="667" cy="156" r="3.2"/><circle cx="665" cy="156" r="3.2"/><circle cx="717" cy="189" r="3.2"/><circle cx="751" cy="127" r="3.2"/><circle cx="690" cy="176" r="3.2"/><circle cx="691" cy="159" r="3.2"/><circle cx="775" cy="148" r="3.2"/><circle cx="797" cy="129" r="3.2"/><circle cx="810" cy="122" r="3.2"/><circle cx="827" cy="133" r="3.2"/><circle cx="858" cy="146" r="3.2"/><circle cx="857" cy="86" r="3.2"/><circle cx="791" cy="77" r="3.2"/><circle cx="906" cy="142" r="3.2"/><circle cx="945" cy="79" r="3.2"/><circle cx="923" cy="102" r="3.2"/><circle cx="878" cy="100" r="3.2"/><circle cx="978" cy="158" r="3.2"/><circle cx="1013" cy="128" r="3.2"/><circle cx="998" cy="139" r="3.2"/><circle cx="940" cy="129" r="3.2"/><circle cx="1039" cy="209" r="3.2"/><circle cx="1055" cy="144" r="3.2"/><circle cx="1009" cy="171" r="3.2"/><circle cx="1023" cy="164" r="3.2"/><circle cx="1109" cy="196" r="3.2"/><circle cx="1093" cy="172" r="3.2"/><circle cx="1072" cy="134" r="3.2"/><circle cx="1135" cy="122" r="3.2"/><circle cx="1183" cy="164" r="3.2"/><circle cx="1151" cy="104" r="3.2"/><circle cx="1211" cy="152" r="3.2"/><circle cx="1252" cy="217" r="3.2"/><circle cx="1285" cy="146" r="3.2"/><circle cx="1330" cy="140" r="3.2"/><circle cx="1297" cy="144" r="3.2"/><circle cx="1358" cy="132" r="3.2"/><circle cx="1417" cy="125" r="3.2"/><circle cx="1379" cy="108" r="3.2"/><circle cx="1439" cy="151" r="3.2"/><circle cx="1387" cy="130" r="3.2"/></g>
+    </svg>
+      <div class="wrap page-hero-grid">
+        <div>
+          <p class="kicker">On the build, or the workshop under the hill</p>
+          <h1>The persona pipeline</h1>
+          <p class="dek">How one session conducts a company of named agents, from a spec you approve to a single commit.</p>
+          <p class="lead">In build mode, your main Claude Code session conducts. It plans and hands each piece of work to a named agent. It checks each result against the files on disk, and it makes the one commit at the end. All of it runs on Claude Code's own agents, hooks and settings.</p>
+        </div>
+        <div class="emblem"><svg class="orrery" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="194" stroke-width="1" stroke-dasharray="1 9"/><circle cx="200" cy="200" r="176" stroke-width=".75" opacity=".7"/><circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="10 8" opacity=".45"/></g><g fill="currentColor"><circle cx="200" cy="24" r="4"/><circle cx="352" cy="288" r="3"/><circle cx="62" cy="310" r="2.5"/></g></svg><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="27" r="9"/><circle cx="24" cy="27" r="13" stroke-dasharray="3.4 3.4" stroke-width="3.5"/><circle cx="24" cy="27" r="2.5"/><circle cx="45" cy="44" r="6"/><circle cx="45" cy="44" r="9" stroke-dasharray="2.6 2.6" stroke-width="3"/><circle cx="45" cy="44" r="1.8"/></g></svg></div>
+      </div>
+    </header>
 
-      <nav class="toc" aria-label="Chapters">
-        <h2>In this piece</h2>
+    <div class="wrap chapters">
+      <nav class="toc reveal" aria-label="Chapters">
+        <div class="toc-head"><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg><h2>In this piece</h2></div>
         <ol>
           <li><a href="#stages"><span class="n">1</span>The stages of a build</a></li>
           <li><a href="#agents"><span class="n">2</span>Agent files</a></li>
@@ -49,27 +63,60 @@
         </ol>
       </nav>
 
-      <div class="body">
-        <section class="chapter" id="stages" aria-labelledby="stages-h">
-          <h2 id="stages-h"><span class="kicker">Chapter <span class="num">1</span></span>The stages of a build</h2>
-          <p>A build runs specify, plan, build, review, synthesize, verify, ship (only when the change deploys) and close. You approve the spec before work starts, the plan on standard or larger work, and the visual or runtime result at the end.</p>
-          <p>The verifier is a fresh agent that sees only the diff, the spec and the rubric. A third failed verify means the plan was wrong, so the plan is redone instead of fixed again. Only the close stage commits.</p>
-        </section>
+      <section class="chapter split" id="stages" aria-labelledby="stages-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15l15-6 20 6 15-6v40l-15 6-20-6-15 6z"/><path d="M22 9v40M42 15v40"/></g><path class="v-path" d="M12 42c6-2 7-11 15-11s10 7 18-4" fill="none" stroke-width="1.5" stroke-dasharray="2.5 3" stroke-linecap="round"/><circle class="v-glow" cx="46" cy="26" r="2.5"/></svg>
+          <div><span class="kicker">Chapter <span class="num">1</span></span><h2 id="stages-h">The stages of a build</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">A build runs these stages in order:</p>
+          <ol class="stages">
+            <li>specify</li>
+            <li>plan</li>
+            <li>build</li>
+            <li>review</li>
+            <li>synthesize</li>
+            <li>verify</li>
+            <li>ship (only when the change deploys)</li>
+            <li>close</li>
+          </ol>
+          <p>You approve the spec before work starts. You approve the plan on standard or larger work. At the end, you approve the visual or runtime result.</p>
+          <p>The verifier is a fresh agent. It sees only the diff, the spec and the rubric. A third failed verify means that the plan was wrong. Then the conductor makes a new plan and does not fix the old one again. Only the close stage commits.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="agents" aria-labelledby="agents-h">
-          <h2 id="agents-h"><span class="kicker">Chapter <span class="num">2</span></span>Agent files</h2>
+      <section class="chapter split" id="agents" aria-labelledby="agents-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="32" cy="26" rx="15" ry="19"/><ellipse cx="32" cy="26" rx="11" ry="15"/><path d="M32 45v9"/><path d="M23 56h18"/><path d="M28 9.5l2-3 2 3"/></g><path class="v-glint" d="M26 20l6-6M26.5 27l11-11" fill="none" stroke-width="1.25" stroke-linecap="round"/></svg>
+          <div><span class="kicker">Chapter <span class="num">2</span></span><h2 id="agents-h">Agent files</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="with-note">
-            <p>Setup writes one file per persona into <code>.claude/agents/</code>, saying when to use that agent and giving it the fewest tools that do the job. Reviewers get Read, Grep, Glob and Bash; builders add Edit and Write. No agent gets the Agent tool, and the dispatch gate blocks a worker that tries to dispatch anyway.</p>
+            <div>
+              <p class="initial">Setup writes one file per persona into <code>.claude/agents/</code>. Each file says when to use that agent. It gives the agent the fewest tools that do the job. Reviewers get Read, Grep, Glob and Bash. Builders also get Edit and Write. No agent gets the Agent tool. The dispatch gate blocks a worker that tries to dispatch anyway.</p>
+            </div>
             <aside class="note" aria-label="Still open: spawn depth">
               <span class="label">Still open</span>
-              <p>In the live test, setting the spawn depth to 1 did not remove a worker's Agent tool, so the dispatch guard is the control that stops recursion. Whether Claude Code itself refuses a spawn at depth 1 has not been seen, because the guard blocks the call first.</p>
+              <p>In the live test, a spawn depth of 1 did not remove the Agent tool from a worker. So the dispatch guard is the control that stops recursion. No test shows yet whether Claude Code itself refuses a spawn at depth 1. The guard blocks the call first.</p>
             </aside>
           </div>
-          <p>Each file sets a model, an effort level and a turn limit. It carries the persona's mandate, its anchors (the named standards it works to), what it must never do, and the reasoning and brief sections below. Each must pass a lint script.</p>
-        </section>
+          <p>Each file sets a model, an effort level and a turn limit. Each file also carries these parts:</p>
+          <ul>
+            <li>the mandate of the persona</li>
+            <li>its anchors, the named standards it works to</li>
+            <li>what it must never do</li>
+            <li>the reasoning and brief sections below</li>
+          </ul>
+          <p>Each file must pass a lint script.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="tiers" aria-labelledby="tiers-h">
-          <h2 id="tiers-h"><span class="kicker">Chapter <span class="num">3</span></span>A model tier for every dispatch</h2>
+      <section class="chapter split" id="tiers" aria-labelledby="tiers-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="19" cy="32" r="10"/><circle cx="19" cy="32" r="4"/><path d="M29 32h27"/><path d="M48 32v8M54 32v6M40 32v5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">3</span></span><h2 id="tiers-h">A model tier for every dispatch</h2></div>
+        </header>
+        <div class="chapter-body">
           <div class="table stack">
             <table role="table">
               <caption>The four tiers, with model and effort</caption>
@@ -84,31 +131,76 @@
               </tbody>
             </table>
           </div>
-          <p>The session never dispatches a worker at its own tier. A brief may lower a worker's tier but never raise it above its agent file, and a failed leg moves one tier up before the plan is redone. Risk picks the tier, not the number of files. A dispatch that names no tier gets a question from the dispatch gate.</p>
+          <p>The session never dispatches a worker at its own tier. A brief can lower the tier of a worker. It never raises the tier above the agent file. A failed leg moves one tier up before the conductor makes a new plan. Risk picks the tier, not the number of files. A dispatch that names no tier gets a question from the dispatch gate.</p>
           <figure class="pullquote">
             <blockquote><p>the session is the most expensive seat, so it conducts and judges while cheaper tiers do the volume</p></blockquote>
             <figcaption>From <cite>references/conductor-standard.md</cite>, the eidolon repository</figcaption>
           </figure>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="waves" aria-labelledby="waves-h">
-          <h2 id="waves-h"><span class="kicker">Chapter <span class="num">4</span></span>A wave plan before a swarm</h2>
-          <p>Before the first agent that can write goes out, the conductor writes <code>.claude/waves/&lt;date&gt;-&lt;slug&gt;.md</code>. The plan names the result the wave is for, records a read-only inventory of what is really there, and lists the work items, each with its own write folder, its dependencies, its model and effort, and a done-check. It states the budget as arithmetic and names where you will be asked to decide. With no plan newer than the session start, the dispatch gate asks.</p>
-        </section>
+      <section class="chapter split" id="waves" aria-labelledby="waves-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="34" r="19"/><circle cx="32" cy="34" r="23" stroke-dasharray="1.5 4.5"/><path d="M32 22v12l8 5"/><circle cx="32" cy="34" r="1.6"/><path d="M32 11V6"/><path d="M27 6h10"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">4</span></span><h2 id="waves-h">A wave plan before a swarm</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Before the first agent that can write goes out, the conductor writes <code>.claude/waves/&lt;date&gt;-&lt;slug&gt;.md</code>. The plan names the result that the wave is for. It records a read-only inventory of what is really there. Then it lists the work items. Each item has these parts:</p>
+          <ul>
+            <li>its own write folder</li>
+            <li>its dependencies</li>
+            <li>its model and effort</li>
+            <li>a done-check</li>
+          </ul>
+          <p>The plan states the budget as arithmetic. It names the points where you decide. With no plan newer than the session start, the dispatch gate asks.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="brief" aria-labelledby="brief-h">
-          <h2 id="brief-h"><span class="kicker">Chapter <span class="num">5</span></span>The brief</h2>
-          <p>Every agent starts from a brief with the same parts: the goal in one sentence, the seated persona, the files it may touch, what it must not touch, the done-check, its budget, its model and effort, and a short prior of three to five hits from memory and the fix log. A brief for an agent that can write must carry the check on a line of its own:</p>
+      <section class="chapter split" id="brief" aria-labelledby="brief-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">5</span></span><h2 id="brief-h">The brief</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Every agent starts from a brief. Each brief has the same parts:</p>
+          <ul>
+            <li>the goal in one sentence</li>
+            <li>the seated persona</li>
+            <li>the files it may touch, and what it must not touch</li>
+            <li>the done-check</li>
+            <li>its budget, and its model and effort</li>
+            <li>a short prior of three to five hits from memory and the fix log</li>
+          </ul>
+          <p>A brief for an agent that can write must carry the check on a line of its own:</p>
           <pre><code>Done-check: npm test exits 0</code></pre>
-          <p>The line has to stand alone. In the live test on 2026-10-13, the first dispatch was refused because its done-check sat inside a sentence.</p>
-          <p>The agent returns one to two thousand tokens: the result first, then the evidence, the paths it changed, what it did not do and why, and the cause, falsifier and evidence for its main claim.</p>
-        </section>
+          <p>The line has to stand alone. In the live test on 2026-10-13, the gate refused the first dispatch. Its done-check sat inside a sentence.</p>
+          <p>The agent returns one to two thousand tokens, in this order:</p>
+          <ol>
+            <li>the result</li>
+            <li>the evidence</li>
+            <li>the paths it changed</li>
+            <li>what it did not do, and why</li>
+            <li>the cause, falsifier and evidence for its main claim</li>
+          </ol>
+        </div>
+      </section>
 
-        <section class="chapter" id="log" aria-labelledby="log-h">
-          <h2 id="log-h"><span class="kicker">Chapter <span class="num">6</span></span>The dispatch log and the worker hooks</h2>
-          <p>Every dispatch that is not blocked is appended to <code>.claude/.dispatch-log.jsonl</code> with the time, session, agent type, tier, effort, persona, write folders and a SHA-256 hash of the prompt. A log failure never stops the dispatch.</p>
+      <section class="chapter split" id="log" aria-labelledby="log-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="7" r="2.5"/><path d="M24 17c0-5 3.5-7.5 8-7.5s8 2.5 8 7.5"/><path d="M20 18h24l4 6H16z"/><path d="M18 26h28l-3 26H21z"/><path d="M23 30h18l-2 18H25z" opacity=".55"/><path d="M20 56h24"/></g><path class="v-flame" d="M32 33c3.5 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 1.5-5 5-9z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">6</span></span><h2 id="log-h">The dispatch log and the worker hooks</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">The dispatch gate appends every dispatch that it does not block to <code>.claude/.dispatch-log.jsonl</code>. Each line holds these fields:</p>
+          <ul>
+            <li>the time and the session</li>
+            <li>the agent type, tier and effort</li>
+            <li>the persona and the write folders</li>
+            <li>a SHA-256 hash of the prompt</li>
+          </ul>
+          <p>A log failure never stops the dispatch.</p>
           <div class="with-note">
-            <p>When a worker starts, the SubagentStart hook hands it its lane, a summary of the brief contract and its own line from the log. When it stops, the SubagentStop hook looks in its last message for evidence: a quoted span, an <code>Evidence:</code> line or a path that exists. With none, the worker is sent back once with the reason.</p>
+            <p>When a worker starts, the SubagentStart hook hands it its lane. It also hands over a summary of the brief contract and the line of the worker from the log. When the worker stops, the SubagentStop hook looks for evidence in its last message. Evidence is a quoted span, an <code>Evidence:</code> line or a path that exists. With no evidence, the hook sends the worker back once with the reason.</p>
             <aside class="note" aria-label="What the stop check does not show">
               <span class="label">What this does not do</span>
               <p>The stop check shows that the report names something real. It does not show that the done-check passed. The conductor still checks that.</p>
@@ -118,64 +210,89 @@
             <blockquote><p>a report is what an agent claims; state is what is true on disk</p></blockquote>
             <figcaption>From <cite>references/conductor-standard.md</cite>, the eidolon repository</figcaption>
           </figure>
-        </section>
+        </div>
+      </section>
 
-        <section class="chapter" id="causal" aria-labelledby="causal-h">
-          <h2 id="causal-h"><span class="kicker">Chapter <span class="num">7</span></span>Causal logic as a persona rail</h2>
-          <p>Every persona, the conductor included, states each claim as a chain: the cause, the mechanism, the falsifier that would show it wrong, and the evidence it actually collected. A report missing a link is incomplete and says which link. The docs give an example for a QA lead:</p>
+      <section class="chapter split" id="causal" aria-labelledby="causal-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M9 57V25"/><path d="M55 57V25"/><path d="M9 25c7-11 39-11 46 0"/><path d="M18 57V21M25.5 57V18.5M32 57V17.5M38.5 57V18.5M46 57V21"/><path d="M9 39h46"/><path d="M5 57h54"/></g><circle class="v-glow" cx="32" cy="9" r="3"/></svg>
+          <div><span class="kicker">Chapter <span class="num">7</span></span><h2 id="causal-h">Causal logic as a persona rail</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Every persona states each claim as a chain. The conductor does too. The chain has four links:</p>
+          <ul>
+            <li>the cause</li>
+            <li>the mechanism</li>
+            <li>the falsifier that would show it wrong</li>
+            <li>the evidence it actually collected</li>
+          </ul>
+          <p>A report that lacks a link is incomplete. The report says which link it lacks. The docs give an example for a QA lead:</p>
           <dl class="facts">
             <div><dt>Claim</dt><dd>The refund-cap test guards the cap.</dd></div>
-            <div><dt>Cause</dt><dd>The test sends an over-cap refund and expects a 422, so removing the cap check makes it fail.</dd></div>
+            <div><dt>Cause</dt><dd>The test sends an over-cap refund and expects a 422. If you delete the cap check, the test fails.</dd></div>
             <div><dt>Falsifier</dt><dd>A mutant that deletes the cap check leaves the test green.</dd></div>
             <div><dt>Evidence</dt><dd>A mutation run on the cap check turns the test red, with the output pasted.</dd></div>
           </dl>
-          <p>A persona with no named standard behind it fails the lint and is never seated. The docs call this rule "no anchor, no seat."</p>
-        </section>
+          <p>A persona with no named standard behind it fails the lint. Eidolon never seats it. The docs call this rule "no anchor, no seat."</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="swarms" aria-labelledby="swarms-h">
-          <h2 id="swarms-h"><span class="kicker">Chapter <span class="num">8</span></span>Review swarms</h2>
-          <p>Personas staff each swarm, and each swarm must show its own check can fail before its pass is trusted.</p>
+      <section class="chapter split" id="swarms" aria-labelledby="swarms-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56h44"/><path d="M14 56V27a10 10 0 0 1 20 0v29"/><path d="M30 56V27a10 10 0 0 1 20 0v29" opacity=".6"/><circle cx="29" cy="40" r="1.4"/><circle cx="45" cy="40" r="1.4"/></g></svg>
+          <div><span class="kicker">Chapter <span class="num">8</span></span><h2 id="swarms-h">Review swarms</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">Personas staff each swarm. Each swarm must show that its own check can fail. Only then does its pass count.</p>
           <dl class="facts">
-            <div><dt>Engineering</dt><dd>Builds. Each task's test must fail before the change and pass after it; a test that passes against nothing halts the run.</dd></div>
-            <div><dt>Code review</dt><dd>Simplifies without changing behavior. The suite passes the same way before and after, and a planted behavior change must make a test fail first.</dd></div>
-            <div><dt>Trust and safety</dt><dd>Checks harm, abuse, privacy, accessibility and fairness against GDPR, CCPA and WCAG 2.2 AA. A seeded line that logs personal data must be caught.</dd></div>
-            <div><dt>Security</dt><dd>Red finds and blue hardens. Each finding closes only when its fix is verified.</dd></div>
-            <div><dt>Ship and upload</dt><dd>Runs a deploy-readiness interview. A seeded missing environment variable or staged secret must block the ship.</dd></div>
+            <div><dt>Engineering</dt><dd>Builds. Each task's test must fail before the change and pass after it. A test that passes against nothing halts the run.</dd></div>
+            <div><dt>Code review</dt><dd>Simplifies and keeps the behavior the same. The suite passes the same way before and after. A planted behavior change must make a test fail first.</dd></div>
+            <div><dt>Trust and safety</dt><dd>Checks harm and abuse. It also checks privacy, accessibility and fairness. The standards are GDPR, CCPA and WCAG 2.2 AA. The swarm must catch a seeded line that logs personal data.</dd></div>
+            <div><dt>Security</dt><dd>Red finds and blue hardens. Each issue closes only when a check verifies its fix.</dd></div>
+            <div><dt>Ship and upload</dt><dd>Runs a deploy-readiness interview. A seeded staged secret must block the ship. So must a seeded environment variable that is absent.</dd></div>
           </dl>
-          <p>Each review lens returns a score from 0 to 1, a pass or fail, and evidence. The score is the share of its checklist covered with evidence. It is not a pass mark: one blocker fails the lens whatever the score.</p>
-        </section>
+          <p>Each review lens returns three things: a score from 0 to 1, a pass or fail, and evidence. The score is the share of its checklist that has evidence. It is not a pass mark. One blocker fails the lens whatever the score.</p>
+        </div>
+      </section>
 
-        <section class="chapter" id="principles" aria-labelledby="principles-h">
-          <h2 id="principles-h"><span class="kicker">Chapter <span class="num">9</span></span>The engineering principles</h2>
-          <p>These come from Anthropic's published engineering guidance and the Claude Code docs.</p>
+      <section class="chapter split" id="principles" aria-labelledby="principles-h">
+        <header class="chapter-head">
+          <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M8 56h48"/><path d="M13 56V28l19-15 19 15v28"/><path d="M23 56V41a9 9 0 0 1 18 0v15"/><path d="M42 21v-9h5v13"/></g><path class="v-flame" d="M32 54c-4.5-2.5-5-7 0-12 1 3.5 4 4 4 7.5 0 2.5-1.5 4-4 4.5z"/></svg>
+          <div><span class="kicker">Chapter <span class="num">9</span></span><h2 id="principles-h">The engineering principles</h2></div>
+        </header>
+        <div class="chapter-body">
+          <p class="initial">These principles come from the published guidance of Anthropic for engineers, and from the Claude Code docs.</p>
           <h3>Workflows before agents</h3>
-          <p>Use the simplest pattern that solves the task. One call with retrieval beats a chain, and a chain beats a swarm. A new agent, loop or index has to name the failure it removes.</p>
+          <p>Use the simplest pattern that solves the task. One call with retrieval beats a chain. A chain beats a swarm. A new agent, loop or index has to name the failure it removes.</p>
           <h3>Bounded loops</h3>
-          <p>No loop runs without a check that ends it, a stop condition and a turn, time or attempt cap. Each pass reads real output, such as a test exit code or a diff, not its own claim. State goes to disk each pass so a restart resumes.</p>
+          <p>No loop runs without a check that ends it and a stop condition. It also needs a cap on turns, time or tries. Each pass reads real output, such as a test exit code or a diff. It does not read its own claim. State goes to disk each pass, so a restart resumes.</p>
           <figure class="pullquote">
             <blockquote><p>a loop with no evaluator, no stop condition and no budget is a runaway, not automation</p></blockquote>
             <figcaption>From <cite>references/engineering-principles.md</cite>, the eidolon repository</figcaption>
           </figure>
           <h3>Retrieval</h3>
-          <p>Fetch what a step needs when it needs it, and keep paths rather than file bodies. A corpus under about 200,000 tokens goes into context whole, with caching, and gets no index.</p>
+          <p>Fetch what a step needs when it needs it. Keep paths, not file bodies. A corpus under about 200,000 tokens goes into context whole with a prompt cache. It gets no index.</p>
           <h3>DAG waves</h3>
-          <p>Write each wave as a dependency graph with separate write folders per node. Independent nodes start together. Use one agent for a lookup and three to five in parallel for research. Resume from the failed node, not from the start.</p>
+          <p>Write each wave as a dependency graph. Each node gets its own write folders. Independent nodes start together. Use one agent for a lookup. Use three to five agents in parallel for research. Resume from the failed node, not from the start.</p>
           <h3>Graphs</h3>
-          <p>Ask a code graph a structure question ("what calls this?") before reading files to answer it. The graph tools are optional; without one, setup falls back to search and read.</p>
+          <p>Ask a code graph a structure question ("what calls this?") before you read files to answer it. The graph tools are optional. Without one, setup falls back to search and read.</p>
           <h3>Context</h3>
-          <p>Workers return short summaries with paths for detail. Each agent gets the minimum tools, with no two covering the same job. Notes live in files so they survive when context is trimmed.</p>
+          <p>Workers return short summaries with paths for detail. Each agent gets the minimum tools. No two tools do the same job. Notes live in files, so they survive a trim of the context.</p>
           <h3>Evaluation</h3>
-          <p>Grade the end state, not the route taken. The verifier is a fresh agent told to refute the claim, given only the diff and the criteria. Show the command and its output rather than asserting a result.</p>
-        </section>
-      </div>
-    </article>
+          <p>Grade the end state, not the route. The verifier is a fresh agent. Its task is to refute the claim, and it gets only the diff and the criteria. Show the command and its output, not a bare claim of a result.</p>
+        </div>
+      </section>
+    </div>
   </main>
   <footer class="colophon">
     <div class="colophon-inner">
-      <h2>Colophon</h2>
-      <p>Every claim on these pages traces to a document in the three repositories.</p>
-      <p>The pages are static HTML and one stylesheet, with no scripts. They are set in Fraunces, Newsreader, IBM Plex Sans and IBM Plex Mono, served by Google Fonts.</p>
-      <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository.</p>
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="2.8" r="1.3"/><path d="M8.6 7.4c0-2.4 1.5-3.3 3.4-3.3s3.4.9 3.4 3.3"/><path d="M7.2 7.6h9.6l1.4 2.4H5.8z"/><path d="M6.6 10.6h10.8l-1 9H7.6z"/><path d="M9 22.2h6"/></g><path class="mark-flame" d="M12 12.4c1.6 1.8 2.3 3 2.3 4.2a2.3 2.3 0 0 1-4.6 0c0-1.2.7-2.4 2.3-4.2z"/></svg>
+      <div>
+        <h2>Colophon</h2>
+        <p>Every claim on these pages traces to a document in the three repositories.</p>
+        <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+      </div>
     </div>
   </footer>
 </body>
