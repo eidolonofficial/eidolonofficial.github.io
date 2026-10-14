@@ -59,10 +59,10 @@
               <p>It never writes to your project before you approve the plan, and it never weakens a guard to make a test pass.</p>
             </div>
             <div class="actions">
-              <a class="btn btn-primary" href="https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></svg>Download Hearth v0.1.0</a>
+              <a class="btn btn-primary" href="https://github.com/eidolonofficial/Hearth/releases/download/v0.1.1/Hearth-v0.1.1.zip"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></svg>Download Hearth v0.1.1</a>
               <a class="btn btn-quiet" href="https://github.com/eidolonofficial/eidolon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6.5" cy="5.5" r="2.2"/><circle cx="6.5" cy="18.5" r="2.2"/><circle cx="17.5" cy="7.5" r="2.2"/><path d="M6.5 7.7v8.6"/><path d="M17.5 9.7c0 4.3-6.6 3.4-10.2 6.8"/></g></svg>View on GitHub</a>
             </div>
-            <p class="fineprint">The zip is on the <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth release page</a>. Its SHA-256 is in <a href="#ledger">the ledger</a>.</p>
+            <p class="fineprint">The zip is on the <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.1">Hearth release page</a>. Its SHA-256 is in <a href="#ledger">the ledger</a>.</p>
           </div>
           <div class="hero-lantern">
             <div class="halo halo-outer" aria-hidden="true"></div>
@@ -126,10 +126,10 @@
               <div class="seg-panel panel-win">
                 <p class="cmd-title"><strong>Windows, novice door</strong> (PowerShell 5.1, nothing else needed)</p>
                 <div class="cmd">
-                  <pre><code>iwr -UseBasicParsing https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip -OutFile Hearth.zip
-if ((Get-FileHash Hearth.zip -Algorithm SHA256).Hash -ne 'AB147CF82141EB54CB17389D391E3D58A6C0F4A709B59D6F8AA5AD905B1F187D') { throw 'hash mismatch' }
+                  <pre><code>iwr -UseBasicParsing https://github.com/eidolonofficial/Hearth/releases/download/v0.1.1/Hearth-v0.1.1.zip -OutFile Hearth.zip
+if ((Get-FileHash Hearth.zip -Algorithm SHA256).Hash -ne '0E4DD913A4EDD571DF0A4E35B7706054698C0BBE078464FDCE039F51C0DA70AA') { throw 'hash mismatch' }
 Expand-Archive Hearth.zip -DestinationPath . -Force
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.0\welcome.ps1</code></pre>
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.1\welcome.ps1</code></pre>
                   <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
                 </div>
                 <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
@@ -137,9 +137,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.0\welcome.ps1<
               <div class="seg-panel panel-mac">
                 <p class="cmd-title"><strong>macOS and Linux, novice door</strong> (bash)</p>
                 <div class="cmd">
-                  <pre><code>curl -L -o Hearth.zip https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip
-echo "ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d  Hearth.zip" | shasum -a 256 -c
-unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.0/macos/Welcome.command</code></pre>
+                  <pre><code>curl -L -o Hearth.zip https://github.com/eidolonofficial/Hearth/releases/download/v0.1.1/Hearth-v0.1.1.zip
+echo "0e4dd913a4edd571df0a4e35b7706054698c0bbe078464fdce039f51c0da70aa  Hearth.zip" | shasum -a 256 -c
+unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.1/macos/Welcome.command</code></pre>
                   <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
                 </div>
                 <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
@@ -147,20 +147,20 @@ unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.0/macos/Welcome.command</code></
               <div class="seg-panel panel-op">
                 <p class="cmd-title"><strong>Operator door, project hooks</strong> (Git and Node 22)</p>
                 <div class="cmd">
-                  <pre><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/Hearth.git
+                  <pre><code>git clone --branch v0.1.1 --depth 1 https://github.com/eidolonofficial/Hearth.git
 node Hearth/scripts/welcome.mjs</code></pre>
                   <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
                 </div>
-                <p class="cmd-cap">It clones the v0.1.0 tag of Hearth and runs the operator door. The door shows its plan and asks before it replaces anything.</p>
+                <p class="cmd-cap">It clones the v0.1.1 tag of Hearth and runs the operator door. The door shows its plan and asks before it replaces anything.</p>
               </div>
             </div>
           </div>
           <p class="install-note">Every door asks GitHub once for a newer Hearth release before it writes, and asks you before it acts on one. The npm route and the operator door need Node 22. The zip doors need nothing else.</p>
         </section>
         <ul class="proof" aria-label="Proof">
-          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg><span><a href="release.html#gates"><b>285</b> tests pass</a> at the eidolon tag</span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg><span><a href="release.html#gates"><b>326</b> tests pass</a> at the eidolon tag</span></li>
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8.5 20.5h7"/><path d="M12 17v3.5"/></g></svg><span><a href="https://github.com/eidolonofficial/eidolon/actions">CI green</a> on Ubuntu, macOS and Windows, with a history secrets scan</span></li>
-          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8"/><path d="M8 4a2 2 0 0 0-2 2v1.5h4V6a2 2 0 0 0-2-2z"/><path d="M8 20a2 2 0 0 1-2-2v-1.5h4"/><path d="M11 9.5h5"/><path d="M11 13h5"/></g></svg><span><a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>, released <a href="release.html">13 October 2026</a></span></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h9a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8"/><path d="M8 4a2 2 0 0 0-2 2v1.5h4V6a2 2 0 0 0-2-2z"/><path d="M8 20a2 2 0 0 1-2-2v-1.5h4"/><path d="M11 9.5h5"/><path d="M11 13h5"/></g></svg><span><a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/LICENSE">MIT License</a>, released <a href="release.html">13 October 2026</a></span></li>
           <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M5 20L19 4"/></g></svg><span>One small script for the copy buttons, nothing external, no tracking</span></li>
         </ul>
       </div>
@@ -174,7 +174,7 @@ node Hearth/scripts/welcome.mjs</code></pre>
         </header>
         <div class="body">
           <p class="initial">Eidolon is a skill for Claude Code. It sets up a repository so Claude Code can work well in it. Then it carries a piece of work from a written spec to a committed change. It stops at set points so you can approve, edit or stop.</p>
-          <p>It runs in Claude Code only. Version 0.1.0 came out on 13 October 2026 with two companions. Setup is a skill that opens a work session. Hearth is the installer for both. The <a href="release.html">release page</a> has the record.</p>
+          <p>It runs in Claude Code only. Version 0.1.0 came out on 13 October 2026 with two companions, and v0.1.1 and v0.1.2 followed on 14 October with the hook review rounds 5 and 6, the update check and the npm package. Setup is a skill that opens a work session. Hearth is the installer for both. The <a href="release.html">release page</a> has the record.</p>
         </div>
       </section>
 
@@ -258,7 +258,7 @@ node Hearth/scripts/welcome.mjs</code></pre>
           <svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M10 56h44"/><path d="M14 56V27a10 10 0 0 1 20 0v29"/><path d="M30 56V27a10 10 0 0 1 20 0v29" opacity=".6"/><circle cx="29" cy="40" r="1.4"/><circle cx="45" cy="40" r="1.4"/></g></svg>
           <div><span class="kicker">Chapter <span class="num">III</span></span><h2 id="doors-h">Two doors in</h2></div>
         </header>
-        <p class="initial">Hearth comes as <code>Hearth-v0.1.0.zip</code> on its <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">release page</a>. Inside it are two doors. Pick one.</p>
+        <p class="initial">Hearth comes as <code>Hearth-v0.1.1.zip</code> on its <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.1">release page</a>. Inside it are two doors. Pick one.</p>
         <div class="doors">
           <article class="door reveal" aria-labelledby="door-novice">
             <h3 id="door-novice">Door 1. The novice door</h3>
@@ -318,7 +318,7 @@ node Hearth/scripts/welcome.mjs</code></pre>
           <ol>
             <li class="node"><span class="label">The call</span><code>Bash</code><code>PowerShell</code><span>Claude asks to run a command</span></li>
             <li class="arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M14 7l5 5-5 5"/></g></svg></li>
-            <li class="node"><span class="label">The guard</span><code>guard-bash.mjs</code><span><a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/hooks/README.md">Ten checks</a> in a fixed order</span></li>
+            <li class="node"><span class="label">The guard</span><code>guard-bash.mjs</code><span><a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.2/hooks/README.md">Ten checks</a> in a fixed order</span></li>
             <li class="arrow" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M14 7l5 5-5 5"/></g></svg></li>
             <li class="node"><span class="label">The verdict</span><span class="chips"><span class="chip chip-block">Block</span><span class="chip chip-ask">Ask</span><span class="chip chip-allow">Allow</span></span></li>
           </ol>
@@ -336,7 +336,7 @@ HOOK INTEGRITY GUARD [BLOCKED - fix and retry]: moving or deleting a hook (or th
 WRITE LANE GUARD [BLOCKED - fix and retry]: worker builder may write only under src/**; docs/outside.txt is outside its lane. Return the change to the controller.
 DISPATCH GUARD: brief names no done-check. Add a line such as "Done-check: &lt;command&gt; exits 0".</code></pre>
         </figure>
-        <p>Other hooks check each Write, Edit and Agent call in the same way. In the <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">live test on 2026-10-13</a>, they blocked a worker write outside its lane. They also blocked a worker that tried to dispatch another agent.</p>
+        <p>Other hooks check each Write, Edit and Agent call in the same way. In the <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.2/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">live test on 2026-10-13</a>, they blocked a worker write outside its lane. They also blocked a worker that tried to dispatch another agent.</p>
 
         <h3 id="why-hooks">Why hooks, and not only permission rules</h3>
         <p>The deny floor uses Claude Code's own permission rules, so it holds even when the hooks are off. A permission rule matches a tool and a command or a path. It cannot follow where a path really points. It cannot give each worker its own write lane, and it cannot check a brief before a dispatch. The hooks add those checks. Each block also returns a sentence that the model can read and act on.</p>
@@ -402,7 +402,7 @@ DISPATCH GUARD: brief names no done-check. Add a line such as "Done-check: &lt;c
           </div>
           <figcaption id="ws-cap">One conductor, workers in lanes, and two files on disk that keep the record</figcaption>
         </figure>
-        <p>Before the first worker that can write goes out, the conductor writes a wave plan. The dispatch gate logs each dispatch that it does not block. Every agent starts from a brief with a done-check on its own line. These three files come from the <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">live run of 2026-10-13</a>.</p>
+        <p>Before the first worker that can write goes out, the conductor writes a wave plan. The dispatch gate logs each dispatch that it does not block. Every agent starts from a brief with a done-check on its own line. These three files come from the <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.2/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">live run of 2026-10-13</a>.</p>
         <div class="exhibits">
           <figure class="exhibit reveal">
             <figcaption><span class="label">Exhibit B</span> The builder agent file</figcaption>
@@ -506,7 +506,7 @@ Steps: the builder writes src/hello.txt, then tries docs/outside.txt and docs/ou
           <div class="ledger-top">
             <div class="ledger-title">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9.5" r="5.5"/><path d="M9 14.2L8 21l4-2 4 2-1-6.8"/></g></svg>
-              <div><p class="version">v0.1.0</p><p class="date">Tagged on 13 October 2026, for Claude Code only</p></div>
+              <div><p class="version">v0.1.2</p><p class="date">Eidolon v0.1.2 and Hearth v0.1.1 tagged on 14 October 2026; v0.1.0 on 13 October. Claude Code only.</p></div>
             </div>
             <ul class="ci" aria-label="CI">
               <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Ubuntu</li>
@@ -519,24 +519,26 @@ Steps: the builder writes src/hello.txt, then tries docs/outside.txt and docs/ou
               <caption>Three repositories, one tag each</caption>
               <thead><tr><th scope="col">Repository</th><th scope="col">Tag commit</th><th scope="col">Tests at the tag</th></tr></thead>
               <tbody>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.2">eidolon v0.1.2</a></th><td><code>6a416f0</code></td><td>326 pass, 0 fail</td></tr>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.1">Hearth v0.1.1</a></th><td><code>5ef0bf7</code></td><td>36 pass, and 320 pass with 6 skipped in the bundled eidolon suite</td></tr>
                 <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon v0.1.0</a></th><td><code>0674346</code></td><td>285 pass, 0 fail</td></tr>
                 <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup v0.1.0</a></th><td><code>2733f2e</code></td><td>16 pass, 0 fail</td></tr>
                 <tr><th scope="row"><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth v0.1.0</a></th><td><code>a85d6a6</code></td><td>28 pass</td></tr>
               </tbody>
             </table>
           </div>
-          <p class="sha"><span class="label">SHA-256 of <code>Hearth-v0.1.0.zip</code></span></p>
-          <pre><code class="hash">ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
+          <p class="sha"><span class="label">SHA-256 of <code>Hearth-v0.1.1.zip</code></span></p>
+          <pre><code class="hash">0e4dd913a4edd571df0a4e35b7706054698c0bbe078464fdce039f51c0da70aa</code></pre>
           <p>Compare it with the hash of the file you download before you open it. Run <code>shasum -a 256 Hearth.zip</code> on macOS or Linux, or <code>Get-FileHash Hearth.zip -Algorithm SHA256</code> in PowerShell.</p>
           <p>CI runs on Ubuntu, macOS and Windows for all three repositories, with a scan of the full history for secrets. The runs are on the Actions tab of <a href="https://github.com/eidolonofficial/eidolon/actions">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/actions">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/actions">Hearth</a>. To run the eidolon suite and the self-check yourself, use the same commands as CI:</p>
-          <pre class="soft"><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/eidolon.git
+          <pre class="soft"><code>git clone --branch v0.1.2 --depth 1 https://github.com/eidolonofficial/eidolon.git
 cd eidolon
 node --test hooks/*.test.mjs scripts/*.test.mjs
 node scripts/selfcheck.mjs</code></pre>
-          <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every review round, gate and live test.</p>
+          <p>The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.2/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every review round, gate and live test.</p>
           <div class="ledger-links">
             <a class="btn btn-quiet" href="release.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M14 7l5 5-5 5"/></g></svg>Read the release record</a>
-            <a class="btn btn-quiet" href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></svg>Hearth release page</a>
+            <a class="btn btn-quiet" href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.1"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7.5 10.5L12 15l4.5-4.5"/><path d="M5 19.5h14"/></g></svg>Hearth release page</a>
           </div>
         </div>
       </section>
@@ -550,7 +552,7 @@ node scripts/selfcheck.mjs</code></pre>
           <li><a href="safety.html">Safety</a><p>How the guards work and the gaps they leave.</p></li>
           <li><a href="pipeline.html">Pipeline</a><p>The agents, the briefs, the review swarms and the principles behind them.</p></li>
           <li><a href="autopilot.html">Autopilot</a><p>The interview and the four shapes for work that runs on its own.</p></li>
-          <li><a href="release.html">Release</a><p>What v0.1.0 contains, the test numbers and what is still open.</p></li>
+          <li><a href="release.html">Release</a><p>What each release contains, the test numbers and what is still open.</p></li>
           <li><a href="about.html">Makers</a><p>Who made the three repositories, and why.</p></li>
         </ul>
         <p>The three repositories:</p>
@@ -569,7 +571,7 @@ node scripts/selfcheck.mjs</code></pre>
         <h2>Colophon</h2>
         <p>Every claim on these pages traces to a document in the three repositories.</p>
         <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
-        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
       </div>
     </div>
   </footer>

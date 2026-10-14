@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eidolon v0.1.0</title>
-  <meta name="description" content="What shipped in v0.1.0, the gates, the live tests, what is still open and how the release came about.">
+  <title>Eidolon releases</title>
+  <meta name="description" content="What shipped in v0.1.0, v0.1.1 and v0.1.2, the gates, the live tests, what is still open and how the releases came about.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="lantern.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,9 +39,9 @@
       <div class="wrap page-hero-grid">
         <div>
           <p class="kicker">The record, or the ledger of the first edition</p>
-          <h1>Release v0.1.0, the first edition</h1>
+          <h1>The releases, from the first edition on</h1>
           <p class="dek">What shipped, what was cut, how it was tested, and what is still open.</p>
-          <p class="lead">This is the first tagged release of all three repositories, on 13 October 2026. It supports Claude Code only.</p>
+          <p class="lead">The first tagged release of all three repositories came on 13 October 2026. Eidolon v0.1.1 and v0.1.2 and Hearth v0.1.1 followed on 14 October, with the hook review rounds 5 and 6, the update check in every door, the house persona's problem-solving method, the token economy reference and the npm package. It supports Claude Code only.</p>
         </div>
         <div class="emblem"><svg class="orrery" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="200" cy="200" r="194" stroke-width="1" stroke-dasharray="1 9"/><circle cx="200" cy="200" r="176" stroke-width=".75" opacity=".7"/><circle cx="200" cy="200" r="150" stroke-width="1" stroke-dasharray="10 8" opacity=".45"/></g><g fill="currentColor"><circle cx="200" cy="24" r="4"/><circle cx="352" cy="288" r="3"/><circle cx="62" cy="310" r="2.5"/></g></svg><svg class="vignette" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16c8.5-4.5 17-4.5 25 2 8-6.5 16.5-6.5 25-2v33c-8.5-4.5-17-4.5-25 2-8-6.5-16.5-6.5-25-2z"/><path d="M32 18v33"/><path d="M13 25c5-2 10-2 14 0M13 31c5-2 10-2 14 0M13 37c5-2 10-2 14 0"/></g><g class="v-seal" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="45" cy="38" r="6.5"/><path d="M41.5 43.5L40 51l5-2.5 5 2.5-1.5-7.5"/></g></svg></div>
       </div>
@@ -75,14 +75,16 @@
                 <tr><th scope="col">Repository</th><th scope="col">Tag commit</th><th scope="col">Tests at the tag</th></tr>
               </thead>
               <tbody>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.2">eidolon v0.1.2</a></th><td><code>6a416f0</code></td><td>326 pass, 0 fail</td></tr>
+                <tr><th scope="row"><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.1">Hearth v0.1.1</a></th><td><code>5ef0bf7</code></td><td>36 pass, and 320 pass with 6 skipped in the bundled eidolon suite</td></tr>
                 <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon v0.1.0</a></th><td><code>0674346</code></td><td>285 pass, 0 fail</td></tr>
                 <tr><th scope="row"><a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup v0.1.0</a></th><td><code>2733f2e</code></td><td>16 pass, 0 fail</td></tr>
                 <tr><th scope="row"><a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth v0.1.0</a></th><td><code>a85d6a6</code></td><td>28 pass</td></tr>
               </tbody>
             </table>
           </div>
-          <p class="initial">The Hearth release carries <code>Hearth-v0.1.0.zip</code>. Its SHA-256 is:</p>
-          <pre><code class="hash">ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d</code></pre>
+          <p class="initial">The Hearth release carries <code>Hearth-v0.1.1.zip</code>. Its SHA-256 is:</p>
+          <pre><code class="hash">0e4dd913a4edd571df0a4e35b7706054698c0bbe078464fdce039f51c0da70aa</code></pre>
           <p>Before you open the file you downloaded, compare its hash with this one.</p>
           <ul class="ci" aria-label="CI">
             <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></g></svg>Ubuntu</li>
@@ -104,10 +106,10 @@
               <div class="seg-panel panel-win">
                 <p class="cmd-title"><strong>Windows, novice door</strong> (PowerShell 5.1, nothing else needed)</p>
                 <div class="cmd">
-                  <pre><code>iwr -UseBasicParsing https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip -OutFile Hearth.zip
-if ((Get-FileHash Hearth.zip -Algorithm SHA256).Hash -ne 'AB147CF82141EB54CB17389D391E3D58A6C0F4A709B59D6F8AA5AD905B1F187D') { throw 'hash mismatch' }
+                  <pre><code>iwr -UseBasicParsing https://github.com/eidolonofficial/Hearth/releases/download/v0.1.1/Hearth-v0.1.1.zip -OutFile Hearth.zip
+if ((Get-FileHash Hearth.zip -Algorithm SHA256).Hash -ne '0E4DD913A4EDD571DF0A4E35B7706054698C0BBE078464FDCE039F51C0DA70AA') { throw 'hash mismatch' }
 Expand-Archive Hearth.zip -DestinationPath . -Force
-powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.0\welcome.ps1</code></pre>
+powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.1\welcome.ps1</code></pre>
                   <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
                 </div>
                 <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
@@ -115,9 +117,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Hearth-v0.1.0\welcome.ps1<
               <div class="seg-panel panel-mac">
                 <p class="cmd-title"><strong>macOS and Linux, novice door</strong> (bash)</p>
                 <div class="cmd">
-                  <pre><code>curl -L -o Hearth.zip https://github.com/eidolonofficial/Hearth/releases/download/v0.1.0/Hearth-v0.1.0.zip
-echo "ab147cf82141eb54cb17389d391e3d58a6c0f4a709b59d6f8aa5ad905b1f187d  Hearth.zip" | shasum -a 256 -c
-unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.0/macos/Welcome.command</code></pre>
+                  <pre><code>curl -L -o Hearth.zip https://github.com/eidolonofficial/Hearth/releases/download/v0.1.1/Hearth-v0.1.1.zip
+echo "0e4dd913a4edd571df0a4e35b7706054698c0bbe078464fdce039f51c0da70aa  Hearth.zip" | shasum -a 256 -c
+unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.1/macos/Welcome.command</code></pre>
                   <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
                 </div>
                 <p class="cmd-cap">It downloads the zip, checks its SHA-256, unpacks it and runs the novice door. The door asks before it replaces anything.</p>
@@ -125,11 +127,11 @@ unzip -q Hearth.zip &amp;&amp; bash Hearth-v0.1.0/macos/Welcome.command</code></
               <div class="seg-panel panel-op">
                 <p class="cmd-title"><strong>Operator door, project hooks</strong> (Git and Node 22)</p>
                 <div class="cmd">
-                  <pre><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/Hearth.git
+                  <pre><code>git clone --branch v0.1.1 --depth 1 https://github.com/eidolonofficial/Hearth.git
 node Hearth/scripts/welcome.mjs</code></pre>
                   <button class="copy" type="button" aria-live="polite">Copy<span class="visually-hidden"> the commands</span></button>
                 </div>
-                <p class="cmd-cap">It clones the v0.1.0 tag of Hearth and runs the operator door. The door shows its plan and asks before it replaces anything.</p>
+                <p class="cmd-cap">It clones the v0.1.1 tag of Hearth and runs the operator door. The door shows its plan and asks before it replaces anything.</p>
               </div>
             </div>
           </div>
@@ -216,14 +218,14 @@ node Hearth/scripts/welcome.mjs</code></pre>
           <div><span class="kicker">Chapter <span class="num">5</span></span><h2 id="gates-h">The gates</h2></div>
         </header>
         <div class="chapter-body">
-          <p class="initial">The release notes for each tag record these gates. The <a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.0">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.0">Hearth</a> release pages carry them.</p>
+          <p class="initial">The release notes for each tag record these gates. The <a href="https://github.com/eidolonofficial/eidolon/releases/tag/v0.1.2">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/releases/tag/v0.1.0">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/releases/tag/v0.1.1">Hearth</a> release pages carry them.</p>
           <dl class="facts">
-            <div><dt>Eidolon</dt><dd>The hook and script suites have 285 pass and 0 fail. <code>selfcheck</code> prints 67 PASS lines and PASS. The harness audit, the hooks README check and the persona lint all pass.</dd></div>
+            <div><dt>Eidolon</dt><dd>At v0.1.2 the hook and script suites have 326 pass and 0 fail. <code>selfcheck</code> prints 71 PASS lines and PASS. At v0.1.0 they had 285 pass and 67 lines. The harness audit, the hooks README check and the persona lint all pass.</dd></div>
             <div><dt>Setup</dt><dd>16 pass, 0 fail.</dd></div>
             <div><dt>Hearth</dt><dd>28 pass. The generator regression test passes. The bundled Eidolon suite has 281 pass and 4 skipped. Those 4 need the settings file of the Eidolon repository itself. The bundled Setup suite has 16 pass. The bundle check against the pinned commits passes.</dd></div>
           </dl>
           <p>The CI runs are on the Actions tab of <a href="https://github.com/eidolonofficial/eidolon/actions">eidolon</a>, <a href="https://github.com/eidolonofficial/eidolon-setup/actions">eidolon-setup</a> and <a href="https://github.com/eidolonofficial/Hearth/actions">Hearth</a>. To run the eidolon suite and the self-check at the tag, use the same commands as CI:</p>
-          <pre class="soft"><code>git clone --branch v0.1.0 --depth 1 https://github.com/eidolonofficial/eidolon.git
+          <pre class="soft"><code>git clone --branch v0.1.2 --depth 1 https://github.com/eidolonofficial/eidolon.git
 cd eidolon
 node --test hooks/*.test.mjs scripts/*.test.mjs
 node scripts/selfcheck.mjs</code></pre>
@@ -263,7 +265,7 @@ node scripts/selfcheck.mjs</code></pre>
           <div><span class="kicker">Chapter <span class="num">7</span></span><h2 id="live-h">Live gates</h2></div>
         </header>
         <div class="chapter-body">
-          <p class="initial">The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.0/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that settles it. G2 to G4 ran in headless Claude Code 2.1.206. They ran in a throwaway project after a real install, with hook debug logging on. Sandbox runs settled G1 and G5 later the same day.</p>
+          <p class="initial">The <a href="https://github.com/eidolonofficial/eidolon/blob/v0.1.2/docs/decisions/2026-10-13-archive-branches-and-v010-re-cut.md">decision record</a> names every round, gate and live test, and each open item with the check that settles it. G2 to G4 ran in headless Claude Code 2.1.206. They ran in a throwaway project after a real install, with hook debug logging on. Sandbox runs settled G1 and G5 later the same day.</p>
           <dl class="facts">
             <div><dt>G1, the novice door</dt><dd>With the user folder redirected to an empty one, 159 of 159 skill files landed byte for byte. The install wrote nothing else. A fresh session listed both skills. An old June copy in the user folder loaded ahead of the project copy. That copy is now in an archive, and the platform notes now say to keep one copy per machine.</dd></div>
             <div><dt>G2, the guards</dt><dd>The hooks blocked <code>git commit -n</code>. They blocked a delete of a hook through the PowerShell tool, so the shell guard reaches PowerShell. The gate refused a dispatch with no <code>Done-check:</code> line. <code>git push --force-with-lease</code> passed the hook. Then the permission layer of Claude Code denied the push. That layer is separate from Eidolon.</dd></div>
@@ -299,7 +301,7 @@ node scripts/selfcheck.mjs</code></pre>
         <h2>Colophon</h2>
         <p>Every claim on these pages traces to a document in the three repositories.</p>
         <p>The pages are static HTML and one stylesheet. The pages with copy buttons carry one small first-party script for those buttons, with no external scripts and no tracking. The type is Fraunces, Instrument Sans and IBM Plex Mono, from Google Fonts. The drawings are inline SVG.</p>
-        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.0/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
+        <p>Eidolon, Setup and Hearth are released under the <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/LICENSE">MIT License</a>. The people whose work they build on are named in <a href="https://github.com/eidolonofficial/Hearth/blob/v0.1.1/CREDITS.md">CREDITS.md</a> in the Hearth repository. The <a href="about.html">Makers page</a> says who made them and why.</p>
       </div>
     </div>
   </footer>
